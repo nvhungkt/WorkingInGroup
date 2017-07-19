@@ -34,18 +34,38 @@ public class Main extends javax.swing.JFrame {
     
     private void loadFile() {
         try {
-            FileReader fr = new FileReader("nihongo.txt");
+            FileReader fr = new FileReader("kanji_lesson.txt");
             BufferedReader br = new BufferedReader(fr);
             String tmp;
             while ((tmp = br.readLine()) != null) {
                 StringTokenizer stk = new StringTokenizer(tmp, ",");
-                String vietNam = stk.nextToken();
-                String nihon = stk.nextToken();
-                vocab.add(new Vocabulary(nihon, vietNam));
+                String question = stk.nextToken();
+                String answer = stk.nextToken();
+                vocab.add(new Vocabulary(answer, question));
             }
             br.close();
             fr.close();
         } catch (Exception ex) {}
+        
+//        try (InputStream bytes = new FileInputStream("kanji_lesson7.txt")) {
+//            /* See how I'm specifying the UTF-8 encoding explicitly? */
+//            Reader chars = new InputStreamReader(bytes, StandardCharsets.UTF_8);
+//            BufferedReader lines = new BufferedReader(chars);
+//            while (true) {
+//                String line = lines.readLine();
+//                if (line == null) {
+//                    break;
+//                }
+//                StringTokenizer stk = new StringTokenizer(line, ",");
+//                String vietNam = stk.nextToken();
+//                String nihon = stk.nextToken();
+//                vocab.add(new Vocabulary(nihon, vietNam));
+//            }
+//            lines.close();
+//            chars.close();
+//            bytes.close();
+//        } catch (Exception ex) {
+//        }
     }
     
     private void getQuestion() {
@@ -56,7 +76,7 @@ public class Main extends javax.swing.JFrame {
         }
         int rd = new Random().nextInt(vocab.size());
         vocabulary = vocab.get(rd);
-        lbVocabulary.setText(vocabulary.getVietNam());
+        lbVocabulary.setText(vocabulary.getQuestion());
         lbMessage.setText("You have made " + vocabulary.getMistakes() + " mistake(s) on this word!");
         txtAnswer.setText("");
         txtAnswer.setBackground(Color.WHITE);
@@ -68,11 +88,11 @@ public class Main extends javax.swing.JFrame {
     private void checkAnswer() {
         String nihon = txtAnswer.getText().trim();
         vocab.remove(vocabulary);
-        if (nihon.equalsIgnoreCase(vocabulary.getNihon()))
+        if (nihon.equalsIgnoreCase(vocabulary.getAnswer()))
             txtAnswer.setBackground(new Color(178, 255, 89));
         else {
             txtAnswer.setBackground(new Color(255, 82, 82));
-            txtAnswer.setText(nihon + " -> " + vocabulary.getNihon());
+            txtAnswer.setText(nihon + " -> " + vocabulary.getAnswer());
             mistake++;
             vocabulary.makeMistake();
             lbMistake.setText("Mistake(s): " + mistake);
@@ -100,7 +120,7 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbVocabulary.setFont(new java.awt.Font("Arial", 1, 60)); // NOI18N
+        lbVocabulary.setFont(new java.awt.Font("Yu Gothic", 1, 60)); // NOI18N
         lbVocabulary.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbVocabulary.setText("Vocabulary");
 

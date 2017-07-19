@@ -10,21 +10,21 @@ package vocabulary;
  * @author ahhun
  */
 public class Vocabulary {
-    private String nihon;
-    private String vietNam;
+    private String answer;
+    private String question;
     private int mistakes = 0;
 
     public Vocabulary(String nihon, String vietNam) {
-        this.nihon = nihon;
-        this.vietNam = vietNam;
+        this.answer = nihon;
+        this.question = vietNam;
     }
 
-    public String getNihon() {
-        return nihon;
+    public String getAnswer() {
+        return answer;
     }
 
-    public String getVietNam() {
-        return vietNam;
+    public String getQuestion() {
+        return question;
     }
 
     public int getMistakes() {
