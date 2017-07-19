@@ -1,0 +1,198 @@
+﻿Tôi,わたし
+Tên,なまえ
+Đất nước,くに
+Nhật Bản,にほん
+Hàn Quốc,かんこく
+Trung Quốc,ちゅうごく
+Mỹ,アメリカ
+Ý,イタリア
+Úc,オーストラリア
+Nga,ロシア
+Thái Lan,タイ
+Trường trung học phổ thông,こうこう
+Trường đại học,だいがく
+Trường tiếng Nhật,にほんごがっこう
+Công việc,しごと
+Học sinh ,がくせい
+Thầy/ Cô,せんせい
+Giáo viên,きょうし
+Nhân Viên,かいしゃいん
+Anh/chị/ông/bà/bạn~,さん
+Người (nước nào),じん
+Tiếng (nước nào),ご
+Xin chào (lần đàu gặp mặt),はじめまして
+Rất mong nhận được sự giúp đỡ của bạn,よろしくおねがいします
+Tôi cũng vậy!,こちらこそ
+Anh/chị ơi...,あのう
+Xin lỗi cho tôi hỏi,すみません
+Thế à!,そうですか
+Ngày sinh/Sinh nhật,たんじょうび
+Brazil,ブラジル
+Tháng~,がつ
+Ngày~,にち
+~ tuổi,さい
+Lúc nào/Khi nào,いつ
+Sở thích,しゅみ
+Thể thao,スポーツ
+Bóng đá,サッカー
+Tennis,テニス
+Bơi lội,すいえい
+Âm nhạc,おんがく
+Đọc sách,どくしょ
+Du lịch,りょこう
+Nấu ăn/ Món ăn,りょうり
+Cái gì,なん
+Chỗ này,ここ
+Chỗ đó,そこ
+Chỗ kia,あそこ
+Quầy thông tin,インフォメーション
+Máy rút tiền tự động,ATM
+Thang cuốn,エスカレーター
+Thang máy,エレベーター
+Nơi hút thuốc,きつえんしょ
+Nhà vệ sinh,トイレ
+Quầy thu ngân,レジ
+Qán giải khát,きっさてん
+Cửa hàn 100 Yên,１００円ショップ
+Nhà hàng/ quán ăn,レストラン
+Nhầm dưới lòng đất,ちか
+Máy ảnh,カメラ
+Diện thoại di động,けたいでんわ
+Kim từ điển,でんしじしょ
+Máy tính có nhân,パソコン
+Giầy,くつ
+Tẩy,けじごむ
+Bút,ペン
+Giấy vệ sinh,トイレットペーパー
+Sách,ほん
+Dầu,あぶら
+Banh ngọt,ケーキ
+Gạo,ごめ
+Trứng,たまご
+Bánh mỳ,パン
+Nước,みず
+Nhân viên bán hàng,てんいん
+Tầng~,かい
+Cửa hàng~,や
+Kính chào quý khách,いらっしゃいませ
+Cái này,これ
+Cái đó,それ
+Cái kia,あれ
+Cái nào,どれ
+Cái ~ này,この
+Cái ~ đó,その
+Cái ~ kia,あの
+Cái ~ nào,どの
+Cặp/ túi,かばん
+Quần dài,ズボン
+Áo phông,Tシャツ
+Đồng hồ,とけい
+~ Yên,えん
+Bao nhiêu tiền,いくら
+Thế thì /Thôi thì,じゃ
+Cá,さかな
+Thịt,にく
+Thịt bò,ぎゅうにく
+Thịt lợn,ぶたにく
+Rau,やさい
+Quả dâu,いちご
+Quả táo,りんご
+Đây là món ăn cá,これはさかなのりょうりです。
+Cà ri,カレー
+Canh/ súp,スープ
+Món thịt lợn chiên xù,とんかつ
+Món thịt băm viên,ハンバーグ
+Cơm,ごはん
+Cho tôi 2 bát cơm,ごはんをふたつください。
+Cơm/ gạo,ライス
+Nước trái cây,ジュース
+Cà phê,コーヒー
+Trà đen,こうちゃ
+Trà,ちゃ
+Bia,ビール
+Rượu vang,ワイン
+Ấn độ,インド
+Đức,ドイツ
+Pháp,フランス
+Ví tiền,さいふ
+Tiếng anh,えいご
+~ Cái,つ
+Cho tôi gọi đồ,ちゅうもんをおねがいします。
+Xin mời,どうぞ
+Bây giờ,いま
+Buổi sáng,ごぜん
+BUổi chiều,ごご
+Buổi trưa,ひる
+Nhân hàng,ぎんこう
+Nhà thi đấu,たいいくかん
+Thư viện,としょかん
+Bệnh viện,びょういん
+Bưu điên,ゆうびんきょく
+Giờ học,じゅぎょう
+Bài kiểm tra,テスト
+Nghỉ,やすみ
+Thời gian,じかん
+~ giờ,じ
+~ phút,ふん
+~ giờ rưỡi,じはん
+Thứ ~,ようび
+Kế hoạch,スケジュール
+Việc làm thêm,アルバイト
+Trượt tuyết,スキー
+Bữa tiệc,パーティー
+Tiệc nướng,バーベキュー
+Pháo hoa,はなび
+Ngắm hoa,はなみ
+Ở nhà bản địa,ホームステイ
+Lễ hội,まつり
+Biển,うみ
+Công viên,こうえん
+Hoa anh đào,さくら
+Rượu nhật,おさけ
+Món sushi,おすし
+Xe buýt,バス
+Cơm hộp,おべんとう
+1 năm,いちねん
+Mùa xuân,はる
+Mùa hè,なつ
+Mùa thu,あき
+Mùa đông,ふゆ
+Tuần lễ vàng,ゴールデンウイーク
+Cái gì,なに
+Đi,いきます
+Về,かえります
+Uống,のみます
+Ăn,たべます
+Xem,みます
+Làm/ chơi,します
+Hay quá nhỉ!,いいですね
+Buổi sáng,あさ
+Buổi tối/ đêm,よる
+Hàng ngày,まいにち
+Hàng sáng,まいあさ
+Mỗi tối,まいばん
+Bữa sáng,あさごはん
+Bữa trưa,ひるごはん
+Nhà,うち
+Công ti,かいしゃ
+Trường học,がっこう
+Cửa hàng tiện lợi,コンビニ
+SỮa bò,ぎゅうにゅう
+Hoa quả,くだもの
+Salad,サラダ
+Pho-mát,チーズ
+Mạng internet,インターネット
+Báo,しんぶん
+Ti vi,テレビ
+CD,シーディー
+DVD,ディーブイディー
+Cái gì cũng...,なにも
+Đầu cũng,どこへも
+Mua,かいます
+Nghe,ききます
+Làm việc,はたらきます
+Đọc,よみます
+Ngủ,ねます
+Thức,おきます
+Học,べんきょうします
+Tới,きます
