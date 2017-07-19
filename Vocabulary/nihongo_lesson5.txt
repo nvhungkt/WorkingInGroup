@@ -1,0 +1,64 @@
+hôm nay,きょう
+ngày mai,あした
+ngày kia,あさって
+hôm qua,きのう
+hôm kia,おととい
+tuần trước,せんしゅう
+cuối tuần,しゅうまつ
+nhà,いえ
+căn phòng,へや
+trung tâm thương mại,デパート
+bảo tàng mỹ thuật,びじゅつかん
+trò chơi,ゲーム
+gia đình,かぞく
+người yêu,こいびと
+bạn bè,ともだち
+bạn cùng phòng,ルームメイト
+nơi nào đó,どこか（へ）
+gặp gỡ,あいます
+làm/chế tạo,つくります
+mua sắm(v),かいものします
+dùng bữa/ăn uống(v),しょくじします
+giặt giũ(v),せんたくします
+hút bụi/lau dọn nhà cửa(v),そうじします
+sau đó,それから
+một mình,ひとりで
+sáng nay,けさ
+tháng trước,せんげつ
+năm ngoái,きょねん
+cảm cúm,かぜ
+thời tiết,てんき
+cơm tối,ばんごはん
+quần áo,ふく
+leo trèo,のぽります
+vào/bước vào,はいります
+bận(adj),いそがしい
+thú vị/hay/hấp dẫn,おもしろい
+cảm thấy sảng khoái,きもちがいい
+cao/đắt(adj),たかい
+rẻ(adj),やすい
+vui vẻ,たのしい
+khó,むずかしい
+dễ,やさしい
+dễ/đơn giản,かんたん
+vất vả,たいへん
+rảnh rỗi,ひま
+tại sao,どうして
+căn tin,しょくど
+nhàm chán,つまらない
+thuốc,くすり
+tìm(v),さがします
+lần tới,こんど
+tối nay,こんばん
+năm nay,ことし
+sang năm,らいねん
+hoạt hình,アニメ
+bức tranh,え
+phong cảnh,けしき
+xe đạp,じてんしゃ
+tấm ảnh,しゃしん
+chụp(v),とります
+vay mượn,かります
+muốn có(adj),ほしい
+thích(adj),すき
+ghét(adj),きらい

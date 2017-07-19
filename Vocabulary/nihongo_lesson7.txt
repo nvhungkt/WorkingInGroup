@@ -1,0 +1,83 @@
+chỗ soát vé,かいさつ
+cây/gỗ,き
+đồn cảnh sát,こうばん
+máy bán hàng tự động,じどうはんばいき
+thùng thư,ポスト
+hoa,はな
+con chó,いぬ
+ở giữa,あいだ
+bên trên,うえ
+phía dưới,した
+gần(ở vị trí gần adv),ちかく
+bên cạnh(cạnh sát),となり
+bên trong,なか
+bên ngoài,そと
+phía trước,まえ
+phía sau/đằng sau,うしろ
+bên cạnh(chiều ngang ko sát),よこ
+đi đón,むかえにいきます
+có(người & động vật),います
+alo alo,もしもし
+bến xe buýt,バスてい
+thư tay,てがみ
+cái ghế,いす
+cái bàn ăn tròn,テーブル
+lò vi sóng,でんしれんじ
+tủ lạnh,れいぞうこ
+đường ăn,さとう
+muối,しお
+nước sốt,しょうゆ
+cái cốc,コップ
+cái đĩa,おさら
+cái thìa,スプーン
+con dao,ナイフ
+cái nĩa,フォーク
+đũa,はし
+chữ hán,かんじ
+cái nào,どれ
+~ nào (trong đám này),どの～
+giặt rửa tắm(v),あらいます
+đặt để(v),おきます
+viết(v),かきます
+cho mượn(v),かします
+nghe(v),ききます
+hỏi(v),ききます
+cắt gọt(v),きります
+dùng/sử dụng(v),つかいます
+giúp đỡ(v),てつだいます
+cầm lấy(v),とります
+bên phải,みぎ
+bên trái,ひだり
+cửa sổ,まど
+cái cửa,ドア
+hộp,はこ
+giường,ベッド
+mang đi,もっていきます
+hiểu/biết(v),わかります
+nộp,だします
+lấy ra,だします
+bỏ vào,いれます
+dạy(v),おしえます
+chỉ bảo(v),おしえます
+nhiều(adj),たくさん
+xin lỗi,すみません
+được đấy!,いいですよ
+bài hát,うた
+đàn ghi ta,ギター
+nhà bếp,だいどころ
+thuốc lá,たばこ
+điện thoại,でんわ
+bánh pizza,ピザ
+hát(v),うたいます
+hút(v),すいます
+nói chuyện(v),はなします
+chơi(nhạc cụ),ひきます
+cầm/mang,もちます
+mở,あけます
+đóng,しめます
+tay,て
+tape,テープ
+giấy,かみ
+gọi đt(v),かけます
+mang đến,もってきます
+trẻ con,こども

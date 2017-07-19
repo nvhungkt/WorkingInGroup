@@ -1,0 +1,57 @@
+tuần này,こんしゅう
+tuần sau,らいしゅう
+tháng này,こんげつ
+tháng sau,らいげつ
+hát karaoke,カラオケ
+hòa nhạc,コンサート
+trận đấu,しあい
+giảm giá,セール
+vé,チケット
+bản đồ,ちず
+lái xe,ドライブ
+đồ bơi,みずぎ
+bóng chày,やきゅう
+hứa hẹn,やくそく
+việc bận(n),ようじ
+cách đếm vật mỏng/phẳng,～まい
+có(đồ vật),あります
+tiếc,ざんねん
+cùng với,いっしょに
+hay đấy/được đấy,いいですね
+xin lỗi,すみません
+hẹn anh lần sau,またこんど
+đồ ăn,たべもの
+đồ uống,のみもの
+thịt nướng,やきにく
+mỳ nhật,ラーメン
+ăn buffe,たべほうだい
+suất ăn/khóa học,コース
+quán rượu,いざかや
+rạp chiếu phim,えいがかん
+tàu điện ngầm,ちかてつ
+ca sĩ,かしゅ
+mùa,きせつ
+hài kịch,コメディー
+nhạc jazz,ジャズ
+tour du lịch,ツアー
+bên nào/phương nào,どちら
+bên nào cũng,どちらも
+gần,ちかい
+xa,とおい
+sớm/nhanh,はやい
+rộng,ひろい
+hẹp,せまい
+nhất,いちばん
+toàn bộ,ぜんぶ
+bánh xèo nhật,おこのみやき
+món nhúng có thịt bò và rau,すきやき
+chơi,あそびます
+nhất định,ぜひ
+vẫn chưa,まだ
+đã rồi,もう
+làm như thế đi,そうしましょう
+tôi hiểu rồi,わかりました
+đếm máy móc/xe cộ,～だい
+đếm vật mỏng,～まい
+đếm vật bất kỳ,～つ
+hỏi bao nhiêu cái,いくつ

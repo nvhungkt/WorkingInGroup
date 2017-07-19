@@ -1,0 +1,282 @@
+phía bắc,きた
+phía nam,みなみ
+phía đông,ひがし
+phía tây,にし
+chính giữa(trung tâm),まんなか
+ô tô,くるま
+tàu cao tốc,しんかんせん
+tàu điện,でんしゃ
+máy bay,ひこうき
+nhà ga,えき
+thành phố/thị trấn,まち
+~ tiếng,～じかん
+~ tiếng rưỡi,～じかんはん
+~ phút,～ふん
+đi bộ,あるいて
+khoảng,くらい
+khoảng bao lâu?,どのくらい
+suối nước nóng,おんせん
+sông,かわ
+núi,やま
+nhà thờ,きょうかい
+lâu đài,おしろ
+đền,じんじゃ
+chùa,おてら
+tòa nhà,ビル
+nơi/chỗ,ところ
+người,ひと
+màu xanh/cây xanh,みどり
+có(đồ vật),あります
+mới(adj),あたらしい
+cũ(adj),ふるい
+tốt(adj),いい
+nhiều~(adj),（～が）おおい
+ít~(adj),（～が）すくない
+to lớn(adj),おおきい
+nhỏ bé(adj),ちいさい
+cao/đắt(adj),たかい
+thấp(adj),ひくい
+đẹp/sạch sẽ(adj),きれい
+yên tĩnh(adj),しずか
+náo nhiệt/nhộn nhịp(adj),にぎやか
+nổi tiếng(adj),ゆうめい
+như thế nào,どんな
+và,そして
+khó(adj),むずかしい
+dễ(adj),やさしい
+thú vị(adj),おもしろい
+chán(adj),つまらない
+rẻ(adj),やすい
+từ bây giờ,これから
+sau đó,それから
+mưa,あめ
+tuyết,ゆき
+ngày/mặt trời,ひ
+dưa gang(dưa lưới),メロン
+ấm áp(thời tiết),あたたかい
+mát mẻ,すずしい
+nóng bức(thời tiết),あつい
+lạnh/rét(thời tiết),さむい
+thời tiết đẹp,てんきがいい
+thời tiết xấu,てんきがわるい
+ấm(nhiệt độ/cảm giác),あたたかい
+nóng(nhiệt độ),あつい
+lạnh/mát(nhiệt độ/cảm giác),つめたい
+ngon,おいしい
+dở,まずい
+ngọt,あまい
+cay,からい
+đắng,にがい
+chua,すっぱい
+suốt 1 năm,いちねんじゅう
+không ~ lắm,あまり
+một chút ít(adv),すこし
+rất(adv),とても
+thế nào(từ để hỏi),どう
+thời tiết tốt,いいてんき
+thời tiết nhiều mây,くもり
+khỏe(adj),げんき
+hôm nay,きょう
+ngày mai,あした
+ngày kia,あさって
+hôm qua,きのう
+hôm kia,おととい
+tuần trước,せんしゅう
+cuối tuần,しゅうまつ
+nhà,いえ
+căn phòng,へや
+trung tâm thương mại,デパート
+bảo tàng mỹ thuật,びじゅつかん
+trò chơi,ゲーム
+gia đình,かぞく
+người yêu,こいびと
+bạn bè,ともだち
+bạn cùng phòng,ルームメイト
+nơi nào đó,どこか（へ）
+gặp gỡ,あいます
+làm/chế tạo,つくります
+mua sắm(v),かいものします
+dùng bữa/ăn uống(v),しょくじします
+giặt giũ(v),せんたくします
+hút bụi/lau dọn nhà cửa(v),そうじします
+sau đó,それから
+một mình,ひとりで
+sáng nay,けさ
+tháng trước,せんげつ
+năm ngoái,きょねん
+cảm cúm,かぜ
+thời tiết,てんき
+cơm tối,ばんごはん
+quần áo,ふく
+leo trèo,のぽります
+vào/bước vào,はいります
+bận(adj),いそがしい
+thú vị/hay/hấp dẫn,おもしろい
+cảm thấy sảng khoái,きもちがいい
+cao/đắt(adj),たかい
+rẻ(adj),やすい
+vui vẻ,たのしい
+khó,むずかしい
+dễ,やさしい
+dễ/đơn giản,かんたん
+vất vả,たいへん
+rảnh rỗi,ひま
+tại sao,どうして
+căn tin,しょくど
+nhàm chán,つまらない
+thuốc,くすり
+tìm(v),さがします
+lần tới,こんど
+tối nay,こんばん
+năm nay,ことし
+sang năm,らいねん
+hoạt hình,アニメ
+bức tranh,え
+phong cảnh,けしき
+xe đạp,じてんしゃ
+tấm ảnh,しゃしん
+chụp(v),とります
+vay mượn,かります
+muốn có(adj),ほしい
+thích(adj),すき
+ghét(adj),きらい
+tuần này,こんしゅう
+tuần sau,らいしゅう
+tháng này,こんげつ
+tháng sau,らいげつ
+hát karaoke,カラオケ
+hòa nhạc,コンサート
+trận đấu,しあい
+giảm giá,セール
+vé,チケット
+bản đồ,ちず
+lái xe,ドライブ
+đồ bơi,みずぎ
+bóng chày,やきゅう
+hứa hẹn,やくそく
+việc bận(n),ようじ
+cách đếm vật mỏng/phẳng,～まい
+có(đồ vật),あります
+tiếc,ざんねん
+cùng với,いっしょに
+hay đấy/được đấy,いいですね
+xin lỗi,すみません
+hẹn anh lần sau,またこんど
+đồ ăn,たべもの
+đồ uống,のみもの
+thịt nướng,やきにく
+mỳ nhật,ラーメン
+ăn buffe,たべほうだい
+suất ăn/khóa học,コース
+quán rượu,いざかや
+rạp chiếu phim,えいがかん
+tàu điện ngầm,ちかてつ
+ca sĩ,かしゅ
+mùa,きせつ
+hài kịch,コメディー
+nhạc jazz,ジャズ
+tour du lịch,ツアー
+bên nào/phương nào,どちら
+bên nào cũng,どちらも
+gần,ちかい
+xa,とおい
+sớm/nhanh,はやい
+rộng,ひろい
+hẹp,せまい
+nhất,いちばん
+toàn bộ,ぜんぶ
+bánh xèo nhật,おこのみやき
+món nhúng có thịt bò và rau,すきやき
+chơi,あそびます
+nhất định,ぜひ
+vẫn chưa,まだ
+đã rồi,もう
+làm như thế đi,そうしましょう
+tôi hiểu rồi,わかりました
+đếm máy móc/xe cộ,～だい
+đếm vật mỏng,～まい
+đếm vật bất kỳ,～つ
+hỏi bao nhiêu cái,いくつ
+chỗ soát vé,かいさつ
+cây/gỗ,き
+đồn cảnh sát,こうばん
+máy bán hàng tự động,じどうはんばいき
+thùng thư,ポスト
+hoa,はな
+con chó,いぬ
+ở giữa,あいだ
+bên trên,うえ
+phía dưới,した
+gần(ở vị trí gần adv),ちかく
+bên cạnh(cạnh sát),となり
+bên trong,なか
+bên ngoài,そと
+phía trước,まえ
+phía sau/đằng sau,うしろ
+bên cạnh(chiều ngang ko sát),よこ
+đi đón,むかえにいきます
+có(người & động vật),います
+alo alo,もしもし
+bến xe buýt,バスてい
+thư tay,てがみ
+cái ghế,いす
+cái bàn ăn tròn,テーブル
+lò vi sóng,でんしれんじ
+tủ lạnh,れいぞうこ
+đường ăn,さとう
+muối,しお
+nước sốt,しょうゆ
+cái cốc,コップ
+cái đĩa,おさら
+cái thìa,スプーン
+con dao,ナイフ
+cái nĩa,フォーク
+đũa,はし
+chữ hán,かんじ
+cái nào,どれ
+~ nào (trong đám này),どの～
+giặt rửa tắm(v),あらいます
+đặt để(v),おきます
+viết(v),かきます
+cho mượn(v),かします
+nghe(v),ききます
+hỏi(v),ききます
+cắt gọt(v),きります
+dùng/sử dụng(v),つかいます
+giúp đỡ(v),てつだいます
+cầm lấy(v),とります
+bên phải,みぎ
+bên trái,ひだり
+cửa sổ,まど
+cái cửa,ドア
+hộp,はこ
+giường,ベッド
+mang đi,もっていきます
+hiểu/biết(v),わかります
+nộp,だします
+lấy ra,だします
+bỏ vào,いれます
+dạy(v),おしえます
+chỉ bảo(v),おしえます
+nhiều(adj),たくさん
+xin lỗi,すみません
+được đấy!,いいですよ
+bài hát,うた
+đàn ghi ta,ギター
+nhà bếp,だいどころ
+thuốc lá,たばこ
+điện thoại,でんわ
+bánh pizza,ピザ
+hát(v),うたいます
+hút(v),すいます
+nói chuyện(v),はなします
+chơi(nhạc cụ),ひきます
+cầm/mang,もちます
+mở,あけます
+đóng,しめます
+tay,て
+tape,テープ
+giấy,かみ
+gọi đt(v),かけます
+mang đến,もってきます
+trẻ con,こども

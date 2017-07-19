@@ -1,0 +1,78 @@
+phía bắc,きた
+phía nam,みなみ
+phía đông,ひがし
+phía tây,にし
+chính giữa(trung tâm),まんなか
+ô tô,くるま
+tàu cao tốc,しんかんせん
+tàu điện,でんしゃ
+máy bay,ひこうき
+nhà ga,えき
+thành phố/thị trấn,まち
+~ tiếng,～じかん
+~ tiếng rưỡi,～じかんはん
+~ phút,～ふん
+đi bộ,あるいて
+khoảng,くらい
+khoảng bao lâu?,どのくらい
+suối nước nóng,おんせん
+sông,かわ
+núi,やま
+nhà thờ,きょうかい
+lâu đài,おしろ
+đền,じんじゃ
+chùa,おてら
+tòa nhà,ビル
+nơi/chỗ,ところ
+người,ひと
+màu xanh/cây xanh,みどり
+có(đồ vật),あります
+mới(adj),あたらしい
+cũ(adj),ふるい
+tốt(adj),いい
+nhiều~(adj),（～が）おおい
+ít~(adj),（～が）すくない
+to lớn(adj),おおきい
+nhỏ bé(adj),ちいさい
+cao/đắt(adj),たかい
+thấp(adj),ひくい
+đẹp/sạch sẽ(adj),きれい
+yên tĩnh(adj),しずか
+náo nhiệt/nhộn nhịp(adj),にぎやか
+nổi tiếng(adj),ゆうめい
+như thế nào,どんな
+và,そして
+khó(adj),むずかしい
+dễ(adj),やさしい
+thú vị(adj),おもしろい
+chán(adj),つまらない
+rẻ(adj),やすい
+từ bây giờ,これから
+sau đó,それから
+mưa,あめ
+tuyết,ゆき
+ngày/mặt trời,ひ
+dưa gang(dưa lưới),メロン
+ấm áp(thời tiết),あたたかい
+mát mẻ,すずしい
+nóng bức(thời tiết),あつい
+lạnh/rét(thời tiết),さむい
+thời tiết đẹp,てんきがいい
+thời tiết xấu,てんきがわるい
+ấm(nhiệt độ/cảm giác),あたたかい
+nóng(nhiệt độ),あつい
+lạnh/mát(nhiệt độ/cảm giác),つめたい
+ngon,おいしい
+dở,まずい
+ngọt,あまい
+cay,からい
+đắng,にがい
+chua,すっぱい
+suốt 1 năm,いちねんじゅう
+không ~ lắm,あまり
+một chút ít(adv),すこし
+rất(adv),とても
+thế nào(từ để hỏi),どう
+thời tiết tốt,いいてんき
+thời tiết nhiều mây,くもり
+khỏe(adj),げんき
