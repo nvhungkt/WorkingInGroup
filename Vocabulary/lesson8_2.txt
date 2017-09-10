@@ -1,0 +1,32 @@
+﻿Chồng bạn,ごしゅじん
+Vợ người ta,おくさん
+Tiền bối/đàn anh,せんぱい
+Hậu bối/đàn em,こうはい
+Con thỏ,うさぎ
+Thân thể/cơ thể/sức khỏe,からだ
+Cái chân,あし
+Khuôn mặt,かお
+Tóc,かみ
+Cái miệng,くち
+Cái mũi,はな
+Con mắt,め
+Cái tai,みみ
+Thông minh,あたまがいい
+Bảnh bao ngon giai lịch lãm,かっこいい
+Đáng yêu cư tê,かわいい
+Cao ráo (dáng người),せがたかい
+Dài,ながい
+Ngắn,みじかい
+Hiền lành dịu dàng đôn hậu,やさしい
+Màu đen (adj),くろい
+Màu trắng (adj),しろい
+Màu nâu (adj),ちゃいろい
+Khỏe mạnh,げんき
+Tốt bụng/tử tế,しんせつ
+Chăm chỉ cần mẫn/nghiêm túc,まじめ
+Giỏi giang,じょうず
+Kém/dở,へた
+Cái răng,は
+Nha sĩ,はいしゃ
+Bụng,おなか
+Lưng,せ
