@@ -1,0 +1,30 @@
+﻿Bố mẹ (của tui),りょうしん
+Bố (của tui),ちち
+Mẹ (của tui),はは
+Anh chị em,きょうだい
+Anh trai (của tui),あに
+Chị gái (của tui),あね
+Em trai (của tui),おとうと
+Em gái (của tui),いもうと
+Chồng (của tui),おっと
+Vợ tui,つま
+Con tui,こども
+Con trai tui,むすこ
+Con gái tui,むすめ
+Bố bạn,おとうさん
+Mẹ bạn,おかあさん
+Anh trai bạn,おにいさん
+Chị gái bạn,おねえさん
+Em trai bạn,おとうとさん
+Em gái bạn,いもうとさん
+Con của bạn,おこさん
+Thú nuôi,ペット
+Con mèo,ねこ
+Đàn piano,ピアノ
+Bác sĩ,いしゃ
+Học sinh cấp 3,こうこうせい
+Sinh viên Đại học,だいがくせい
+~ người (đơn vị đếm),にん
+~ con vật (đơn vị đếm),ひき
+Sống/sinh sống,すみます
+Có (người/động vật),います
