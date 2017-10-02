@@ -11,6 +11,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.NamingException;
 import sample.dbaccess.DBAccess;
 
@@ -19,7 +21,7 @@ import sample.dbaccess.DBAccess;
  * @author Administrator
  */
 public class Tbl_StaffDAO implements Serializable{
-    public int ChangePassword(String staffID, String newPassword) throws NamingException, SQLException {
+public int ChangePassword(String staffID, String newPassword) throws NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         try {
@@ -27,6 +29,26 @@ public class Tbl_StaffDAO implements Serializable{
             String sql = "UPDATE tbl_Staff SET Password = ? WHERE StaffID = ?";
             stm = con.prepareStatement(sql);
             stm.setString(1, newPassword);
+            stm.setString(2, staffID);
+            return stm.executeUpdate();           
+        }
+        finally {
+            if(stm!=null) {
+                stm.close();
+            }
+            if(con!=null) {
+                con.close();
+            }
+        }        
+    }
+    // list of categories NAME this staff working
+    private List<String> listWorkingCategory;
+
+    public List<String> getListWorkingCategory() {
+        return listWorkingCategory;
+    }
+    
+    // check staff login by username and password 
             stm.setString(2, staffID);
             return stm.executeUpdate();           
         }
@@ -75,5 +97,38 @@ public class Tbl_StaffDAO implements Serializable{
                 con.close();
         }
         return null;
+    }
+    
+    // get from DB all categories NAME of this staff is working
+    public void getWorkingCategories(String staffID) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBAccess.makeConnection();
+            if(con != null) {
+                String sql = "Select s.Name "
+                        + "From tbl_WorkingSubcategory w, tbl_Subcategory s "
+                        + "Where w.StaffID = ? and w.SubcategoryID = s.SubcategoryID";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, staffID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    if(listWorkingCategory == null) {
+                        listWorkingCategory = new ArrayList<>();
+                    }
+                    listWorkingCategory.add(rs.getString("Name"));
+                }
+            }
+        } finally {
+            if(rs != null)
+                rs.close();
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
     }
 }

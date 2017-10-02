@@ -15,10 +15,7 @@ import sample.tbl_staff.Tbl_StaffDTO;
  * @author Administrator
  */
 public class LoginAction {
-
     
-
-
     /**
      * @return the dto
      */
@@ -95,8 +92,8 @@ public class LoginAction {
             message = "Password is required!!!";
         } else if(dto == null){
             message = "Invalid username or password!!!";
-            System.out.println(message);
         }
+        System.out.println(message);
         return FAIL;
     }
     

@@ -10,9 +10,11 @@
         </action>
         <action name="login" class="sample.action.LoginAction">
             <result name="success" type="redirect">home.jsp</result>
-            <result name="fail" type="redirect">login.jsp</result>
+            <result name="fail">login.jsp</result>
         </action>
-        <action name="changePass" class="sample.action.ChangePasswordAction">
+        <action name="viewStaffInfo" class="sample.action.ViewStaffInfoAction">
+            <result name="success">staffInfo.jsp</result>
+        </action>        <action name="changePass" class="sample.action.ChangePasswordAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">logout</param>
             </result>
