@@ -49,18 +49,6 @@ public int ChangePassword(String staffID, String newPassword) throws NamingExcep
     }
     
     // check staff login by username and password 
-            stm.setString(2, staffID);
-            return stm.executeUpdate();           
-        }
-        finally {
-            if(stm!=null) {
-                stm.close();
-            }
-            if(con!=null) {
-                con.close();
-            }
-        }        
-    }
     public Tbl_StaffDTO checkLogin(String username, String password) throws NamingException, SQLException{
         Connection con = null;
         PreparedStatement stm = null;
