@@ -18,24 +18,13 @@
            Invalid username or password"<br/>
         </s:if>--%>
         <form action="login" method="POST">
-            <!--Username<br/>
-            <input type="text" name="txtUsername" value=""/><br/>
-            <!--Password<br/>
-            <input type="password" name="txtPassword" value="" /><br/>-->
-            <s:set var="msg" value="%{message%}"/>
-            <%--<s:if test="%{message == 'Invalid username or password!!!'}">--%>
-                <s:property value="%{message}"/>
-            <%--</s:if>--%><br/>
+            <font color="red">
+                <s:property value="%{message}"/><br/>
+            </font>
             Username<br/>
-            <s:textfield name="txtUsername" value="%{txtUsername}"/>
-            <s:if test="%{#msg == 'Username is required!!!'}">
-                <s:property value="%{#msg}"/>
-            </s:if><br/>
+            <s:textfield name="txtUsername" value="%{txtUsername}"/><br/>
             Password<br/>
-            <s:password name="txtPassword" value=""/>
-            <s:if test="%{#msg == 'Password is required!!!'}">
-                <s:property value="%{#msg}"/>
-            </s:if><br/>
+            <s:password name="txtPassword" value=""/><br/>
             <input type="submit" value="Sign in" />
         </form>
         
