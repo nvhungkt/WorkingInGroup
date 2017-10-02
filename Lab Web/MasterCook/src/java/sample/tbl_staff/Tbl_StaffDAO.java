@@ -19,6 +19,26 @@ import sample.dbaccess.DBAccess;
  * @author Administrator
  */
 public class Tbl_StaffDAO implements Serializable{
+    public int ChangePassword(String staffID, String newPassword) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBAccess.makeConnection();            
+            String sql = "UPDATE tbl_Staff SET Password = ? WHERE StaffID = ?";
+            stm = con.prepareStatement(sql);
+            stm.setString(1, newPassword);
+            stm.setString(2, staffID);
+            return stm.executeUpdate();           
+        }
+        finally {
+            if(stm!=null) {
+                stm.close();
+            }
+            if(con!=null) {
+                con.close();
+            }
+        }        
+    }
     public Tbl_StaffDTO checkLogin(String username, String password) throws NamingException, SQLException{
         Connection con = null;
         PreparedStatement stm = null;
