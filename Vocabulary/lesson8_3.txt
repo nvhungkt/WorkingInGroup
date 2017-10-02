@@ -1,0 +1,31 @@
+﻿Thẻ/thiệp,カード
+Dù/ô,かさ
+Tiền,おかね
+Đôi vớ,くつした
+Từ điển,じしょ
+Sô cô la,チョコレート
+Thư,てがみ
+Vòng cổ,ネックレス
+Quyển vở,ノート
+Quà/món quà,プレゼント
+Thư/thư điện tử,メール
+Bà (của mình),そぼ
+Ông (của mình),そふ
+Giáng sinh,クリスマス
+Lễ kết hôn,けっこんしき
+Ngày lễ tình nhân,バレンタインデー
+Cái gì đó,なにか
+Gửi/tiễn,おくります
+Nhận,もらいます
+Tặng/biếu,あげます
+Cho (mình),くれます
+Gọi điện thoại,でんわします
+Sắp/sắp sửa,もうすぐ
+Tốt quá nhỉ,よかったですね
+Sáng sủa,あかるい
+Giao thông,こうつう
+Giá cả,ぶっか
+Thuận tiện,べんり
+Bền/bền bỉ,じょうぶ
+Rộng rãi,ひろい
+Nhẹ,かるい

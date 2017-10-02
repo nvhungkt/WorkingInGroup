@@ -1,0 +1,16 @@
+﻿Sự kiện,イベント
+Cuộc thi,コンテスト
+Thư pháp,しょどう
+Lặn xuống/lao xuống,ダイビング
+Khiêu vũ,ダンス
+Câu lạc bộ,クラブ
+Lớp học,きょうしつ
+Học (từ ai),ならいます
+Lên/đi xe/cưỡi ngựa,のります
+Đi vào/gia nhập/tham gia,はいります
+Xin/thỉnh cầu/đăng ký,もうしこみます
+Có thể,できます
+Tham gia,さんかします
+Kinh khủng/tuyệt vời,すごい
+Nhiều/đa dạng,いろいろ
+Thành thạo,じょうずに

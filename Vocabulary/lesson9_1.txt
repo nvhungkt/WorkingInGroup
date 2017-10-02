@@ -1,0 +1,32 @@
+﻿Hành động,アクション
+Bánh kẹo,おかし
+Tem,きって
+Nhạc cổ điển,クラシック
+Nhạc Pop,ポップス
+Tiểu thuyết,しょうせつ
+Truyện tranh,まんが
+Câu cá,つり
+Phim truyền hình,ドラマ
+Bể bơi,プール
+Gần đây,さいきん
+~ ngày,にち
+~ tuần,しゅうかん
+~ tháng,かげつ
+~ năm,ねん
+~ lần,かい
+~ quyển,さつ
+~ ly/cốc/bát,はい
+~ cái/chiếc/cây (đếm vật dài),ほん
+Món Ý,イタリアりょうり
+Bơi,およぎます
+Vẽ/tả,かきます
+Thu thập/tập hợp/sưu tầm,あつめます
+Lái (xe),うんてんします
+Đặc biệt,とくに
+Luôn luôn/thường xuyên,いつも
+Thường/hay/rất,よく
+Thỉnh thoảng/đôi khi,ときどき
+Không ~ lắm,あまり
+Hoàn toàn không,ぜんぜん
+Nhưng mà/tuy nhiên,でも
+Chỉ (duy),だけ

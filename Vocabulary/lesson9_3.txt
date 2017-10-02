@@ -1,0 +1,15 @@
+﻿Quầy lễ tân,うけつけ
+Thẻ,カード
+Chứng nhận đăng kí người nước ngoài,がいこくじんとうろくしょう
+Địa chỉ,じゅうしょ
+Bài tập về nhà,しゅくだい
+Số điện thoại,でんわばんごう
+Số ~,ばん
+Nói (với ai),いいます
+Chi trả,はらいます
+Xuống (tàu/xe),おります
+Cho xem,みせます
+Đặt trước,よやくします
+Làm thế nào,どうやって
+Ra khỏi nhà (đi làm),うちをでます
+Tắm vòi sen,シャワーをあびます
