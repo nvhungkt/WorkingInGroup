@@ -46,7 +46,7 @@
                                 <s:a href="%{#staffInfoLnk}">View information</s:a><br/>
                             </li>
                             <li> <!-- edit this account's password -->
-                                <a href="">Edit Password</a>
+                                <a href="changePassword.jsp">Edit Password</a>
                             </li>
                             
                             <!-- phan theo role -->
