@@ -16,8 +16,8 @@
         <s:include value="home.jsp"/>
         <s:set var="staff" value="%{#session.STAFF}"/>
         <h1>Staff information</h1>
-        <form action="editStaff">
-            <table border="1">
+        <form action="goEditStaff">
+            <table border="0">
             <thead>
                 
             </thead>

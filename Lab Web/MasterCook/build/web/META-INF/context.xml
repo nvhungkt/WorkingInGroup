@@ -2,6 +2,6 @@
 <Context path="/MasterCook">
     <Resource name="DBResource" type="javax.sql.DataSource" auth="Container"
     driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-    url="jdbc:sqlserver://localhost:1433;databaseName=RecipeWebDB"
-    username="sa" password="phithuongchode"/>
+    url="jdbc:sqlserver://localhost;databaseName=RecipeWebDB"
+    username="sa" password="123"/>
 </Context>
