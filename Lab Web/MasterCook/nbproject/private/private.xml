@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Download/New%20folder/SinhVien_Lab/Project/trunk/Lab%20Web/MasterCook/src/java/struts.xml</file>
             <file>file:/D:/Download/New%20folder/SinhVien_Lab/Project/trunk/Lab%20Web/MasterCook/web/staffInfo.jsp</file>
+            <file>file:/D:/Download/New%20folder/SinhVien_Lab/Project/trunk/Lab%20Web/MasterCook/web/META-INF/context.xml</file>
             <file>file:/D:/Download/New%20folder/SinhVien_Lab/Project/trunk/Lab%20Web/MasterCook/web/home.jsp</file>
-            <file>file:/D:/Download/New%20folder/SinhVien_Lab/Project/trunk/Lab%20Web/MasterCook/web/footer.html</file>
+            <file>file:/D:/Download/New%20folder/SinhVien_Lab/Project/trunk/Lab%20Web/MasterCook/web/editStaff.jsp</file>
+            <file>file:/D:/Download/New%20folder/SinhVien_Lab/Project/trunk/Lab%20Web/MasterCook/src/java/sample/tbl_category/Tbl_CategoryDAO.java</file>
+            <file>file:/D:/Download/New%20folder/SinhVien_Lab/Project/trunk/Lab%20Web/MasterCook/src/java/sample/action/LoadHeaderAction.java</file>
+            <file>file:/D:/Download/New%20folder/SinhVien_Lab/Project/trunk/Lab%20Web/MasterCook/src/java/sample/tbl_category/Tbl_CategoryDTO.java</file>
+            <file>file:/D:/Download/New%20folder/SinhVien_Lab/Project/trunk/Lab%20Web/MasterCook/web/header.jsp</file>
         </group>
     </open-files>
 </project-private>
