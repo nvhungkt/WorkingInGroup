@@ -27,6 +27,25 @@ public class Tbl_CommentDAO implements Serializable{
     public List<Tbl_CommentDTO> getComments() {
         return comments;
     }
+    public int deleteComment(String commentID) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;  
+        try {
+            con = DBAccess.makeConnection();
+            String sql = "DELETE FROM tbl_Comment WHERE CommentID = ?";
+            stm = con.prepareStatement(sql);
+            stm.setString(1, commentID);
+            return stm.executeUpdate();
+        }
+        finally {            
+            if(stm!=null) {
+                stm.close();
+            }
+            if(con!=null) {
+                con.close();
+            }
+        }        
+    }
     public int sendComment(String commentID, String guestName, String guestPhone, String guestEmail, String commentContent, String articleID) throws NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;  
