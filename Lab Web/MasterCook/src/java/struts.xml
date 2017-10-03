@@ -17,11 +17,22 @@
         </action>        <action name="changePass" class="sample.action.ChangePasswordAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">logout</param>
-            </result>
+            </result>            
             <result name="fail">changePassword.jsp</result>
         </action>
         <action name="logout" class="sample.action.LogoutAction">
             <result name="success" type="redirect">login.jsp</result>
+        </action>
+        
+        <action name="viewDetails" class="sample.action.ViewArticleDetailsAction">
+            <result name="success">articleDetail.jsp</result> 
+        </action>
+        
+        <action name="sendComment" class="sample.action.SendCommentAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">viewDetails</param>
+                <param name="message">${message}</param>
+            </result>
         </action>
     </package>
 </struts>

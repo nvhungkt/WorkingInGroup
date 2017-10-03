@@ -5,29 +5,76 @@
  */
 package sample.action;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import sample.tbl_article.Tbl_ArticleDTO;
+import sample.tbl_article.Tbl_ArticleDetailsDAO;
+import sample.tbl_article.Tbl_ArticleDetailsDTO;
+import sample.tbl_comment.Tbl_CommentDAO;
 import sample.tbl_comment.Tbl_CommentDTO;
 
 /**
  *
  * @author Turtle
  */
-public class ViewArticleDetailsAction {
+public class ViewArticleDetailsAction implements ServletRequestAware{
     private final String SUCCESS = "success";
+    private String content;
     private String articleID;
-    private Tbl_ArticleDTO article;
+    private Tbl_ArticleDetailsDTO article;
     private List<Tbl_CommentDTO> comments;
+    private HttpServletRequest servletRequest;
     public ViewArticleDetailsAction() {
     }
     
     public String execute() throws Exception {
+        //articleID duoc truyen tu trang truoc
         articleID = "R0001";
+        //
         String url = SUCCESS;
-        
+        Tbl_CommentDAO commentDAO = new Tbl_CommentDAO();
+        commentDAO.getComment(articleID);
+        comments = commentDAO.getComments();    
+        Tbl_ArticleDetailsDAO articleDAO = new Tbl_ArticleDetailsDAO();
+        article = articleDAO.getArticleDetails(articleID);           
+        content = "";
+        readFile(article.getContentURL());
         return url;
     }
+    public void readFile(String fileURL) throws Exception {        
+        //get file path
+        String filePath = servletRequest.getSession().getServletContext().getRealPath("/");
+        BufferedReader br = null;
+        FileReader fr = null;
+        try {
+            fr = new FileReader(filePath+fileURL);
+            br = new BufferedReader(fr);
+            String line;
+            while((line = br.readLine())!=null) {
+                content+=line;                
+            }
+        }
+        finally {
+            if(fr!=null) {
+                fr.close();
+            }
+            if(br!=null) {
+                br.close();
+            }
+        }
+    }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+    
     public String getArticleID() {
         return articleID;
     }
@@ -36,16 +83,22 @@ public class ViewArticleDetailsAction {
         this.articleID = articleID;
     }
 
-    public Tbl_ArticleDTO getArticle() {
+    public Tbl_ArticleDetailsDTO getArticle() {
         return article;
     }
 
-    public void setArticle(Tbl_ArticleDTO article) {
+    public void setArticle(Tbl_ArticleDetailsDTO article) {
         this.article = article;
     }
-
+    
+    
     public List<Tbl_CommentDTO> getComments() {
         return comments;
+    }
+//Get servlet request
+    @Override
+    public void setServletRequest(HttpServletRequest hsr) {
+        servletRequest = hsr;
     }
     
 }
