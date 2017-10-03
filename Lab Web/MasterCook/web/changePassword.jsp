@@ -28,10 +28,7 @@
                         <ul>
                             <li><a href="">View Information</a></li>
                             
-                            <%--Test xem Detail --%>
-                            <s:url var="viewDetailsLink" value="viewDetails"/>
-                            <li><s:a href="%{viewDetailsLink}">View Article Detail + comment</s:a></li>  
-                            <%-- --%>
+                            
                             
                             <li><a href="changePassword.jsp">Edit Password</a></li>
                             <s:if test="%{#session.STAFF.role == 'Collaborator'}">
