@@ -12,8 +12,7 @@
         <title>Change Password</title>     
         
     </head>
-    <body>        
-                
+    <body>                 
         <h1>Change Password</h1>
         <s:form action="changePass">                        
             <s:password name="oldPassword" label="Old Password"/>                        
