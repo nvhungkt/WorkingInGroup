@@ -10,7 +10,7 @@ import java.io.FileReader;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.interceptor.ServletRequestAware;
-import sample.tbl_article.Tbl_ArticleDTO;
+import sample.tbl_article.Tbl_ArticleDAO;
 import sample.tbl_article.Tbl_ArticleDetailsDAO;
 import sample.tbl_article.Tbl_ArticleDetailsDTO;
 import sample.tbl_comment.Tbl_CommentDAO;
@@ -30,11 +30,10 @@ public class ViewArticleDetailsAction implements ServletRequestAware{
     public ViewArticleDetailsAction() {
     }
     
-    public String execute() throws Exception {
-        //articleID duoc truyen tu trang truoc
-        articleID = "2";
-        //
-        String url = SUCCESS;
+    public String execute() throws Exception {        
+        Tbl_ArticleDAO dao = new Tbl_ArticleDAO();
+        dao.increaseView(articleID);
+        String url = SUCCESS;        
         Tbl_CommentDAO commentDAO = new Tbl_CommentDAO();
         commentDAO.getComment(articleID);
         comments = commentDAO.getComments();    
@@ -46,7 +45,7 @@ public class ViewArticleDetailsAction implements ServletRequestAware{
     }
     public void readFile(String fileURL) throws Exception {        
         //get file path
-        String filePath = servletRequest.getSession().getServletContext().getRealPath("/") + "Articles/";
+        String filePath = servletRequest.getSession().getServletContext().getRealPath("/") + "Articles/";        
         BufferedReader br = null;
         FileReader fr = null;
         try {
