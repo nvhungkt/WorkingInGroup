@@ -74,9 +74,7 @@
                                 <form action="rejectArticle">
                                     <s:hidden name="staffID" value="%{#session.STAFF.staffID}"/>
                                     <s:hidden name="articleID" value="%{article.articleID}"/>
-                                    <textarea name="txtReason"/>
-                                        Input Reason
-                                    </textarea>
+                                    <textarea name="txtReason" required="required">Input Reason</textarea> 
                                     <input type="submit" value="Submit" />
                                 </form>
                             </div>                            
@@ -102,9 +100,7 @@
                                 <form action="rejectArticle">
                                     <s:hidden name="staffID" value="%{#session.STAFF.staffID}"/>
                                     <s:hidden name="articleID" value="%{article.articleID}"/>
-                                    <textarea name="txtReason"/>
-                                        Input Reason
-                                    </textarea>
+                                    <textarea name="txtReason" required="required">Input Reason</textarea>                                    
                                     <input type="submit" value="Submit" />
                                 </form>
                             </div>                            
