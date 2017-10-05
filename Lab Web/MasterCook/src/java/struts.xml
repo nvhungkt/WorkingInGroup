@@ -38,7 +38,21 @@
                 <param name="message">${message}</param>
             </result>
         </action>
-        
+        <action name="deleteComment" class="sample.action.DeleteCommentAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">viewDetails</param>
+            </result>
+        </action>
+        <action name="approveArticle" class="sample.action.ApproveArticleAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">viewDetails</param>
+            </result>
+        </action>
+        <action name="rejectArticle" class ="sample.action.RejectArticleAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">viewDetails</param>
+            </result>
+        </action>        
         <action name="uploadArticle" class="sample.action.ViewUploadArticlePageAction">
             <result name="success">upload.jsp</result>
         </action>
