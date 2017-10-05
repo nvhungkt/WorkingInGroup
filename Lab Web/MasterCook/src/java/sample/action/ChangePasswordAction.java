@@ -30,9 +30,15 @@ public class ChangePasswordAction {
         Map session = ActionContext.getContext().getSession();       
         Tbl_StaffDAO dao = new Tbl_StaffDAO();
         Tbl_StaffDTO dto = (Tbl_StaffDTO) session.get("STAFF");       
-        if(dto!=null) {            
+        if(dto!=null) {     
+            newPassword = newPassword.trim();
+            confirmPassword = confirmPassword.trim();
             if(!oldPassword.equals(dto.getPassword())) {                
                 message = "Password is wrong!";
+                return url;
+            }
+            if(newPassword.trim().length()==0) {
+                message = "New password is required!";
                 return url;
             }
             if(!newPassword.equals(confirmPassword)) {
