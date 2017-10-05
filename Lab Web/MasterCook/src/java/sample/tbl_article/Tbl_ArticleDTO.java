@@ -17,7 +17,8 @@ public class Tbl_ArticleDTO implements Serializable{
     public Tbl_ArticleDTO() {
     }
 
-    public Tbl_ArticleDTO(String articleID, String title, String contentURL, String authorID, String reviewerID, String approverID, Timestamp dateTime, String subcategoryID, String status, Timestamp lastModifiedDateTime, int views, String lastEditorID) {
+    public Tbl_ArticleDTO(String reason, String articleID, String title, String contentURL, String authorID, String reviewerID, String approverID, Timestamp dateTime, String subcategoryID, String status, Timestamp lastModifiedDateTime, int views, String lastEditorID) {
+        this.reason = reason;
         this.articleID = articleID;
         this.title = title;
         this.contentURL = contentURL;
@@ -199,6 +200,15 @@ public class Tbl_ArticleDTO implements Serializable{
     public void setLastEditorID(String lastEditorID) {
         this.lastEditorID = lastEditorID;
     }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+    
     private String articleID;
     private String title;
     private String contentURL;
@@ -211,4 +221,5 @@ public class Tbl_ArticleDTO implements Serializable{
     private Timestamp lastModifiedDateTime;
     private int views;
     private String lastEditorID;
+    private String reason;
 }
