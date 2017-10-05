@@ -24,7 +24,7 @@ public class Tbl_ArticleDetailsDAO {
         ResultSet rs = null;
         try {
             con = DBAccess.makeConnection();
-            String sql = "SELECT a.Title, a.ContentURL, a.[DateTime], a.[Views], s.Name AS AuthorName, m.Name AS SubcategoryName, n.Name AS CategoryName\n" +
+            String sql = "SELECT a.Reason, a.Status, a.Title, a.ContentURL, a.[DateTime], a.[Views], s.Name AS AuthorName, m.Name AS SubcategoryName, n.Name AS CategoryName\n" +
 "FROM tbl_Article a, tbl_Staff s, tbl_Subcategory m, tbl_Category n\n" +
 "WHERE s.StaffID = a.AuthorID AND m.SubcategoryID = a.SubcategoryID AND m.CategoryID = n.CategoryID AND a.ArticleID = ?";
             stm = con.prepareStatement(sql);
@@ -39,7 +39,9 @@ public class Tbl_ArticleDetailsDAO {
                 String authorName = rs.getString("AuthorName");
                 String subcategoryName = rs.getString("SubcategoryName");
                 String categoryName = rs.getString("CategoryName");  
-                articleDetails = new Tbl_ArticleDetailsDTO(articleID, title, contentURL, authorName, dateTime, subcategoryName, categoryName, views);
+                String status = rs.getString("Status");
+                String reason = rs.getString("Reason");
+                articleDetails = new Tbl_ArticleDetailsDTO(articleID, title, contentURL, authorName, dateTime, subcategoryName, categoryName, views, status, reason);
             }
             return articleDetails;
         }
