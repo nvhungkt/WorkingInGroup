@@ -38,5 +38,34 @@
                 <param name="message">${message}</param>
             </result>
         </action>
+        
+        <action name="uploadArticle" class="sample.action.ViewUploadArticlePageAction">
+            <result name="success">upload.jsp</result>
+        </action>
+        
+        <action name="uploadimg" class="sample.action.UploadImageAction">
+	    <interceptor-ref name="fileUpload">
+                    <param name="maximumSize">2097152</param>
+                    <param name="allowedTypes">
+                            image/png,image/gif,image/jpeg,image/pjpeg
+                    </param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+	    <result name="success" type="redirectAction">
+                <param name="actionName">uploadArticle</param>
+                <param name="content">${content}</param>
+                <param name="fileUploadFileName">${fileUploadFileName}</param>
+            </result>
+	    <result name="input">upload.jsp</result>
+	</action>
+        
+        <action name="finishUploadArticle" class="sample.action.UploadArticleAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">viewDetails</param>
+                <param name="articleID">${articleID}</param>
+            </result>            
+            <result name="fail">upload.jsp</result>
+        </action>
+        
     </package>
 </struts>

@@ -24,7 +24,10 @@
         <s:set var="staff" value="%{#session.STAFF}"/>
         <h1>Home Page</h1>
         Welcome, <s:property value="%{#staff.name}"/><br/>
-        <c:import url="http://localhost:8084/MasterCook/header.jsp"/>
+        <%--<c:import url="http://localhost:8084/MasterCook/header.jsp">
+            <c:param name="staffInfo" value="%{staff}"/>
+        </c:import>--%>
+        <s:include value="header.jsp"/>
         
         <!-- menu bar-->
         <!--<div id="menu">

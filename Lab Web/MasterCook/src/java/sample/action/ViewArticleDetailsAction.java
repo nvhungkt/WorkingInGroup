@@ -32,7 +32,7 @@ public class ViewArticleDetailsAction implements ServletRequestAware{
     
     public String execute() throws Exception {
         //articleID duoc truyen tu trang truoc
-        articleID = "R0001";
+        articleID = "2";
         //
         String url = SUCCESS;
         Tbl_CommentDAO commentDAO = new Tbl_CommentDAO();
@@ -46,7 +46,7 @@ public class ViewArticleDetailsAction implements ServletRequestAware{
     }
     public void readFile(String fileURL) throws Exception {        
         //get file path
-        String filePath = servletRequest.getSession().getServletContext().getRealPath("/");
+        String filePath = servletRequest.getSession().getServletContext().getRealPath("/") + "Articles/";
         BufferedReader br = null;
         FileReader fr = null;
         try {

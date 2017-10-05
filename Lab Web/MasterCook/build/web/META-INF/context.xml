@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context path="/MasterCook">
-    <Resource name="DBResource" type="javax.sql.DataSource" auth="Container"
-    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-    url="jdbc:sqlserver://localhost;databaseName=RecipeWebDB"
-    username="sa" password="123"/>
-</Context>

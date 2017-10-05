@@ -15,7 +15,6 @@
         <title></title>
     </head>
     <body>
-        
         <!-- menu bar-->
         <div id="menu">
             <ul>            
@@ -24,25 +23,47 @@
                 <sql:setDataSource dataSource="DBResource" var="con"/>
                 <c:if test="${not empty con}">
                     <sql:query var="rs" dataSource="${con}">
-                        Select * From tbl_Category
+                        Select Name, CategoryID From tbl_Category
                     </sql:query>
                     <c:if test="${rs.rowCount gt 0}">
+                        <!-- each row is a cat with name & id, will be a <li> -->
                         <c:forEach var="row" items="${rs.rowsByIndex}">
-                            <c:forEach var="cat" items="${row}" varStatus="counter">
-                                <!-- query subcate by cat id -->
-                                <c:if test="${counter.count eq 2}">
-                                    <li>
+                            <li>
+                                <!-- in each cat will show a name and their subcat in <ul> -->
+                                <c:forEach var="cat" items="${row}" varStatus="counter">
+                                    <!-- the 1st-name cat shown in menu <li> -->
+                                    <c:if test="${counter.count eq 1}">
                                         <font color="red">${cat}</font>
-                                    </li>
-                                </c:if>
-                                
-                                    
-                                <%--<c:if test="${counter.count eq 2}">
-                                    <li>
-                                        <font color="red">${cat}</font>
-                                    </li>
-                                </c:if>--%>
-                            </c:forEach>
+                                    </c:if>                                    
+                                    <!-- if the 2nd-catID, then query subcat base on catID -->
+                                    <c:if test="${counter.count eq 2}">
+                                        <sql:query var="rsSubcat" dataSource="${con}">
+                                            Select Name, SubcategoryID From tbl_Subcategory Where CategoryID = ? and IsActive = 'true'
+                                            <sql:param value="${cat}"/>
+                                        </sql:query>
+                                        <c:if test="${rsSubcat.rowCount gt 0}">
+                                            <ul>
+                                                <!-- loop in rsSubcat for subcats-->
+                                                <c:forEach var="subcat" items="${rsSubcat.rowsByIndex}">
+                                                    <!-- loop in a subcat for name & id, each subcat will be a <li> -->
+                                                    <li>
+                                                        <c:forEach var="field" items="${subcat}" varStatus="counter2">
+                                                            <!-- name of subcat -->
+                                                            <c:if test="${counter2.count eq 1}">
+                                                                <a href=""><font color="green">${field}</font></a>
+                                                            </c:if>
+                                                            <!-- id of subcat -->
+                                                            <c:if test="${counter2.count eq 2}">
+                                                                <input type="hidden" name="subcatID" value="${field}" />
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </li>
+                                                </c:forEach>
+                                            </ul>
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </li>
                         </c:forEach>
                     </c:if>
                 </c:if>
@@ -67,7 +88,7 @@
                             <!-- phan theo role -->
                             <!-- role: collaborator -->
                             <s:if test="%{#staff.role == 'Collaborator'}">
-                                <li><a href="">Write New Articles</a></li>
+                                <li><s:a href="uploadArticle" method="POST">Write New Articles</s:a></li>
                                 <li><a href="">View My Articles</a></li>
                             </s:if>
                             
@@ -105,6 +126,8 @@
         
         <!-- banner -->
         <img src="Pictures/banner.PNG"/><br/>
+        
+        <!-- search text box and button -->
         <form action="guestSearch">
             <input type="text" name="txtSearch" value="" />
             <input type="image" name="btnSearch" src="Pictures/searchIcon.png" width="25" height="25"/>

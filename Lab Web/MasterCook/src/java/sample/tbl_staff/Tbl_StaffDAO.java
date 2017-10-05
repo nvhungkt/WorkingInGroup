@@ -11,8 +11,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import javax.naming.NamingException;
 import sample.dbaccess.DBAccess;
 
@@ -42,9 +42,9 @@ public int ChangePassword(String staffID, String newPassword) throws NamingExcep
         }        
     }
     // list of categories NAME this staff working
-    private List<String> listWorkingCategory;
+    private Map<String, String> listWorkingCategory;
 
-    public List<String> getListWorkingCategory() {
+    public Map<String, String> getListWorkingCategory() {
         return listWorkingCategory;
     }
     
@@ -95,7 +95,7 @@ public int ChangePassword(String staffID, String newPassword) throws NamingExcep
         try {
             con = DBAccess.makeConnection();
             if(con != null) {
-                String sql = "Select s.Name "
+                String sql = "Select s.Name, s.SubcategoryID as subcateID "
                         + "From tbl_WorkingSubcategory w, tbl_Subcategory s "
                         + "Where w.StaffID = ? and w.SubcategoryID = s.SubcategoryID";
                 stm = con.prepareStatement(sql);
@@ -103,9 +103,9 @@ public int ChangePassword(String staffID, String newPassword) throws NamingExcep
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     if(listWorkingCategory == null) {
-                        listWorkingCategory = new ArrayList<>();
+                        listWorkingCategory = new HashMap();
                     }
-                    listWorkingCategory.add(rs.getString("Name"));
+                    listWorkingCategory.put(rs.getString("subcateID"), rs.getString("Name"));
                 }
             }
         } finally {

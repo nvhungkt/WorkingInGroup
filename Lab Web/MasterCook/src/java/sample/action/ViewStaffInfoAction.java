@@ -5,6 +5,7 @@
  */
 package sample.action;
 
+import java.util.ArrayList;
 import java.util.List;
 import sample.tbl_staff.Tbl_StaffDAO;
 
@@ -22,7 +23,8 @@ public class ViewStaffInfoAction {
     public String execute() throws Exception {
         Tbl_StaffDAO dao = new Tbl_StaffDAO();
         dao.getWorkingCategories(getStaffID());
-        setWorkingSubcategories(dao.getListWorkingCategory());
+        workingSubcategories = new ArrayList();
+        workingSubcategories.addAll(dao.getListWorkingCategory().values());
         System.out.println("view staff info ");
         return getSUCCESS();
     }

@@ -88,7 +88,7 @@
                             <!-- phan theo role -->
                             <!-- role: collaborator -->
                             <s:if test="%{#staff.role == 'Collaborator'}">
-                                <li><a href="">Write New Articles</a></li>
+                                <li><s:a href="uploadArticle" method="POST">Write New Articles</s:a></li>
                                 <li><a href="">View My Articles</a></li>
                             </s:if>
                             
