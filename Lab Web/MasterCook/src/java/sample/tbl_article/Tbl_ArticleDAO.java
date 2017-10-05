@@ -19,15 +19,22 @@ import sample.dbaccess.DBAccess;
  * @author Administrator
  */
 public class Tbl_ArticleDAO implements Serializable{
-    public int approveArticle(String articleID, String newStatus) throws NamingException, SQLException {
+    public int approveArticle(String articleID, String staffID, String status) throws NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;        
-        try {
+        try {            
             con = DBAccess.makeConnection();
-            String sql = "UPDATE tbl_Article SET Status = ? WHERE ArticleID = ?";
+            String field = "ReviewerID";
+            String newStatus = "Pending for Manager";
+            if(status.equals("Pending for Manager")) {
+                field = "ApproverID";
+                newStatus = "Accepted";
+            }
+            String sql = "UPDATE tbl_Article SET " + field + " = ?, Status = ? WHERE ArticleID = ?";
             stm = con.prepareStatement(sql);
-            stm.setString(1, newStatus);
-            stm.setString(2, articleID);            
+            stm.setString(1, staffID);
+            stm.setString(2, newStatus);
+            stm.setString(3, articleID);            
             return stm.executeUpdate();       
         }
         finally {            
@@ -77,5 +84,47 @@ public class Tbl_ArticleDAO implements Serializable{
         }
         
         return null;
+    }
+    public int rejectArticle(String articleID, String staffID, String reason) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;        
+        try {                        
+            con = DBAccess.makeConnection();
+            String sql = "UPDATE tbl_Article SET Status = 'Rejected', Reason = ?, LastEditorID = ?, LastModifiedDateTime = ? WHERE ArticleID = ?";
+            stm = con.prepareStatement(sql);
+            stm.setString(1, reason);
+            stm.setString(2, staffID);            
+            stm.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+            stm.setString(4, articleID);
+            return stm.executeUpdate();       
+        }
+        finally {            
+            if(stm!=null) {
+                stm.close();
+            }
+            if(con!=null) {
+                con.close();
+            }
+        }
+    }
+    
+    public int increaseView(String articleID) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;        
+        try {
+            con = DBAccess.makeConnection();
+            String sql = "UPDATE tbl_Article SET Views = Views+1 WHERE ArticleID = ?";
+            stm = con.prepareStatement(sql);           
+            stm.setString(1, articleID);            
+            return stm.executeUpdate();       
+        }
+        finally {            
+            if(stm!=null) {
+                stm.close();
+            }
+            if(con!=null) {
+                con.close();
+            }
+        }
     }
 }
