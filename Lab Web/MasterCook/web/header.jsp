@@ -19,13 +19,7 @@
         <!-- menu bar-->
         <div id="menu">
             <ul>            
-                <li>
-                    <% String s = "";%>
-                    <!--<a href="http://localhost:8084/MasterCook/">-->
-                    <a href="/MasterCook/">
-                        Home Page
-                    </a>
-                </li>
+                <li><a href="/MasterCook/">Home Page</a></li>
                 
                 <sql:setDataSource dataSource="DBResource" var="con"/>
                 <c:if test="${not empty con}">
