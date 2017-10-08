@@ -14,8 +14,6 @@ import sample.tbl_article.ArticlePresent;
 import sample.tbl_article.Tbl_ArticleDAO;
 import sample.tbl_category.Tbl_CategoryDAO;
 import sample.tbl_category.Tbl_CategoryDTO;
-import sample.tbl_subcategory.Tbl_SubcategoryDAO;
-import sample.tbl_subcategory.Tbl_SubcategoryDTO;
 import sample.tool.OurTool;
 
 /**
