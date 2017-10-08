@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.NamingException;
 import sample.dbaccess.DBAccess;
 
@@ -19,6 +21,12 @@ import sample.dbaccess.DBAccess;
  * @author Administrator
  */
 public class Tbl_ArticleDAO implements Serializable{
+    private List<ArticlePresent> listArticlePresent;
+
+    public List<ArticlePresent> getListArticlePresent() {
+        return listArticlePresent;
+    }
+    
     public int approveArticle(String articleID, String staffID, String status) throws NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;        
@@ -123,6 +131,59 @@ public class Tbl_ArticleDAO implements Serializable{
                 stm.close();
             }
             if(con!=null) {
+                con.close();
+            }
+        }
+    }
+    
+    
+    // get article id, title, link content, created date for preview at pages
+    public void getLatestAticlesPresent(String categoryID) throws NamingException, SQLException {
+        listArticlePresent = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBAccess.makeConnection();
+            if (con != null) {
+                // this will get the ID, Name of category
+                String queryCatIDName = "select CategoryID from tbl_Category where CategoryID = ?";
+                
+                // this will get all article belong to previous category
+                String queryArticlesBelongCat 
+                        = "select a.ArticleID, a.Title, a.ContentURL, a.DateTime \n"
+                        + "from tbl_Article a, tbl_Subcategory s, (" + queryCatIDName +") c \n"
+                        + "where s.CategoryID = c.CategoryID and s.SubcategoryID = a.SubcategoryID";
+                
+                // this will get top 5 article by latest date from above
+                String sql 
+                        = "select top 5 *\n"
+                        + "from (" + queryArticlesBelongCat + ") b \n"
+                        + "order by DateTime desc";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, categoryID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String id = rs.getString("ArticleID");
+                    String title = rs.getString("Title");
+                    String imgLink = rs.getString("ContentURL");
+                    Timestamp date = rs.getTimestamp("DateTime");
+                    String createdDate = date.getHours() + ":" + date.getMinutes() + ", " 
+                            + date.getDay() +"/"+ date.getMonth()+"/"+ (date.getYear() + 1900);
+                    if (listArticlePresent == null) {
+                        listArticlePresent = new ArrayList<>();
+                    }
+                    listArticlePresent.add(new ArticlePresent(id, title, imgLink, createdDate));
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
                 con.close();
             }
         }

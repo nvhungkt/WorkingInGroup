@@ -13,7 +13,7 @@
         <title>Staff info</title>
     </head>
     <body>
-        <s:include value="home.jsp"/>
+        <s:include value="header.jsp"/>
         <s:set var="staff" value="%{#session.STAFF}"/>
         <h1>Staff information</h1>
         <form action="goEditStaff">
