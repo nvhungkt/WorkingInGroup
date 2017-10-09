@@ -33,23 +33,27 @@
         
         <action name="sendComment" class="sample.action.SendCommentAction">
             <result name="success" type="redirectAction">
-                <param name="actionName">viewDetails</param>
+                <param name="actionName">viewDetails</param>                
                 <param name="message">${message}</param>
+                <param name="articleID">${articleID}</param>
             </result>
         </action>
         <action name="deleteComment" class="sample.action.DeleteCommentAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">viewDetails</param>
+                <param name="articleID">${articleID}</param>
             </result>
         </action>
         <action name="approveArticle" class="sample.action.ApproveArticleAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">viewDetails</param>
+                <param name="articleID">${articleID}</param>
             </result>
         </action>
         <action name="rejectArticle" class ="sample.action.RejectArticleAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">viewDetails</param>
+                <param name="articleID">${articleID}</param>
             </result>
         </action>        
         <action name="uploadArticle" class="sample.action.ViewUploadArticlePageAction">
