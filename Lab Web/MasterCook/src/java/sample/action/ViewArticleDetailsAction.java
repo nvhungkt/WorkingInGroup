@@ -10,11 +10,13 @@ import java.io.FileReader;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import sample.tbl_article.ArticlePresent;
 import sample.tbl_article.Tbl_ArticleDAO;
 import sample.tbl_article.Tbl_ArticleDetailsDAO;
 import sample.tbl_article.Tbl_ArticleDetailsDTO;
 import sample.tbl_comment.Tbl_CommentDAO;
 import sample.tbl_comment.Tbl_CommentDTO;
+import sample.tool.OurTool;
 
 /**
  *
@@ -26,45 +28,36 @@ public class ViewArticleDetailsAction implements ServletRequestAware{
     private String articleID;
     private Tbl_ArticleDetailsDTO article;
     private List<Tbl_CommentDTO> comments;
+    private List<ArticlePresent> listArticles;
     private HttpServletRequest servletRequest;
     public ViewArticleDetailsAction() {
     }
     
     public String execute() throws Exception {     
         Tbl_ArticleDAO dao = new Tbl_ArticleDAO();
+        //increase views
         dao.increaseView(articleID);
         String url = SUCCESS;        
+        //Load comments
         Tbl_CommentDAO commentDAO = new Tbl_CommentDAO();
         commentDAO.getComment(articleID);
         comments = commentDAO.getComments();    
+        //Load article content
         Tbl_ArticleDetailsDAO articleDAO = new Tbl_ArticleDetailsDAO();
         article = articleDAO.getArticleDetails(articleID);          
-        content = "";
-        readFile(article.getContentURL());
+        content = OurTool.readFile(article.getContentURL(), servletRequest);
+        //Load related articles
+        dao.getRelatedArticles(article.getSubcategoryId(), articleID);
+        listArticles = dao.getListArticlePresent();
+        //Set img source for imgLink of ArticlePresent
+        if(listArticles!=null) {
+            for (ArticlePresent art : listArticles) {
+                String temp = OurTool.readFile(art.getImgLink(), servletRequest);
+                art.setImgLink(OurTool.getFirstImgLink(temp));
+            }
+        }
         return url;
-    }
-    public void readFile(String fileURL) throws Exception {        
-        //get file path
-        String filePath = servletRequest.getSession().getServletContext().getRealPath("/") + "Articles/";        
-        BufferedReader br = null;
-        FileReader fr = null;
-        try {
-            fr = new FileReader(filePath+fileURL);
-            br = new BufferedReader(fr);
-            String line;
-            while((line = br.readLine())!=null) {
-                content+=line;                
-            }
-        }
-        finally {
-            if(fr!=null) {
-                fr.close();
-            }
-            if(br!=null) {
-                br.close();
-            }
-        }
-    }
+    }    
 
     public String getContent() {
         return content;
@@ -89,8 +82,11 @@ public class ViewArticleDetailsAction implements ServletRequestAware{
     public void setArticle(Tbl_ArticleDetailsDTO article) {
         this.article = article;
     }
-    
-    
+
+    public List<ArticlePresent> getListArticles() {
+        return listArticles;
+    }
+        
     public List<Tbl_CommentDTO> getComments() {
         return comments;
     }
