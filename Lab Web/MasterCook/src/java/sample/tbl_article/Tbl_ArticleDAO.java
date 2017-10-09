@@ -188,4 +188,44 @@ public class Tbl_ArticleDAO implements Serializable{
             }
         }
     }
+    
+    public void getRelatedArticles (String subcategoryID, String articleID) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBAccess.makeConnection();
+            String sql = "SELECT TOP 3 *\n"
+                    + "FROM tbl_Article \n"
+                    + "WHERE SubcategoryID=? AND ArticleID<>?\n"
+                    + "ORDER BY [DateTime] DESC";
+            stm = con.prepareStatement(sql);
+            stm.setString(1, subcategoryID);
+            stm.setString(2, articleID);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("ArticleID");
+                String title = rs.getString("Title");
+                String imgLink = rs.getString("ContentURL");
+                Timestamp date = rs.getTimestamp("DateTime");
+                String createdDate = date.getHours() + ":" + date.getMinutes() + ", "
+                        + date.getDay() + "/" + date.getMonth() + "/" + (date.getYear() + 1900);
+                if (listArticlePresent == null) {
+                    listArticlePresent = new ArrayList<>();
+                }
+                listArticlePresent.add(new ArticlePresent(id, title, imgLink, createdDate));
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        
+    }
 }
