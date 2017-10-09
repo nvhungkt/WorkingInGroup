@@ -18,12 +18,14 @@ public class Tbl_ArticleDetailsDTO {
     private String authorName;
     private Timestamp dateTime;
     private String subcategoryName;
+    private String subcategoryId;
     private String categoryName;
     private int views;
     private String status;
     private String reason;
 
-    public Tbl_ArticleDetailsDTO(String articleID, String title, String contentURL, String authorName, Timestamp dateTime, String subcategoryName, String categoryName, int views, String status, String reason) {        
+    public Tbl_ArticleDetailsDTO(String articleID, String title, String contentURL, String authorName, Timestamp dateTime, String subcategoryName, String categoryName, int views, String status, String reason, String subcategoryId) {        
+        this.subcategoryId = subcategoryId;
         this.status = status;
         this.reason = reason;
         this.articleID = articleID;
@@ -34,6 +36,14 @@ public class Tbl_ArticleDetailsDTO {
         this.subcategoryName = subcategoryName;
         this.categoryName = categoryName;
         this.views = views;
+    }
+
+    public String getSubcategoryId() {
+        return subcategoryId;
+    }
+
+    public void setSubcategoryId(String subcategoryId) {
+        this.subcategoryId = subcategoryId;
     }
 
     public String getReason() {
