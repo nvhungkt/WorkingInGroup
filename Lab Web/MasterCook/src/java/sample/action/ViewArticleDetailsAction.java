@@ -30,7 +30,7 @@ public class ViewArticleDetailsAction implements ServletRequestAware{
     public ViewArticleDetailsAction() {
     }
     
-    public String execute() throws Exception {        
+    public String execute() throws Exception {     
         Tbl_ArticleDAO dao = new Tbl_ArticleDAO();
         dao.increaseView(articleID);
         String url = SUCCESS;        
@@ -38,7 +38,7 @@ public class ViewArticleDetailsAction implements ServletRequestAware{
         commentDAO.getComment(articleID);
         comments = commentDAO.getComments();    
         Tbl_ArticleDetailsDAO articleDAO = new Tbl_ArticleDetailsDAO();
-        article = articleDAO.getArticleDetails(articleID);           
+        article = articleDAO.getArticleDetails(articleID);          
         content = "";
         readFile(article.getContentURL());
         return url;

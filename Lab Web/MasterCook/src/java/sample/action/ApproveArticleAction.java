@@ -21,7 +21,8 @@ public class ApproveArticleAction {
     
     public String execute() throws Exception {        
         Tbl_ArticleDAO dao = new Tbl_ArticleDAO();
-        dao.approveArticle(articleID, status, staffID);
+        System.out.println("article: " + articleID);
+        dao.approveArticle(articleID, staffID, status);
         return SUCCESS;
     }
 

@@ -14,6 +14,7 @@ import sample.tbl_comment.Tbl_CommentDAO;
 public class DeleteCommentAction {
     private final String SUCCESS = "success";
     private String commentID;
+    private String articleID;
     public DeleteCommentAction() {
     }
     
@@ -21,6 +22,14 @@ public class DeleteCommentAction {
         Tbl_CommentDAO dao = new Tbl_CommentDAO();
         dao.deleteComment(commentID);
         return SUCCESS;
+    }
+
+    public String getArticleID() {
+        return articleID;
+    }
+
+    public void setArticleID(String articleID) {
+        this.articleID = articleID;
     }
 
     public String getCommentID() {
