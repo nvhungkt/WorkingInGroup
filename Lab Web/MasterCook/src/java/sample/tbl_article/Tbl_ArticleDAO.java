@@ -38,12 +38,12 @@ public class Tbl_ArticleDAO implements Serializable{
                 field = "ApproverID";
                 newStatus = "Accepted";
             }
-            String sql = "UPDATE tbl_Article SET " + field + " = ?, Status = ? WHERE ArticleID = ?";
+            String sql = "UPDATE tbl_Article SET " + field + " = ?, Status = ? WHERE ArticleID = ?";            
             stm = con.prepareStatement(sql);
-            stm.setString(1, staffID);
-            stm.setString(2, newStatus);
-            stm.setString(3, articleID);            
-            return stm.executeUpdate();       
+            stm.setString(1, staffID);            
+            stm.setString(2, newStatus);            
+            stm.setString(3, articleID);                        
+            return stm.executeUpdate();
         }
         finally {            
             if(stm!=null) {
