@@ -16,7 +16,7 @@
         <s:include value="header.jsp"/>
         <s:set var="staff" value="%{#session.STAFF}"/>
         <h1>Staff information</h1>
-        <form action="goEditStaff">
+        <form action="editStaff">
             <table border="0">
             <thead>
                 
@@ -63,7 +63,9 @@
                 </tr>
             </tbody>
         </table><br/>
-        <input type="submit" value="Edit" name="btnEdit"/>
+        <s:if test="%{#staff.role == 'Manager' or #staff.role == 'Administrator'}">
+            <input type="submit" value="Edit" name="btnEdit"/>
+        </s:if>
         </form>
         <s:include value="footer.html"/>
     </body>

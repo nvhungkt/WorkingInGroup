@@ -109,8 +109,7 @@
                             <!-- role: administrator --> 
                             <s:if test="%{#staff.role == 'Administrator'}">
                                 <li><a href="">View Employees</a></li>
-                                <li><a href="">View Collaborators</a></li>
-                                <li><a href="">Create New Staffs</a></li>                                
+                                <li><a href="">View Collaborators</a></li>                             
                                 <li><a href="">Add Category</a></li>
                                 <li><a href="">Modify Category</a></li>
                                 <li><a href="">Make Statistics</a></li>
@@ -126,11 +125,12 @@
         </div> <!-- end menu bar -->
         
         <!-- banner -->
-        <img src="Pictures/banner.PNG"/><br/>
+        <img src="Pictures/banner.PNG"; width="80%" height="50%"/><br/>
         
         <!-- search text box and button -->
         <form action="guestSearch">
             <input type="text" name="txtSearch" value="" />
+            <input type="hidden" name="pageNumber" value="1" />
             <input type="image" name="btnSearch" src="Pictures/searchIcon.png" width="25" height="25"/>
         </form>
     </body>

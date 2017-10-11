@@ -29,7 +29,6 @@ public class LoadArticlePresentsAction implements ServletRequestAware{
     }
     
     public String execute() throws Exception {
-        System.out.println("vo load menu action");
         mapCat = new HashMap<>();
         Tbl_CategoryDAO catDao = new Tbl_CategoryDAO();
         Tbl_ArticleDAO articleDao = new Tbl_ArticleDAO();

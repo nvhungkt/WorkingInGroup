@@ -153,7 +153,7 @@ public class Tbl_ArticleDAO implements Serializable{
                 String queryArticlesBelongCat 
                         = "select a.ArticleID, a.Title, a.ContentURL, a.DateTime \n"
                         + "from tbl_Article a, tbl_Subcategory s, (" + queryCatIDName +") c \n"
-                        + "where s.CategoryID = c.CategoryID and s.SubcategoryID = a.SubcategoryID";
+                        + "where s.CategoryID = c.CategoryID and s.SubcategoryID = a.SubcategoryID and Status = 'Accepted'";
                 
                 // this will get top 5 article by latest date from above
                 String sql 
@@ -226,6 +226,85 @@ public class Tbl_ArticleDAO implements Serializable{
                 con.close();
             }
         }
-        
+    }
+    
+    public int countSearchArticle(String txtSearch) throws NamingException, SQLException {
+        listArticlePresent = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBAccess.makeConnection();
+            if (con != null) {
+                String sql = "select count(ArticleID) as numberResult "
+                        + "from tbl_Article "
+                        + "where Title Like ? and Status = 'Accepted'";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, "%" + txtSearch +"%");
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    return rs.getInt("numberResult");
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return 0;
+    }
+    
+    public void searchArticle(String txtSearch, int maxQuantityEachPage, int pageNumber) throws NamingException, SQLException {
+        listArticlePresent = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBAccess.makeConnection();
+            if (con != null) {
+                // this will search all result
+                String searchArticle = "select ArticleID, Title, ContentURL, DateTime "
+                        + "from tbl_Article "
+                        + "where Title Like ? and Status = 'Accepted'";
+                // this will get maxQuantityEachPage row from the n offset of the above search result
+                String sql = "select * \n"
+                        + "from (" + searchArticle +") a \n"
+                        + "order by a.Title\n"
+                        + "offset ? rows fetch next ? rows only";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, "%" + txtSearch +"%");
+                stm.setInt(2, maxQuantityEachPage * (pageNumber - 1));
+                stm.setInt(3, maxQuantityEachPage);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String id = rs.getString("ArticleID");
+                    String title = rs.getString("Title");
+                    String imgLink = rs.getString("ContentURL");
+                    Timestamp date = rs.getTimestamp("DateTime");
+                    String createdDate = date.getHours() + ":" + date.getMinutes() + ", " 
+                            + date.getDay() +"/"+ date.getMonth()+"/"+ (date.getYear() + 1900);
+                    if (listArticlePresent == null) {
+                        listArticlePresent = new ArrayList<>();
+                    }
+                    listArticlePresent.add(new ArticlePresent(id, title, imgLink, createdDate));
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
     }
 }

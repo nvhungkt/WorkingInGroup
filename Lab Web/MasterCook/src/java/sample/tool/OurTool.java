@@ -7,6 +7,8 @@ package sample.tool;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -57,5 +59,48 @@ public class OurTool{
         stk.nextToken(); // remove the number 1
         src = "Pictures/" + stk.nextToken(); // this is the link
         return src;
+    }
+    
+    public static List<String> getPageChoose(int range, int currentPage) {
+        List<String> pageChooser = null; 
+        int min = 1;
+        if(range != min) {
+            if(pageChooser == null)
+                pageChooser = new ArrayList<>();
+            if(currentPage > min)
+                pageChooser.add("<< Previous Page");
+            //------------------------------------------------------------------
+            int leftOut = currentPage - 2;
+            int leftIn = currentPage - 1;
+            int rightIn = currentPage + 1;
+            int rightOut = currentPage + 2;
+            int leftDis = currentPage - min;
+            int rightDis = range - currentPage;
+            if(leftOut > 0)
+                pageChooser.add(leftOut + "");
+            if (leftIn > 0) 
+                pageChooser.add(leftIn + "");
+            pageChooser.add(currentPage + "");
+            if (rightIn <= range)
+                pageChooser.add(rightIn + "");
+            if (rightOut <= range) 
+                pageChooser.add(rightOut + "");
+            if(!pageChooser.contains(min + "")) {
+                pageChooser.add(1, min + "");
+                if(leftOut > 2)
+                    pageChooser.add(2, "...");
+            }
+            if(!pageChooser.contains(range + "")) {
+                if(rightOut < (range - 1)) {
+                    pageChooser.add("...");
+                }
+                pageChooser.add(range + "");
+            }
+            //------------------------------------------------------------------
+            if(currentPage < range)
+                pageChooser.add("Next Page >>");
+            return pageChooser;
+        }
+        return null;
     }
 }

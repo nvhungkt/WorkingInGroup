@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,32 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <s:include value="header.jsp"/>
+        <h1>Your Search Value: <s:property value="%{txtSearch}"/></h1>
+        <s:if test="%{searchResult == null}">
+            <font color="red"><h3>No Result Found</h3></font>
+        </s:if>
+        <s:if test="%{searchResult != null}">
+            <s:iterator var="art" value="%{searchResult}" status="counter">
+                <div style="float: left; width: 24.5%; height:  200px">
+                    <s:a value="viewDetails">
+                        <s:param name="articleID" value="%{#art.id}"/>
+                        <img src="<s:property value="%{#art.imgLink}"/>" width="100" height="100"/><br/>
+                        <font><s:property value="%{#art.title}"/></font><br/>
+                    </s:a>
+                    <i><s:property value="%{#art.createdDate}"/></i>
+                </div>
+                <s:if test="%{#counter.count == 4}">
+                    <br/>
+                </s:if>
+            </s:iterator>
+            <div style="border-style: double; border-color: red; float: right">
+                <s:include value="pageChooser.jsp">
+                    <s:param name="pageChooser" value="%{pageChooser}"/>
+                    <s:param name="pageNumber" value="%{pageNumber}"/>
+                </s:include>
+            </div>
+        </s:if>
+        <s:include value="footer.html"/>
     </body>
 </html>

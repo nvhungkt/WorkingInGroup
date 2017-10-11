@@ -13,6 +13,7 @@
         <title>Article Details</title>
     </head>
     <body>
+        <s:include value="header.jsp"/>
             <%--Category - Subcategory --%>
         <font color="blue">
             <s:label value="%{article.categoryName}"/>>        
@@ -42,6 +43,26 @@
             <s:label value="Author: %{article.authorName}"/>
             </font>
         </div>
+            
+            <%--Related Articles--%>
+            <s:iterator var="art" value="%{listArticles}" status="counter">
+                        <div style="border-color: burlywood; border-style: dotted; width: 99%; float: top">
+                            <s:a value="viewDetails">
+                                <s:param name="articleID" value="%{#art.id}"/>
+                                <img src="<s:property value="%{#art.imgLink}"/>" width="100" height="100"/>
+                                <font><s:property value="%{#art.title}"/></font>
+                            </s:a>
+                            <i style="float: right"><s:property value="%{#art.createdDate}"/></i>
+                        </div>
+                        <s:if test="%{#counter.count == 2}">
+                            <s:a value="viewMore">
+                                <i style="float: right">View more...</i>
+                            </s:a>
+                        </s:if>
+                    </s:iterator>                        
+            <%-- --%>
+            
+            
             <%--Controll of Staff role--%>
         <s:if test="%{#session.STAFF != null}">
             <div>
@@ -155,11 +176,14 @@
                                         <td>
                                             <s:property value="%{#comment.dateTime}"/>                                     
                                         </td>   
-                                        <td>
-                                            <%--Delete comment button--%>
-                                            <s:submit value="x"/>
-                                            <s:hidden name="commentID" value="%{#comment.commentID}"/>
-                                        </td>
+                                        <s:if test="%{#session.STAFF != null}">  
+                                            <td>
+                                            <%--Delete comment button--%>                                            
+                                                <s:submit value="x"/>
+                                                <s:hidden name="commentID" value="%{#comment.commentID}"/>
+                                                <s:hidden name="articleID" value="%{article.articleID}"/>                                            
+                                            </td>
+                                        </s:if>
                                     </tr>                                
                                 </s:form>
                             </s:iterator>
