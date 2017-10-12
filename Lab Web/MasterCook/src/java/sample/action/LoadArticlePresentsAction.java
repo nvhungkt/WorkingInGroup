@@ -44,8 +44,8 @@ public class LoadArticlePresentsAction implements ServletRequestAware{
             artPresents = articleDao.getListArticlePresent();
             if (artPresents != null) {
                 // the img link current is the article link NOT the img
-                for (ArticlePresent ar : artPresents) {
-                    content = OurTool.readFile(ar.getImgLink(), servletRequest);
+                for (ArticlePresent ar : artPresents) {                            
+                    content = OurTool.readFile(ar.getImgLink(), servletRequest);                                        
                     // after this line the img link will surely is the link of img
                     ar.setImgLink(OurTool.getFirstImgLink(content));
                 }

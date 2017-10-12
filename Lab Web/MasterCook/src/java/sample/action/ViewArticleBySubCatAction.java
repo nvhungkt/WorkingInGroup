@@ -31,6 +31,7 @@ public class ViewArticleBySubCatAction implements ServletRequestAware{
     public String execute() throws Exception {
         Tbl_ArticleDAO dao = new Tbl_ArticleDAO();
         int numberResult = dao.totalArticleInSubcat(subcatID);
+        if(pageNumber==0) pageNumber++;
         if(numberResult == 0) {
             setResults(null);
         } else {

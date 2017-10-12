@@ -89,5 +89,11 @@
         <action name="viewArticleBySubCat" class="sample.action.ViewArticleBySubCatAction">
             <result name="success">sameSubCatArticle.jsp</result>
         </action>
+               <action name="manageArticlesByState" class="sample.action.ManageArticlesByStateAction">
+            <result name="success">manageArticle.jsp</result>
+        </action>
+        <action name="viewMoreByState" class="sample.action.ViewMoreAction" method="viewByState">
+            <result name="success">manageArticleByState.jsp</result>
+        </action>
     </package>
 </struts>
