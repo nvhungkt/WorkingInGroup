@@ -40,8 +40,9 @@ public class ViewMoreAction implements ServletRequestAware {
         Tbl_StaffDTO staff = (Tbl_StaffDTO)session.get("STAFF");
         int numberOfPages = dao.getArticlesByStatus(status, staff.getStaffID(), true, pageNumber, MAX_QUANTITY_EACH_PAGE);        
         listArticle = getListArticles(dao);        
-        int range = (int) Math.ceil(numberOfPages / (double) MAX_QUANTITY_EACH_PAGE);
-        pageChooser = OurTool.getPageChoose(range, getPageNumber());        
+        int range = (int) Math.ceil(numberOfPages / (double) MAX_QUANTITY_EACH_PAGE);        
+        pageChooser = OurTool.getPageChoose(range, getPageNumber());
+        
         return SUCCESS;
     }
     //Method lấy img link trong content link và return về lại list các article present đã có img link
@@ -83,7 +84,5 @@ public class ViewMoreAction implements ServletRequestAware {
     public void setServletRequest(HttpServletRequest hsr) {
         servletRequest = hsr;
     }
-
-    
-    
+       
 }
