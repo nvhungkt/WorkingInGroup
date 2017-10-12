@@ -23,7 +23,7 @@ public class OurTool{
     public static String readFile(String fileURL, HttpServletRequest servletRequest) throws Exception {        
         //get file path
         String content = "";
-        String filePath = servletRequest.getSession().getServletContext().getRealPath("/") + "Articles/";        
+        String filePath = servletRequest.getSession().getServletContext().getRealPath("/") + "Articles/";          
         BufferedReader br = null;
         FileReader fr = null;
         try {
@@ -47,8 +47,8 @@ public class OurTool{
     
     public static String getFirstImgLink(String content) {
         String src;
-        int begin = content.indexOf("<img src=");
-        String a = content.substring(begin);
+        int begin = content.indexOf("<img src=");        
+        String a = content.substring(begin);        
         StringTokenizer stk = new StringTokenizer(a, '"' + "");
         
         // the string tokenizer will cut the content in 3 part:
@@ -57,7 +57,9 @@ public class OurTool{
         // 3. the rest
         
         stk.nextToken(); // remove the number 1
-        src = "Pictures/" + stk.nextToken(); // this is the link
+        
+        //modified: remove "Picture/"        
+        src = stk.nextToken(); // this is the link        
         return src;
     }
     
@@ -73,9 +75,7 @@ public class OurTool{
             int leftOut = currentPage - 2;
             int leftIn = currentPage - 1;
             int rightIn = currentPage + 1;
-            int rightOut = currentPage + 2;
-            int leftDis = currentPage - min;
-            int rightDis = range - currentPage;
+            int rightOut = currentPage + 2;            
             if(leftOut > 0)
                 pageChooser.add(leftOut + "");
             if (leftIn > 0) 
