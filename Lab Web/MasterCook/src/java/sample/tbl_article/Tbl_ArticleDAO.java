@@ -387,4 +387,61 @@ public class Tbl_ArticleDAO implements Serializable{
             }
         }
     }
+     public int getArticlesByStatus (String status, String authorID, boolean more, int pageNumber, int maxQuantity) throws NamingException, SQLException {
+        listArticlePresent = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;        
+        int count = 0;
+        try {
+            con = DBAccess.makeConnection();
+            String sql = "SELECT *\n"
+                    + "FROM tbl_Article\n"
+                    + "WHERE Status LIKE ? AND AuthorID = ?\n"
+                    + "ORDER BY [DateTime] DESC"
+                    + "\nOFFSET ? ROWS FETCH NEXT ? ROWS ONLY";            
+            if(!more) {
+                String countString = "SELECT COUNT(ArticleID) AS Result\n" +
+                                     "FROM tbl_Article\n" +
+                                      "WHERE AuthorID = ? AND [Status] LIKE ?";
+                stm = con.prepareStatement(countString);
+                stm.setString(1, authorID);
+                stm.setString(2, status + "%");
+                rs = stm.executeQuery();                
+                rs.next();
+                count = rs.getInt("Result");                                                
+            }
+            
+            stm = con.prepareStatement(sql);                
+            stm.setString(1, status + "%");
+            stm.setString(2, authorID);
+            stm.setInt(3, maxQuantity * (pageNumber - 1));
+            stm.setInt(4, maxQuantity);            
+            rs = stm.executeQuery();            
+            //Get present for article            
+            while (rs.next()) {
+                String id = rs.getString("ArticleID");
+                String title = rs.getString("Title");
+                String imgLink = rs.getString("ContentURL");
+                Timestamp date = rs.getTimestamp("DateTime");
+                String createdDate = date.getHours() + ":" + date.getMinutes() + ", "
+                        + date.getDay() + "/" + date.getMonth() + "/" + (date.getYear() + 1900);
+                if (listArticlePresent == null) {
+                    listArticlePresent = new ArrayList<>();
+                }
+                listArticlePresent.add(new ArticlePresent(id, title, imgLink, createdDate));                
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return count;
+    }
 }
