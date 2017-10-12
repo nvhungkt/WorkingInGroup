@@ -21,7 +21,7 @@ import sample.tool.OurTool;
  */
 public class ViewMoreAction implements ServletRequestAware {
     private final String SUCCESS = "success";
-    private final int MATH_QUANTITY_EACH_PAGE = 16;
+    private final int MAX_QUANTITY_EACH_PAGE = 16;
     private String status;
     //trang hiện tại
     private int pageNumber;
@@ -35,11 +35,13 @@ public class ViewMoreAction implements ServletRequestAware {
     
     public String viewByState() throws Exception {
         Tbl_ArticleDAO dao = new Tbl_ArticleDAO();
+        if(pageNumber==0) pageNumber++;
         Map session = ActionContext.getContext().getSession();
         Tbl_StaffDTO staff = (Tbl_StaffDTO)session.get("STAFF");
-        dao.getArticlesByStatus(status, staff.getStaffID(), true, pageNumber);        
+        int numberOfPages = dao.getArticlesByStatus(status, staff.getStaffID(), true, pageNumber, MAX_QUANTITY_EACH_PAGE);        
         listArticle = getListArticles(dao);        
-        
+        int range = (int) Math.ceil(numberOfPages / (double) MAX_QUANTITY_EACH_PAGE);
+        pageChooser = OurTool.getPageChoose(range, getPageNumber());
         return SUCCESS;
     }
     //Method lấy img link trong content link và return về lại list các article present đã có img link
@@ -51,6 +53,14 @@ public class ViewMoreAction implements ServletRequestAware {
                     art.setImgLink(OurTool.getFirstImgLink(temp));
                 }
         return listArticles;
+    }
+
+    public List<String> getPageChooser() {
+        return pageChooser;
+    }
+
+    public List<ArticlePresent> getListArticle() {
+        return listArticle;
     }
 
     public String getStatus() {
