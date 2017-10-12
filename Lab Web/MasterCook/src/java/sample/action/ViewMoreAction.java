@@ -6,7 +6,9 @@
 package sample.action;
 
 import com.opensymphony.xwork2.ActionContext;
+import java.util.List;
 import java.util.Map;
+import sample.tbl_article.ArticlePresent;
 import sample.tbl_article.Tbl_ArticleDAO;
 import sample.tbl_staff.Tbl_StaffDTO;
 
@@ -18,6 +20,7 @@ public class ViewMoreAction {
     private final String SUCCESS = "success";
     private String status;
     private int pageNumber;
+    private List<ArticlePresent> listArticle;
     public ViewMoreAction() {
     }
     
@@ -26,6 +29,7 @@ public class ViewMoreAction {
         Map session = ActionContext.getContext().getSession();
         Tbl_StaffDTO staff = (Tbl_StaffDTO)session.get("STAFF");
         dao.getArticlesByStatus(status, staff.getStaffID(), true, pageNumber);
+        
         return SUCCESS;
     }
 
