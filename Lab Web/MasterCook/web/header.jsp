@@ -94,7 +94,7 @@
                             <!-- role: collaborator -->
                             <s:if test="%{#staff.role == 'Collaborator'}">
                                 <li><s:a href="uploadArticle" method="POST">Write New Articles</s:a></li>
-                                <li><a href="">View My Articles</a></li>
+                                <li><a href="manageArticlesByState">View My Articles</a></li>
                             </s:if>
                             
                             <!-- role: employee -->

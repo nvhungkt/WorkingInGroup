@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <s:if test="%{pageChooser != null}">
+        <s:if test="%{pageChooser != null}">            
             <s:iterator var="page" value="%{pageChooser}">
                 <s:if test="%{#page == '<< Previous Page'}">
                     <form action="<s:property value="%{#action}"/>" style="float: left">
@@ -46,6 +46,6 @@
                     </form>
                 </s:if>
             </s:iterator>
-        </s:if>
+        </s:if>        
     </body>
 </html>

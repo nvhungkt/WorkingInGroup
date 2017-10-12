@@ -55,7 +55,8 @@
                             <i style="float: right"><s:property value="%{#art.createdDate}"/></i>
                         </div>
                         <s:if test="%{#counter.count == 2}">
-                            <s:a value="viewMore">
+                            <s:a value="viewArticleBySubCat">
+                                <s:param name="subcatID" value="%{article.subcategoryID}"/>
                                 <i style="float: right">View more...</i>
                             </s:a>
                         </s:if>
