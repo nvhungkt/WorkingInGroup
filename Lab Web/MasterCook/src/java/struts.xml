@@ -95,5 +95,12 @@
         <action name="viewMoreByState" class="sample.action.ViewMoreAction" method="viewByState">
             <result name="success">manageArticleByState.jsp</result>
         </action>
+        <action name="viewProductivityOfCollaborators" class="sample.action.ManageCollaboratorAction">
+            <result name="success">manageStaff.jsp</result>
+        </action>
+        
+        <action name="viewProductivityOfEmployees" class="sample.action.ManageEmployeeAction">
+            <result name="success">manageStaff.jsp</result>
+        </action>
     </package>
 </struts>

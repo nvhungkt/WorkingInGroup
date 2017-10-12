@@ -105,8 +105,8 @@
                             <!-- role: manager -->
                             <s:if test="%{#staff.role == 'Manager'}">
                                 <li><a href="">Browse Articles</a></li>
-                                <li><a href="">View Employees</a></li>
-                                <li><a href="">View Collaborators</a></li>
+                                <li><a href="viewProductivityOfEmployees">View Employees</a></li>
+                                <li><a href="viewProductivityOfCollaborators">View Collaborators</a></li>
                                 <li><a href="">Create New Staffs</a></li>                                
                             </s:if>
                                 
