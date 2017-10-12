@@ -13,6 +13,12 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <s:set var="action" value="guestSearch"/>
+        <% String name = "txtSearch";%>
+        <% pageContext.setAttribute("name", name); %>
+        <s:set var="nameComponent" value="%{#attr.name}"/>
+        <s:set var="value" value="%{txtSearch}"/>
+        
         <s:include value="header.jsp"/>
         <h1>Your Search Value: <s:property value="%{txtSearch}"/></h1>
         <s:if test="%{searchResult == null}">
@@ -33,10 +39,7 @@
                 </s:if>
             </s:iterator>
             <div style="border-style: double; border-color: red; float: right">
-                <s:include value="pageChooser.jsp">
-                    <s:param name="pageChooser" value="%{pageChooser}"/>
-                    <s:param name="pageNumber" value="%{pageNumber}"/>
-                </s:include>
+                <s:include value="pageChooser.jsp"/>
             </div>
         </s:if>
         <s:include value="footer.html"/>

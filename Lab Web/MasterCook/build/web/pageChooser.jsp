@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,38 +14,34 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>abc<s:property value="%{pageNumber}"/>xyz</h1>
         <s:if test="%{pageChooser != null}">
             <s:iterator var="page" value="%{pageChooser}">
                 <s:if test="%{#page == '<< Previous Page'}">
-                    <form action="guestSearch" style="float: left">
-                        <input type="hidden" name="txtSearch" value="<s:property value="%{txtSearch}"/>" />
+                    <form action="<s:property value="%{#action}"/>" style="float: left">
+                        <input type="hidden" name="<s:property value="%{#nameComponent}"/>" value="<s:property value="%{#value}"/>" />
                         <input type="submit" value="<s:property value="%{#page}"/>"/>
                         <input type="hidden" name="pageNumber" value="<s:property value="%{pageNumber - 1}"/>" />
                     </form>
                 </s:if>
                 <s:if test="%{#page == 'Next Page >>'}">
-                    <form action="guestSearch" style="float: left">
-                        <input type="hidden" name="txtSearch" value="<s:property value="%{txtSearch}"/>" />
+                    <form action="<s:property value="%{#action}"/>" style="float: left">
+                        <input type="hidden" name="<s:property value="%{#nameComponent}"/>" value="<s:property value="%{#value}"/>" />
                         <input type="submit" value="<s:property value="%{#page}"/>"/>
                         <input type="hidden" name="pageNumber" value="<s:property value="%{pageNumber + 1}"/>" />
                     </form>
                 </s:if>
                 <s:if test="%{#page == '...'}">
-                    <s:property value="%{#page}"/>
+                    <label style="float: left"><s:property value="%{#page}"/></label>
                 </s:if>
                 <s:if test="%{#page != '<< Previous Page' and #page != 'Next Page >>' and #page != '...'}">
-                    <form action="guestSearch" style="float: left">
-                        <input type="hidden" name="txtSearch" value="<s:property value="%{txtSearch}"/>" />
-                        <%--<s:if test="%((pageNumber + '') == #page)">--%>
-                        <s:if test="%(#page.equals(pageNumber + ''))">
-                            <input type="submit" style="color: cornflowerblue" value="<s:property value="%{#page}"/>"/>
+                    <form action="<s:property value="%{#action}"/>" style="float: left">
+                        <input type="hidden" name="<s:property value="%{#nameComponent}"/>" value="<s:property value="%{#value}"/>" />
+                        <s:if test="%{pageNumber == #page}">
+                            <input type="submit" style="color: white; background-color: orange" value="<s:property value="%{#page}"/>"/>
                         </s:if>
-                        <%--<s:if test="%((pageNumber + '') != #page)">--%>
-                        <s:if test="%((#page.equals(pageNumber + ''))">
+                        <s:if test="%{pageNumber != #page}">
                             <input type="submit" value="<s:property value="%{#page}"/>"/>
                         </s:if>
-                            <%--<input type="submit" value="<s:property value="%{#page}"/>"/>--%>
                         <input type="hidden" name="pageNumber" value="<s:property value="%{#page}"/>" />
                     </form>
                 </s:if>

@@ -48,16 +48,20 @@
                                                 <c:forEach var="subcat" items="${rsSubcat.rowsByIndex}">
                                                     <!-- loop in a subcat for name & id, each subcat will be a <li> -->
                                                     <li>
-                                                        <c:forEach var="field" items="${subcat}" varStatus="counter2">
-                                                            <!-- name of subcat -->
-                                                            <c:if test="${counter2.count eq 1}">
-                                                                <a href=""><font color="green">${field}</font></a>
-                                                            </c:if>
-                                                            <!-- id of subcat -->
-                                                            <c:if test="${counter2.count eq 2}">
-                                                                <input type="hidden" name="subcatID" value="${field}" />
-                                                            </c:if>
-                                                        </c:forEach>
+                                                        <s:a action="viewArticleBySubCat">
+                                                            <c:forEach var="field" items="${subcat}" varStatus="counter2">
+                                                                <!-- name of subcat -->
+                                                                <c:if test="${counter2.count eq 1}">
+                                                                    <font color="green">${field}</font>
+                                                                    <s:param value="%{#attr.field}" name="subcatName"/>
+                                                                </c:if>
+                                                                <!-- id of subcat -->
+                                                                <c:if test="${counter2.count eq 2}">
+                                                                    <s:param value="%{#attr.field}" name="subcatID"/>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                                <s:param value="1" name="pageNumber"/>
+                                                        </s:a>
                                                     </li>
                                                 </c:forEach>
                                             </ul>

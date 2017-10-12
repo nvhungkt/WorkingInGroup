@@ -19,24 +19,22 @@ import sample.tool.OurTool;
  * @author Administrator
  */
 public class GuestSearchAction implements ServletRequestAware{
-    private int pageNumber;
+    private int pageNumber; // the page guest choose to see
     private String txtSearch;
     private List<ArticlePresent> searchResult;
-    private List<String> pageChooser;
-    private final int maxQuantityEachPage = 16;
+    private List<String> pageChooser; // list of generated string for the page chooser
+    private final int maxQuantityEachPage = 16; // max result each page display
     private static HttpServletRequest servletRequest;
     private final String SUCCESS = "success";
     public GuestSearchAction() {
     }
     
     public String execute() throws Exception {
-        
         Tbl_ArticleDAO dao = new Tbl_ArticleDAO();
         int numberResult = dao.countSearchArticle(getTxtSearch());
         if(numberResult == 0) {
             setSearchResult(null);
         } else {
-            System.out.println("number result = " + numberResult);
             int range = (int) Math.ceil(numberResult / (double) maxQuantityEachPage);
             dao.searchArticle(getTxtSearch(), getMaxQuantityEachPage(), getPageNumber());
             setSearchResult(dao.getListArticlePresent());
@@ -48,11 +46,6 @@ public class GuestSearchAction implements ServletRequestAware{
                     ar.setImgLink(OurTool.getFirstImgLink(content));
                 }
                 pageChooser = OurTool.getPageChoose(range, getPageNumber());
-                if(pageChooser == null) {
-                    System.out.println("null");
-                } else {
-                    System.out.println("not null");
-                }
             }
         }
         return SUCCESS;
