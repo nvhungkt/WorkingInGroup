@@ -8,18 +8,27 @@ package sample.action;
 import com.opensymphony.xwork2.ActionContext;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import sample.tbl_article.ArticlePresent;
 import sample.tbl_article.Tbl_ArticleDAO;
 import sample.tbl_staff.Tbl_StaffDTO;
+import sample.tool.OurTool;
 
 /**
  *
  * @author Turtle
  */
-public class ViewMoreAction {
+public class ViewMoreAction implements ServletRequestAware {
     private final String SUCCESS = "success";
+    private final int MATH_QUANTITY_EACH_PAGE = 16;
     private String status;
+    //trang hiện tại
     private int pageNumber;
+    //list các giá trị của button pages
+    private List<String> pageChooser;
+    private static HttpServletRequest servletRequest;
+    //List chua cac article present
     private List<ArticlePresent> listArticle;
     public ViewMoreAction() {
     }
@@ -28,9 +37,20 @@ public class ViewMoreAction {
         Tbl_ArticleDAO dao = new Tbl_ArticleDAO();
         Map session = ActionContext.getContext().getSession();
         Tbl_StaffDTO staff = (Tbl_StaffDTO)session.get("STAFF");
-        dao.getArticlesByStatus(status, staff.getStaffID(), true, pageNumber);
+        dao.getArticlesByStatus(status, staff.getStaffID(), true, pageNumber);        
+        listArticle = getListArticles(dao);        
         
         return SUCCESS;
+    }
+    //Method lấy img link trong content link và return về lại list các article present đã có img link
+    public List<ArticlePresent> getListArticles(Tbl_ArticleDAO dao) throws Exception {                
+        List<ArticlePresent> listArticles = dao.getListArticlePresent();
+        for (ArticlePresent art : listArticles) {                            
+                    String temp = OurTool.readFile(art.getImgLink(), servletRequest);                                        
+                    // after this line the img link will surely is the link of img
+                    art.setImgLink(OurTool.getFirstImgLink(temp));
+                }
+        return listArticles;
     }
 
     public String getStatus() {
@@ -47,6 +67,11 @@ public class ViewMoreAction {
 
     public void setPageNumber(int pageNumber) {
         this.pageNumber = pageNumber;
+    }
+
+    @Override
+    public void setServletRequest(HttpServletRequest hsr) {
+        servletRequest = hsr;
     }
 
     
