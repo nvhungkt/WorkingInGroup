@@ -197,7 +197,7 @@ public class Tbl_ArticleDAO implements Serializable{
             con = DBAccess.makeConnection();
             String sql = "SELECT TOP 3 *\n"
                     + "FROM tbl_Article \n"
-                    + "WHERE SubcategoryID=? AND ArticleID<>?\n"
+                    + "WHERE SubcategoryID=? AND ArticleID<>? AND Status='Accepted'\n"
                     + "ORDER BY [DateTime] DESC";
             stm = con.prepareStatement(sql);
             stm.setString(1, subcategoryID);
@@ -400,7 +400,7 @@ public class Tbl_ArticleDAO implements Serializable{
                     + "WHERE Status LIKE ? AND AuthorID = ?\n"
                     + "ORDER BY [DateTime] DESC"
                     + "\nOFFSET ? ROWS FETCH NEXT ? ROWS ONLY";            
-            if(!more) {
+            if(more) {
                 String countString = "SELECT COUNT(ArticleID) AS Result\n" +
                                      "FROM tbl_Article\n" +
                                       "WHERE AuthorID = ? AND [Status] LIKE ?";
@@ -408,8 +408,8 @@ public class Tbl_ArticleDAO implements Serializable{
                 stm.setString(1, authorID);
                 stm.setString(2, status + "%");
                 rs = stm.executeQuery();                
-                rs.next();
-                count = rs.getInt("Result");                                                
+                if(rs.next()) count = rs.getInt("Result"); 
+                System.out.println("Result: " + count);
             }
             
             stm = con.prepareStatement(sql);                
