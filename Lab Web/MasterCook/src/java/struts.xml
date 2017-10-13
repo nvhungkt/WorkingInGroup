@@ -98,9 +98,32 @@
         <action name="viewProductivityOfCollaborators" class="sample.action.ManageCollaboratorAction">
             <result name="success">manageStaff.jsp</result>
         </action>
-        
         <action name="viewProductivityOfEmployees" class="sample.action.ManageEmployeeAction">
             <result name="success">manageStaff.jsp</result>
+        </action>
+        <action name="viewMoreAtHome" class="sample.action.ViewMoreAction" method="viewMoreAtHome">
+            <result name="success">viewMoreArticleInCat.jsp</result>
+        </action>
+        <action name="loadModifySubcatPage" class="sample.action.LoadModifySubcatPageAction">
+            <result name="success">modifySubCat.jsp</result>
+        </action>
+        <action name="loadAddSubcatPage" class="sample.action.LoadAddSubcatPageAction">
+            <result name="success">addSubCat.jsp</result>
+        </action>
+        <action name="addSubcat" class="sample.action.AddSubcatAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">${}</param>
+            </result>
+            <result name="fail" type="redirectAction">
+                <param name="actionName">loadAddSubcatPage</param>
+                <param name="description">${description}</param>
+                <param name="error">${error}</param>
+            </result>
+        </action>
+        <action name="modifySubcat" class="sample.action.ModifySubcatAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadModifySubcatPage</param>
+            </result>
         </action>
     </package>
 </struts>
