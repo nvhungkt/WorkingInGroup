@@ -41,6 +41,7 @@ public class ViewArticleBySubCatAction implements ServletRequestAware{
             if(results != null) {
                 String content;
                 for (ArticlePresent ar : results) {
+                    System.out.println(ar.getTitle());
                     content = OurTool.readFile(ar.getImgLink(), servletRequest);
                     // after this line the img link will surely is the link of img
                     ar.setImgLink(OurTool.getFirstImgLink(content));

@@ -59,4 +59,33 @@ public class Tbl_CategoryDAO implements Serializable{
             }
         }
     }
+    
+    public String getCategoryName(String catID) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBAccess.makeConnection();
+            if (con != null) {
+                String sql = "Select Name From tbl_Category where CategoryID = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, catID);
+                rs = stm.executeQuery();
+                if(rs.next()) {
+                    return rs.getString("Name");
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return null;
+    }
 }

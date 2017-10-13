@@ -56,7 +56,7 @@ public int ChangePassword(String staffID, String newPassword) throws NamingExcep
         try {
             con = DBAccess.makeConnection();
             if(con != null) {
-                String sql = "Select * From tbl_Staff Where Username = ? and Password = ?";
+                String sql = "Select * From tbl_Staff Where Username = ? and Password = ? and IsActive = 'True'";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, username);
                 stm.setString(2, password);

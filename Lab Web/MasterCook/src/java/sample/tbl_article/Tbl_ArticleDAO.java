@@ -153,7 +153,7 @@ public class Tbl_ArticleDAO implements Serializable{
                 String queryArticlesBelongCat 
                         = "select a.ArticleID, a.Title, a.ContentURL, a.DateTime \n"
                         + "from tbl_Article a, tbl_Subcategory s, (" + queryCatIDName +") c \n"
-                        + "where s.CategoryID = c.CategoryID and s.SubcategoryID = a.SubcategoryID and Status = 'Accepted'";
+                        + "where s.CategoryID = c.CategoryID and s.SubcategoryID = a.SubcategoryID and a.Status = 'Accepted' and s.IsActive = 'True'";
                 
                 // this will get top 5 article by latest date from above
                 String sql 
@@ -228,6 +228,38 @@ public class Tbl_ArticleDAO implements Serializable{
         }
     }
     
+    public int totalArticleInCat(String catID) throws NamingException, SQLException {
+        listArticlePresent = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBAccess.makeConnection();
+            if (con != null) {
+                String sql = "select count(a.ArticleID) as numberResult "
+                        + "from tbl_Article a, tbl_Subcategory s "
+                        + "where s.CategoryID = ? and a.SubcategoryID = s.SubcategoryID and s.IsActive = 'True'";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, catID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    return rs.getInt("numberResult");
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return 0;
+    }
+    
     public int totalArticleInSubcat(String subcatID) throws NamingException, SQLException {
         listArticlePresent = null;
         Connection con = null;
@@ -237,8 +269,8 @@ public class Tbl_ArticleDAO implements Serializable{
             con = DBAccess.makeConnection();
             if (con != null) {
                 String sql = "select count(ArticleID) as numberResult "
-                        + "from tbl_Article "
-                        + "where SubcategoryID = ? and Status = 'Accepted'";
+                        + "from tbl_Article a, tbl_Subcategory s "
+                        + "where a.SubcategoryID = ? and a.Status = 'Accepted' and a.SubcategoryID = s.SubcategoryID and s.IsActive = 'True'";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, subcatID);
                 rs = stm.executeQuery();
@@ -268,9 +300,9 @@ public class Tbl_ArticleDAO implements Serializable{
         try {
             con = DBAccess.makeConnection();
             if (con != null) {
-                String sql = "select count(ArticleID) as numberResult "
-                        + "from tbl_Article "
-                        + "where Title Like ? and Status = 'Accepted'";
+                String sql = "select count(a.ArticleID) as numberResult "
+                        + "from tbl_Article a, tbl_Subcategory s "
+                        + "where a.Title Like ? and a.Status = 'Accepted' and a.SubcategoryID = s.SubcategoryID and s.IsActive = 'True'";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, "%" + txtSearch +"%");
                 rs = stm.executeQuery();
@@ -301,9 +333,9 @@ public class Tbl_ArticleDAO implements Serializable{
             con = DBAccess.makeConnection();
             if (con != null) {
                 // this will search all result
-                String searchArticle = "select ArticleID, Title, ContentURL, DateTime "
-                        + "from tbl_Article "
-                        + "where Title Like ? and Status = 'Accepted'";
+                String searchArticle = "select ar.ArticleID, ar.Title, ar.ContentURL, ar.DateTime "
+                        + "from tbl_Article ar, tbl_Subcategory s "
+                        + "where ar.Title Like ? and ar.Status = 'Accepted' and ar.SubcategoryID = s.SubcategoryID and s.IsActive = 'True'";
                 // this will get maxQuantityEachPage row from the n offset of the above search result
                 String sql = "select * \n"
                         + "from (" + searchArticle +") a \n"
@@ -349,13 +381,13 @@ public class Tbl_ArticleDAO implements Serializable{
             con = DBAccess.makeConnection();
             if (con != null) {
                 // this will search all result
-                String searchArticle = "select ArticleID, Title, ContentURL, DateTime "
-                        + "from tbl_Article "
-                        + "where SubcategoryID = ? and Status = 'Accepted'";
+                String searchArticle = "select ar.ArticleID, ar.Title, ar.ContentURL, ar.DateTime "
+                        + "from tbl_Article ar, tbl_Subcategory s "
+                        + "where ar.SubcategoryID = ? and ar.Status = 'Accepted' and ar.SubcategoryID = s.SubcategoryID and s.IsActive = 'True'";
                 // this will get maxQuantityEachPage row from the n offset of the above search result
                 String sql = "select * \n"
                         + "from (" + searchArticle +") a \n"
-                        + "order by a.Title\n"
+                        + "order by DateTime desc\n"
                         + "offset ? rows fetch next ? rows only";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, subcatID);
@@ -387,7 +419,8 @@ public class Tbl_ArticleDAO implements Serializable{
             }
         }
     }
-     public int getArticlesByStatus (String status, String authorID, boolean more, int pageNumber, int maxQuantity) throws NamingException, SQLException {
+    
+    public int getArticlesByStatus (String status, String authorID, boolean more, int pageNumber, int maxQuantity) throws NamingException, SQLException {
         listArticlePresent = null;
         Connection con = null;
         PreparedStatement stm = null;
@@ -443,5 +476,54 @@ public class Tbl_ArticleDAO implements Serializable{
             }
         }
         return count;
+    }
+     
+    public void getArticlesByCat(String catID, int maxQuantityEachPage, int pageNumber) throws NamingException, SQLException {
+        listArticlePresent = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBAccess.makeConnection();
+            if (con != null) {
+                // this will search all result
+                String searchArticle = "select ar.ArticleID, ar.Title, ar.ContentURL, ar.DateTime "
+                        + "from tbl_Article ar, tbl_Subcategory s "
+                        + "where s.CategoryID = ? and s.SubcategoryID = ar.SubcategoryID and s.IsActive = 'True' "
+                        + "and ar.Status = 'Accepted' and ar.SubcategoryID = s.SubcategoryID ";
+                // this will get maxQuantityEachPage row from the n offset of the above search result
+                String sql = "select * \n"
+                        + "from (" + searchArticle +") a \n"
+                        + "order by a.DateTime desc\n"
+                        + "offset ? rows fetch next ? rows only";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, catID);
+                stm.setInt(2, maxQuantityEachPage * (pageNumber - 1));
+                stm.setInt(3, maxQuantityEachPage);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String id = rs.getString("ArticleID");
+                    String title = rs.getString("Title");
+                    String imgLink = rs.getString("ContentURL");
+                    Timestamp date = rs.getTimestamp("DateTime");
+                    String createdDate = date.getHours() + ":" + date.getMinutes() + ", " 
+                            + date.getDay() +"/"+ date.getMonth()+"/"+ (date.getYear() + 1900);
+                    if (listArticlePresent == null) {
+                        listArticlePresent = new ArrayList<>();
+                    }
+                    listArticlePresent.add(new ArticlePresent(id, title, imgLink, createdDate));
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ package sample.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import sample.tbl_staff.Tbl_StaffDAO;
 
 /**
@@ -15,7 +16,7 @@ import sample.tbl_staff.Tbl_StaffDAO;
  */
 public class ViewStaffInfoAction {
     private String staffID;
-    private List<String> workingSubcategories; //list all NAME of working subcategory
+    private Map<String, String> workingSubcategories; //list all NAME of working subcategory
     private final String SUCCESS = "success";
     public ViewStaffInfoAction() {
     }
@@ -23,9 +24,7 @@ public class ViewStaffInfoAction {
     public String execute() throws Exception {
         Tbl_StaffDAO dao = new Tbl_StaffDAO();
         dao.getWorkingCategories(getStaffID());
-        workingSubcategories = new ArrayList();
-        workingSubcategories.addAll(dao.getListWorkingCategory().values());
-        System.out.println("view staff info ");
+        setWorkingSubcategories(dao.getListWorkingCategory());
         return getSUCCESS();
     }
 
@@ -44,24 +43,24 @@ public class ViewStaffInfoAction {
     }
 
     /**
+     * @return the SUCCESS
+     */
+    public String getSUCCESS() {
+        return SUCCESS;
+    }
+
+    /**
      * @return the workingSubcategories
      */
-    public List<String> getWorkingSubcategories() {
+    public Map<String, String> getWorkingSubcategories() {
         return workingSubcategories;
     }
 
     /**
      * @param workingSubcategories the workingSubcategories to set
      */
-    public void setWorkingSubcategories(List<String> workingSubcategories) {
+    public void setWorkingSubcategories(Map<String, String> workingSubcategories) {
         this.workingSubcategories = workingSubcategories;
-    }
-
-    /**
-     * @return the SUCCESS
-     */
-    public String getSUCCESS() {
-        return SUCCESS;
     }
     
 }

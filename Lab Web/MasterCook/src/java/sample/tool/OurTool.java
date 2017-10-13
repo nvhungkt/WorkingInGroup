@@ -7,11 +7,21 @@ package sample.tool;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import sample.dbaccess.DBAccess;
+import sample.tbl_category.Tbl_CategoryDAO;
+import sample.tbl_category.Tbl_CategoryDTO;
+import sample.tbl_subcategory.Tbl_SubcategoryDTO;
 
 /**
  *
@@ -102,5 +112,36 @@ public class OurTool{
             return pageChooser;
         }
         return null;
+    }
+    
+    public static String generateID(Connection con, String tbl) throws NamingException, SQLException {
+        String id = null;
+        Statement stm = null;
+        ResultSet rs = null;
+        try {
+            if (con != null) {
+                String sql = "Select count(SubcategoryID) as rowNum "
+                        + "From " + tbl;
+                stm = con.createStatement();
+                rs = stm.executeQuery(sql);
+                if(rs.next()) {
+                    id = (rs.getInt("rowNum") + 1) + "";
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+        }
+        return id;
+    }
+    
+    public static List<Tbl_CategoryDTO> getAllCat() throws NamingException, SQLException {
+        Tbl_CategoryDAO dao = new Tbl_CategoryDAO();
+        dao.getListCategory();
+        return dao.getListCat();
     }
 }
