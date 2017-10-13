@@ -50,7 +50,8 @@
                     <td>Working categories:</td>
                     <td>
                         <s:iterator var="wsNames" value="%{workingSubcategories}" status="counter">
-                            <s:property value="%{#wsNames}"/>
+                            <input type="hidden" name="subcatID" value="<s:property value="%{#wsNames.key}"/>" />
+                            <s:property value="%{#wsNames.value}"/>
                             <s:if test="%{#counter.count % 2 == 0}">
                                 <br/>
                             </s:if>

@@ -114,8 +114,8 @@
                             <s:if test="%{#staff.role == 'Administrator'}">
                                 <li><a href="">View Employees</a></li>
                                 <li><a href="">View Collaborators</a></li>                             
-                                <li><a href="">Add Category</a></li>
-                                <li><a href="">Modify Category</a></li>
+                                <li><s:a value="loadAddSubcatPage">Add Category</s:a></li>
+                                <li><s:a value="loadModifySubcatPage">Modify Category</s:a></li>
                                 <li><a href="">Make Statistics</a></li>
                             </s:if>
                                 

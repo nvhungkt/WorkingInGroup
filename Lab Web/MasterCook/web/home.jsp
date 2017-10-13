@@ -47,8 +47,10 @@
                             <i style="float: right"><s:property value="%{#art.createdDate}"/></i>
                         </div>
                         <s:if test="%{#counter.count == 4}">
-                            <s:a value="viewMore">
+                            <s:a value="viewMoreAtHome">
                                 <i style="float: right">View more...</i>
+                                <s:param name="catID" value="%{#cat.key.categoryID}"/>
+                                <s:param name="pageNumber" value="1"/>
                             </s:a>
                         </s:if>
                     </s:iterator>

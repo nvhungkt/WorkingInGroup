@@ -22,26 +22,34 @@
         <s:include value="header.jsp"/>
         <h1><s:property value="%{subcatName}"/></h1>
         <s:if test="%{results == null}">
-            <font color="red"><h3>No Result Found</h3></font>
-        </s:if>
-        <s:if test="%{results != null}">
-            <s:iterator var="art" value="%{results}" status="counter">
-                <div style="float: left; width: 24.5%; height:  200px">
-                    <s:a value="viewDetails">
-                        <s:param name="articleID" value="%{#art.id}"/>
-                        <img src="<s:property value="%{#art.imgLink}"/>" width="100" height="100"/><br/>
-                        <font><s:property value="%{#art.title}"/></font><br/>
-                    </s:a>
-                    <i><s:property value="%{#art.createdDate}"/></i>
-                </div>
-                <s:if test="%{#counter.count == 4}">
-                    <br/>
-                </s:if>
-            </s:iterator>
-            <div style="border-style: double; border-color: red; float: right">
-                <s:include value="pageChooser.jsp"/>
+            <div>
+                <font color="red"><h3>No Result Found</h3></font>
             </div>
         </s:if>
-        <s:include value="footer.html"/>
+        <s:if test="%{results != null}">
+            <div>
+                <s:iterator var="art" value="%{results}" status="counter">
+                    <div style="float: left; width: 24.5%; height:  200px">
+                        <s:a value="viewDetails">
+                            <s:param name="articleID" value="%{#art.id}"/>
+                            <img src="<s:property value="%{#art.imgLink}"/>" width="100" height="100"/><br/>
+                            <font><s:property value="%{#art.title}"/></font><br/>
+                        </s:a>
+                        <i><s:property value="%{#art.createdDate}"/></i>
+                    </div>
+                    <s:if test="%{#counter.count == 4}">
+                        <br/>
+                    </s:if>
+                </s:iterator>
+            </div>
+            <s:if test="%{pageChooser != null}"> 
+                <div style="border-style: double; border-color: red; float: right; width: 100%">
+                    <s:include value="pageChooser.jsp"/>
+                </div>
+            </s:if>
+        </s:if>
+        <div>
+            <s:include value="footer.html"/>
+        </div>
     </body>
 </html>

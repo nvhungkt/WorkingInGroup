@@ -1,6 +1,6 @@
 <%-- 
-    Document   : guestSearchResult
-    Created on : Sep 30, 2017, 5:46:29 PM
+    Document   : viewMoreArticleInCat
+    Created on : Oct 12, 2017, 10:46:43 AM
     Author     : Administrator
 --%>
 
@@ -13,22 +13,22 @@
         <title>MasterCook</title>
     </head>
     <body>
-        <s:set var="action" value="guestSearch"/>
-        <% String name = "txtSearch";%>
+        <s:set var="action" value="viewMoreAtHome"/>
+        <% String name = "catID";%>
         <% pageContext.setAttribute("name", name); %>
         <s:set var="nameComponent" value="%{#attr.name}"/>
-        <s:set var="value" value="%{txtSearch}"/>
+        <s:set var="value" value="%{catID}"/>
         
         <s:include value="header.jsp"/>
-        <h1>Your Search Value: <s:property value="%{txtSearch}"/></h1>
-        <s:if test="%{searchResult == null}">
+        <h1><s:property value="%{catName}"/></h1>
+        <s:if test="%{listArticle == null}">
             <div>
                 <font color="red"><h3>No Result Found</h3></font>
             </div>
         </s:if>
-        <s:if test="%{searchResult != null}">
+        <s:if test="%{listArticle != null}">
             <div>
-                <s:iterator var="art" value="%{searchResult}" status="counter">
+                <s:iterator var="art" value="%{listArticle}" status="counter">
                     <div style="float: left; width: 24.5%; height:  200px">
                         <s:a value="viewDetails">
                             <s:param name="articleID" value="%{#art.id}"/>
