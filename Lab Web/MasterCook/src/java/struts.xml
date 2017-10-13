@@ -112,7 +112,8 @@
         </action>
         <action name="addSubcat" class="sample.action.AddSubcatAction">
             <result name="success" type="redirectAction">
-                <param name="actionName">${}</param>
+                <param name="actionName">loadAddSubcatPage</param>
+                <param name="error">${error}</param>
             </result>
             <result name="fail" type="redirectAction">
                 <param name="actionName">loadAddSubcatPage</param>

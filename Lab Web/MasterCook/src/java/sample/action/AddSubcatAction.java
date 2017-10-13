@@ -26,6 +26,7 @@ public class AddSubcatAction {
             Tbl_SubcategoryDAO dao = new Tbl_SubcategoryDAO();
             boolean result = dao.addNewSubcat(catID, subcatName.trim(), description.trim());
             if (result) {
+                setError("Add successfull!!!");
                 return SUCCESS;
             }
         } else {
