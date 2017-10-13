@@ -13,7 +13,11 @@
         <title>MasterCook</title>
     </head>
     <body>
+        <s:include value="header.jsp"/>
         <h1>Add new subcategory</h1>
+        <s:if test="%{error == 'Add successfull!!!'}">
+            <font color="green"><s:property value="%{error}"/></font>
+        </s:if><br/>
         <form action="addSubcat" onsubmit="return submitdata();" style="width: 25%">
             Parent-category<br/>
             <select name="catID">
@@ -26,17 +30,14 @@
             
             Name<br/>
             <input type="text" name="subcatName" value="" id="subcatName"/>
-            <s:if test="%{error != null}">
+            <s:if test="%{error != 'Add successfull!!!'}">
                 <font color="red"><s:property value="%{error}"/></font>
             </s:if><br/>
             Description<br/>
             <input type="text" name="description" value="<s:property value="%{description}"/>" id="subcatName"/><br/>
             <input type="submit" value="Confirm"/>
         </form>
-        <form action="/MasterCook/" style="float: left">
-            <input type="submit" value="Cancel" />
-        </form>
-        
+        <s:include value="footer.html"/>
         <script>
         function submitdata() {
             var catName = document.getElementById("catName").value;

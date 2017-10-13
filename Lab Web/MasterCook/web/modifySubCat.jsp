@@ -13,10 +13,8 @@
         <title>MasterCook</title>
     </head>
     <body>
+        <s:include value="header.jsp"/>
         <h1>Modify subcategory</h1>
-        <form action="/MasterCook/"">
-            <input type="submit" value="Back" />
-        </form>
         <s:if test="%{listSubcat == null}">
             <h2>There is no subcategory</h2>
         </s:if>
@@ -69,5 +67,6 @@
                 </tbody>
             </table>
         </s:if>
+        <s:include value="footer.html"/>
     </body>
 </html>
