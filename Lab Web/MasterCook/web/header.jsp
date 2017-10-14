@@ -98,13 +98,25 @@
                             </s:if>
                             
                             <!-- role: employee -->
-                            <s:if test="%{#staff.role == 'Employee'}">
-                                <li><a href="">Browse Articles</a></li>                                
+                            <s:if test="%{#staff.role == 'Employee'}">                                
+                                <li>
+                                    <s:a value="browseArticle">
+                                        <% pageContext.setAttribute("status", "Pending for Employee"); %>                                        
+                                        <s:param name="status" value="%{#attr.status}"/>
+                                        Browse Articles
+                                    </s:a>
+                                </li>                                
                             </s:if>    
                                 
                             <!-- role: manager -->
                             <s:if test="%{#staff.role == 'Manager'}">
-                                <li><a href="">Browse Articles</a></li>
+                                <li>
+                                    <s:a value="browseArticle">
+                                        <% pageContext.setAttribute("status", "Pending for Manager"); %>                                        
+                                        <s:param name="status" value="%{#attr.status}"/>
+                                        Browse Articles
+                                    </s:a>
+                                </li>
                                 <li><a href="viewProductivityOfEmployees">View Employees</a></li>
                                 <li><a href="viewProductivityOfCollaborators">View Collaborators</a></li>
                                 <li><a href="">Create New Staffs</a></li>                                
