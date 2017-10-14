@@ -33,12 +33,25 @@ public class ManageArticlesByStateAction implements ServletRequestAware{
         stateMap = new HashMap<>();
         
         Tbl_ArticleDAO dao = new Tbl_ArticleDAO();        
-        dao.getArticlesByStatus("Pending", staff.getStaffID(),false,1,4);
-        stateMap.put("Pending", getListArticles(dao));
-        dao.getArticlesByStatus("Accepted", staff.getStaffID(),false,1,4);
-        stateMap.put("Accepted", getListArticles(dao));
-        dao.getArticlesByStatus("Rejected", staff.getStaffID(),false,1,4);
-        stateMap.put("Rejected", getListArticles(dao));                                        
+        if(dao.getArticlesByStatus("Pending", staff.getStaffID(),false,1,4)!=0) {        
+            stateMap.put("Pending", getListArticles(dao));
+        }
+        else {
+            stateMap.put("Pending", null); 
+        }
+        if(dao.getArticlesByStatus("Accepted", staff.getStaffID(),false,1,4)!=0) {
+            stateMap.put("Accepted", getListArticles(dao));    
+        }
+        else {
+            stateMap.put("Accepted", null); 
+        }
+        
+        if(dao.getArticlesByStatus("Rejected", staff.getStaffID(),false,1,4)!=0) {
+            stateMap.put("Rejected", getListArticles(dao));                                        
+        }        
+        else {
+            stateMap.put("Rejected", null);                                        
+        }
         return SUCCESS;
     }
     public List<ArticlePresent> getListArticles(Tbl_ArticleDAO dao) throws Exception {                
