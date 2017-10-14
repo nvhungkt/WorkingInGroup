@@ -119,13 +119,12 @@
                                 </li>
                                 <li><a href="viewProductivityOfEmployees">View Employees</a></li>
                                 <li><a href="viewProductivityOfCollaborators">View Collaborators</a></li>
-                                <li><a href="">Create New Staffs</a></li>                                
                             </s:if>
                                 
                             <!-- role: administrator --> 
                             <s:if test="%{#staff.role == 'Administrator'}">
-                                <li><a href="">View Employees</a></li>
-                                <li><a href="">View Collaborators</a></li>                             
+                                <li><a href="viewProductivityOfEmployees">View Employees</a></li>
+                                <li><a href="viewProductivityOfCollaborators">View Collaborators</a></li>
                                 <li><s:a value="loadAddSubcatPage">Add Category</s:a></li>
                                 <li><s:a value="loadModifySubcatPage">Modify Category</s:a></li>
                                 <li><a href="">Make Statistics</a></li>

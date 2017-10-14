@@ -17,6 +17,9 @@
         <action name="viewStaffInfo" class="sample.action.ViewStaffInfoAction">
             <result name="success">staffInfo.jsp</result>
         </action>        
+        <action name="editStaff" class="sample.action.ViewStaffInfoAction">
+            <result name="success">editStaff.jsp</result>
+        </action>
         <action name="changePass" class="sample.action.ChangePasswordAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">logout</param>
@@ -126,8 +129,35 @@
                 <param name="actionName">loadModifySubcatPage</param>
             </result>
         </action>
-                
+        
         <action name="browseArticle" class="sample.action.ViewMoreAction" method="browseArticle">
             <result name="success">manageArticleByState.jsp</result>
-        </action>    </package>
+        </action>
+        
+        <action name="editStaffConfirm" class="sample.action.EditStaffAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">viewStaffInfo</param>
+                <param name="staffID">${staffID}</param>
+            </result>
+            <result name="fail" type="redirectAction">
+                <param name="actionName">editStaff</param>
+                <param name="staffID">${staffID}</param>
+            </result>
+        </action>
+        
+        <action name="createStaff" class="sample.action.GetAllSubcategoriesAction">
+            <result name="success">createStaff.jsp</result>
+        </action>
+        
+        <action name="createStaffConfirm" class="sample.action.CreateNewStaffAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">viewStaffInfo</param>
+                <param name="staffID">${staffID}</param>
+            </result>
+            <result name="fail" type="redirectAction">
+                <param name="actionName">createStaff</param>
+            </result>
+        </action>
+        
+    </package>
 </struts>

@@ -532,7 +532,7 @@ public class Tbl_ArticleDAO implements Serializable{
         int count = 0;
         try {
             con = DBAccess.makeConnection();
-            //Ð?m t?ng s? bài             
+            //Dem tong so bai           
             String countString = "SELECT COUNT(a.ArticleID) AS RESULT\n" +
                         "FROM tbl_Article a\n" +
                         "WHERE a.Status LIKE ? AND a.SubcategoryID IN \n" +
@@ -546,7 +546,7 @@ public class Tbl_ArticleDAO implements Serializable{
             if (rs.next()) {
                 count = rs.getInt("Result");
             }            
-            //Query nh?ng bài dó lên
+            //Query nhung bai d... l...
             String sql = "SELECT *\n" +
                         "FROM tbl_Article a\n" +
                         "WHERE a.Status LIKE ? AND a.SubcategoryID IN \n" +

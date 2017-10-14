@@ -7,6 +7,7 @@ package sample.tbl_staff;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -185,12 +186,17 @@ public class Tbl_StaffDTO implements Serializable{
         this.isActive = isActive;
     }
 
+    public String getBirthdayStr() {
+        birthdayStr = new SimpleDateFormat("yyyy-MM-dd").format(birthday);
+        return birthdayStr;
+    }
     
     private String staffID;
     private String username;
     private String password;
     private String name;
     private Date birthday;
+    private String birthdayStr;
     private String gender;
     private String phone;
     private String email;
