@@ -16,8 +16,12 @@
         <s:include value="header.jsp"/>
             <%--Category - Subcategory --%>
         <font color="blue">
-            <s:label value="%{article.categoryName}"/>>        
-            <s:a href="sameSubCatArticle.jsp"><s:label value="%{article.subcategoryName}"/></s:a>
+            <s:label value="%{article.categoryName}"/>>
+            <s:a value="viewArticleBySubCat">
+                                <s:param name="subcatID" value="%{article.subcategoryId}"/>
+                                <s:label value="%{article.subcategoryName}"/>
+            </s:a>
+            
             </br>
         </font>
             <%--Article Title and Datetime--%>
@@ -40,7 +44,7 @@
                 <%--Views and Author--%>
             <font style="font-weight: bold">
             <s:label value="%{article.views} Views"/>
-            <s:label value="Author: %{article.authorName}"/>
+            <s:label value="Author: %{article.authorName}"/>            
             </font>
         </div>
             
@@ -54,9 +58,9 @@
                             </s:a>
                             <i style="float: right"><s:property value="%{#art.createdDate}"/></i>
                         </div>
-                        <s:if test="%{#counter.count == 2}">
+                        <s:if test="%{#counter.count == 3}">                            
                             <s:a value="viewArticleBySubCat">
-                                <s:param name="subcatID" value="%{article.subcategoryID}"/>
+                                <s:param name="subcatID" value="%{article.subcategoryId}"/>
                                 <i style="float: right">View more...</i>
                             </s:a>
                         </s:if>
