@@ -37,7 +37,7 @@
                     </s:iterator>
                 </div> 
                 <div style="border-color: cornflowerblue; border-style: solid; width: 39%; float: left; overflow: auto">
-                    <s:iterator var="art" value="%{#cat.value}" status="counter" begin="1" end="4">
+                    <s:iterator var="art" value="%{#cat.value}" status="counter" begin="1">
                         <div style="border-color: burlywood; border-style: dotted; width: 99%; float: top">
                             <s:a value="viewDetails">
                                 <s:param name="articleID" value="%{#art.id}"/>
