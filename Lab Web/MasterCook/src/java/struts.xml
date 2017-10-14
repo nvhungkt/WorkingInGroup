@@ -126,5 +126,8 @@
                 <param name="actionName">loadModifySubcatPage</param>
             </result>
         </action>
-    </package>
+                
+        <action name="browseArticle" class="sample.action.ViewMoreAction" method="browseArticle">
+            <result name="success">manageArticleByState.jsp</result>
+        </action>    </package>
 </struts>
