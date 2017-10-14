@@ -10,9 +10,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>View More Article By Status</title>
     </head>
     <body>
+        <h1><s:property value="%{status}"/></h1>
+        <%--Set action và tham số cho page button--%>
+        <s:set var="action" value="viewMoreByState"/>                
+        <% pageContext.setAttribute("name", "status"); %>        
+        <s:set var="nameComponent" value="%{#attr.name}"/>
+        <s:set var="value" value="%{status}"/>
         <%--List of article present--%>
         <s:if test="%{listArticle != null}">
             <s:iterator var="art" value="%{listArticle}" status="counter">
@@ -29,6 +35,9 @@
                 </s:if>
             </s:iterator>
         </s:if>
+                <s:else>
+                    <h2>There are no Pending Article in your Subcategory now</h2>
+                </s:else>            
                 <%--List of page button--%>
         <div style="border-style: double; border-color: red; float: right">
                 <s:include value="pageChooser.jsp"/>                                    
