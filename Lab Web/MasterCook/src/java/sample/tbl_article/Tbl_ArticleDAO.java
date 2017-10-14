@@ -419,8 +419,7 @@ public class Tbl_ArticleDAO implements Serializable{
             }
         }
     }
-    
-    public int getArticlesByStatus (String status, String authorID, boolean more, int pageNumber, int maxQuantity) throws NamingException, SQLException {
+     public int getArticlesByStatus (String status, String authorID, boolean more, int pageNumber, int maxQuantity) throws NamingException, SQLException {
         listArticlePresent = null;
         Connection con = null;
         PreparedStatement stm = null;
@@ -441,8 +440,7 @@ public class Tbl_ArticleDAO implements Serializable{
                 stm.setString(1, authorID);
                 stm.setString(2, status + "%");
                 rs = stm.executeQuery();                
-                if(rs.next()) count = rs.getInt("Result"); 
-                System.out.println("Result: " + count);
+                if(rs.next()) count = rs.getInt("Result");                 
             }
             
             stm = con.prepareStatement(sql);                
@@ -477,7 +475,7 @@ public class Tbl_ArticleDAO implements Serializable{
         }
         return count;
     }
-     
+
     public void getArticlesByCat(String catID, int maxQuantityEachPage, int pageNumber) throws NamingException, SQLException {
         listArticlePresent = null;
         Connection con = null;
@@ -525,5 +523,69 @@ public class Tbl_ArticleDAO implements Serializable{
                 con.close();
             }
         }
+    }
+    public int getDependingArticles (String status, String staffID, int pageNumber, int maxQuantity) throws NamingException, SQLException {
+        listArticlePresent = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;        
+        int count = 0;
+        try {
+            con = DBAccess.makeConnection();
+            //Ð?m t?ng s? bài             
+            String countString = "SELECT COUNT(a.ArticleID) AS RESULT\n" +
+                        "FROM tbl_Article a\n" +
+                        "WHERE a.Status LIKE ? AND a.SubcategoryID IN \n" +
+                        "(SELECT w.SubcategoryID \n" +
+                        "FROM tbl_WorkingSubcategory w\n" +
+                        "WHERE w.StaffID = ?)";
+            stm = con.prepareStatement(countString);            
+            stm.setString(1, status + "%");
+            stm.setString(2, staffID);
+            rs = stm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("Result");
+            }            
+            //Query nh?ng bài dó lên
+            String sql = "SELECT *\n" +
+                        "FROM tbl_Article a\n" +
+                        "WHERE a.Status LIKE ? AND a.SubcategoryID IN \n" +
+                        "(SELECT w.SubcategoryID \n" +
+                        "FROM tbl_WorkingSubcategory w\n" +
+                        "WHERE w.StaffID = ?)" +
+                        "ORDER BY [DateTime] DESC" +
+                        "\nOFFSET ? ROWS FETCH NEXT ? ROWS ONLY";            
+            stm = con.prepareStatement(sql);                
+            stm.setString(1, status + "%");            
+            stm.setString(2, staffID);
+            stm.setInt(3, maxQuantity * (pageNumber - 1));
+            stm.setInt(4, maxQuantity);            
+            rs = stm.executeQuery();            
+            //Get present for article            
+            while (rs.next()) {
+                
+                String id = rs.getString("ArticleID");
+                String title = rs.getString("Title");
+                String imgLink = rs.getString("ContentURL");
+                Timestamp date = rs.getTimestamp("DateTime");
+                String createdDate = date.getHours() + ":" + date.getMinutes() + ", "
+                        + date.getDay() + "/" + date.getMonth() + "/" + (date.getYear() + 1900);
+                if (listArticlePresent == null) {
+                    listArticlePresent = new ArrayList<>();
+                }
+                listArticlePresent.add(new ArticlePresent(id, title, imgLink, createdDate));                
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return count;
     }
 }
