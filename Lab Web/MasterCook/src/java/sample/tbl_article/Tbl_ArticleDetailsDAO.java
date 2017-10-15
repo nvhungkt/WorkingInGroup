@@ -10,6 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.Duration;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import javax.naming.NamingException;
 import sample.dbaccess.DBAccess;
 
@@ -45,6 +49,84 @@ public class Tbl_ArticleDetailsDAO {
                 articleDetails = new Tbl_ArticleDetailsDTO(articleID, title, contentURL, authorName, dateTime, subcategoryName, categoryName, views, status, reason, subcategoryID);
             }
             return articleDetails;
+        }
+        finally {
+            if(rs!=null) {
+                rs.close();
+            }
+            if(stm!=null) {
+                stm.close();
+            }
+            if(con!=null) {
+                con.close();
+            }
+        }
+    }
+    
+    public void getTotalPost(Map<String, Integer> totalPost, Date beginDate, Date endDate) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBAccess.makeConnection();
+            String sql = "SELECT a.Status, COUNT(a.ArticleID) AS Number\n" +
+                        "FROM tbl_Article a\n" +
+                        "WHERE a.DateTime >= ? AND a.DateTime < ? \n" +
+                        "GROUP BY a.Status";
+            stm = con.prepareStatement(sql);                        
+            stm.setTimestamp(1, Timestamp.from(beginDate.toInstant()));         
+            //FROM 00:00 begin date to 23:59 end date
+            stm.setTimestamp(2, Timestamp.from(endDate.toInstant().plus(Duration.ofDays(1))));            
+            rs = stm.executeQuery();            
+            int numberOfPendingArticle = 0;
+            while(rs.next()) {
+                String status = rs.getString("Status");
+                int number = rs.getInt("Number");
+                if(status.contains("Pending")) {
+                    numberOfPendingArticle += number;
+                }
+                else {
+                    totalPost.put(status, number);
+                }
+            }            
+            totalPost.put("Pending", numberOfPendingArticle);
+        }
+        finally {
+            if(rs!=null) {
+                rs.close();
+            }
+            if(stm!=null) {
+                stm.close();
+            }
+            if(con!=null) {
+                con.close();
+            }
+        }
+    }
+    
+    public void getMostViewArticle(List<Tbl_ArticleDetailsDTO> mostViewList, Date beginDate, Date endDate) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBAccess.makeConnection();
+            String sql = "SELECT TOP 5 a.ArticleID, a.Title, a.[Views], s.Name\n" +
+                        "FROM tbl_Article a, tbl_Subcategory s\n" +
+                        "WHERE a.DateTime >= ? AND a.DateTime < ? AND a.SubcategoryID = s.SubcategoryID\n" +
+                        "ORDER BY a.[Views] DESC";
+            stm = con.prepareStatement(sql);                        
+            stm.setTimestamp(1, Timestamp.from(beginDate.toInstant()));         
+            //FROM 00:00 begin date to 23:59 end date
+            stm.setTimestamp(2, Timestamp.from(endDate.toInstant().plus(Duration.ofDays(1))));            
+            rs = stm.executeQuery();                        
+            while(rs.next()) {
+                String articleID = rs.getString("ArticleID");
+                String title = rs.getString("Title");
+                int view = rs.getInt("Views");
+                String subcategoryName = rs.getString("Name");
+                mostViewList.add(new Tbl_ArticleDetailsDTO(articleID, title, subcategoryName, view));
+            }            
+            
         }
         finally {
             if(rs!=null) {
