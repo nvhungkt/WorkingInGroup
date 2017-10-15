@@ -127,7 +127,7 @@
                                 <li><a href="viewProductivityOfCollaborators">View Collaborators</a></li>
                                 <li><s:a value="loadAddSubcatPage">Add Category</s:a></li>
                                 <li><s:a value="loadModifySubcatPage">Modify Category</s:a></li>
-                                <li><a href="">Make Statistics</a></li>
+                                <li><a href="makeStatistic.jsp">Make Statistics</a></li>
                             </s:if>
                                 
                             <!-- log out -->    
