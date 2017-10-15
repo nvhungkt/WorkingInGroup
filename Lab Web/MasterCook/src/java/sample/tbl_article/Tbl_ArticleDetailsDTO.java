@@ -38,6 +38,13 @@ public class Tbl_ArticleDetailsDTO {
         this.views = views;
     }
 
+    public Tbl_ArticleDetailsDTO(String articleID, String title, String subcategoryName, int views) {
+        this.articleID = articleID;
+        this.title = title;
+        this.subcategoryName = subcategoryName;
+        this.views = views;
+    }
+    
     public String getSubcategoryId() {
         return subcategoryId;
     }
