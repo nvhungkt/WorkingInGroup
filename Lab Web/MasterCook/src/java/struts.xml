@@ -4,7 +4,8 @@
 
 <struts>
     <!-- Configuration for the default package. -->
-    <package name="default" extends="struts-default" namespace="/">
+    <constant name="struts.mapper.action.prefix.enabled" value="true" />    
+    <package name="default" extends="struts-default" namespace="/">        
         <action name="" class="sample.action.LoadArticlePresentsAction">
             <result name="success">home.jsp</result>
         </action>
@@ -158,6 +159,13 @@
                 <param name="actionName">createStaff</param>
             </result>
         </action>
+                 
+        <action name="makeTotalPostStatistic" class="sample.action.MakeStatisticAction" method="makeTotalPostStatistic">
+            <result name="success">makeStatistic.jsp</result>
+        </action>
         
+        <action name="makeMostViewStatistic" class="sample.action.MakeStatisticAction" method="makeMostViewStatistic">
+            <result name="success">makeStatistic.jsp</result>
+        </action>
     </package>
 </struts>
