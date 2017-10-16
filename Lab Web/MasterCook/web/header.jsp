@@ -73,7 +73,7 @@
                     </c:if>
                 </c:if>
                 
-                <li><a href="">About Us</a></li>
+                <li><a href="aboutUs.jsp">About Us</a></li>
                 <li><a href="">Contact</a></li>
                 <s:if test="%{#staff != null}">
                     <li>
