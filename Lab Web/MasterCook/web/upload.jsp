@@ -19,6 +19,9 @@
             var editarea = document.getElementById('editarea');
             var content = document.getElementById(contentID);
             content.innerHTML = editarea.innerHTML;
+            
+            var lastTitle = document.getElementById('lastArticleTitle');
+            lastTitle.innerHTML = document.getElementById('articleTitle').value;
             document.getElementById(formID).submit();
         }
     </script>
@@ -31,7 +34,6 @@
                     //When upload image, take content value from param and new image new from param
                     var editarea = document.getElementById('editarea');
                     var str = '${param.content}';
-                    console.log(str);
                     editarea.innerHTML = str;
                     if ('${param.fileUploadFileName}' !== '')
                     editarea.innerHTML += '<img src="Pictures/' + '${param.fileUploadFileName}' + '">';
@@ -40,9 +42,10 @@
             </div>
                 
             <div style="width: 30%; float: left">
+                <input type="hidden" name="articleID" value="${param.articleID}"/>
                 <input type="button" value="Submit" onclick="Upload('content', 'uploadArticle')"/><br/>
                 Title:<br/>
-                <input type="text" name="title"/><br/>
+                <input id="articleTitle" type="text" name="title" value="${param.title}"/><br/>
 
                 Subcategory:<br/>
                 <select name="subcategory">
@@ -56,6 +59,8 @@
         <form id="uploadimg" action="uploadimg" method="POST" enctype = "multipart/form-data"
               style="width: 30%; float: left">            
             <input type="file" name="fileUpload"/><br/>
+            <textarea name="title" id="lastArticleTitle" style="display: none"></textarea>
+            <input type="hidden" name="articleID" value="${param.articleID}"/>
             <textarea name="content" id="lastContent" style="display: none"></textarea>
             <input type="button" value="Upload" onclick="Upload('lastContent', 'uploadimg')"/>
         </form>

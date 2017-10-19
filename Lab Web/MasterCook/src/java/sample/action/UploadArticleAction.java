@@ -14,6 +14,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import sample.tbl_article.Tbl_ArticleDAO;
+import sample.tbl_article.Tbl_ArticleDetailsDAO;
+import sample.tbl_article.Tbl_ArticleDetailsDTO;
 import sample.tbl_staff.Tbl_StaffDTO;
 
 /**
@@ -27,6 +29,10 @@ public class UploadArticleAction extends ActionSupport implements ServletRequest
     private String articleID;
     private HttpServletRequest servletRequest;
 
+    public void setArticleID(String articleID) {
+        this.articleID = articleID;
+    }
+    
     public String getArticleID() {
         return articleID;
     }
@@ -69,7 +75,16 @@ public class UploadArticleAction extends ActionSupport implements ServletRequest
             Tbl_StaffDTO staff = (Tbl_StaffDTO) session.get("STAFF");
             if (staff != null) {
                 //Generate file name
-                String contentURL = staff.getStaffID() + "_" + new Date().getTime() + ".txt";
+                String contentURL;
+                String status = null;
+                if (articleID == null || articleID.isEmpty())
+                    contentURL = staff.getStaffID() + "_" + new Date().getTime() + ".txt";
+                else {
+                    Tbl_ArticleDetailsDAO articleDAO = new Tbl_ArticleDetailsDAO();
+                    Tbl_ArticleDetailsDTO articleDetails = articleDAO.getArticleDetails(articleID);
+                    contentURL = articleDetails.getContentURL();
+                    status = articleDetails.getStatus();
+                }
                 
                 //Write content to file
                 try (   FileWriter fw = new FileWriter(filePath + contentURL);
@@ -77,11 +92,17 @@ public class UploadArticleAction extends ActionSupport implements ServletRequest
                     pw.write(content);
                 }
                 
-                //Upload article
                 Tbl_ArticleDAO dao = new Tbl_ArticleDAO();
-                articleID = dao.uploadArticle(title, subcategory, contentURL, staff.getStaffID());
-                if (articleID != null)
-                    return "success";
+                if (articleID == null || articleID.isEmpty()) {
+                    //Upload article
+                    articleID = dao.uploadArticle(title, subcategory, contentURL, staff.getStaffID());
+                    if (articleID != null)
+                        return "success";
+                } else {
+                    //Edit article
+                    if (dao.editArticle(articleID, title, subcategory, staff.getStaffID(), status))
+                        return "success";
+                }
             }
         }
         

@@ -75,6 +75,8 @@
 	    <result name="success" type="redirectAction">
                 <param name="actionName">uploadArticle</param>
                 <param name="content">${content}</param>
+                <param name="title">${title}</param>
+                <param name="articleID">${articleID}</param>
                 <param name="fileUploadFileName">${fileUploadFileName}</param>
             </result>
 	    <result name="input">upload.jsp</result>
@@ -87,6 +89,16 @@
             </result>            
             <result name="fail">upload.jsp</result>
         </action>
+        
+        <action name="editArticle" class="sample.action.ViewEditArticlePageAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">uploadArticle</param>
+                <param name="content">${content}</param>
+                <param name="title">${article.title}</param>
+                <param name="articleID">${articleID}</param>
+            </result>
+        </action>
+        
         <action name="guestSearch" class="sample.action.GuestSearchAction">
             <result name="success">guestSearchResult.jsp</result>
         </action>

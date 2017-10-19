@@ -135,8 +135,8 @@
                         </s:if>
                     </s:if>                  
                     <%--Edit--%>
-                    <s:form action="">
-                        <s:hidden id="articleID" value="%{article.articleID}"/>
+                    <s:form action="editArticle">
+                        <s:hidden name="articleID" value="%{article.articleID}"/>
                         <s:submit value="Edit"/>     
                     </s:form>   
                     <%----%>

@@ -35,7 +35,9 @@ public class ViewUploadArticlePageAction {
             if (staff != null) {
                 Tbl_StaffDAO dao = new Tbl_StaffDAO();
                 dao.getWorkingCategories(staff.getStaffID());
-                workingCategories = dao.getListWorkingCategory().entrySet();
+                Map<String, String> listWorkingCategory = dao.getListWorkingCategory();
+                if (listWorkingCategory != null)
+                    workingCategories = dao.getListWorkingCategory().entrySet();
             }
         }
         return "success";

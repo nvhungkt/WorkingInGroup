@@ -26,6 +26,8 @@ public class UploadImageAction extends ActionSupport implements ServletRequestAw
     private String fileUploadContentType;
     private String fileUploadFileName;
     private String content;
+    private String title;
+    private String articleID;
     private HttpServletRequest servletRequest;
     
     public String getContent() {
@@ -36,6 +38,22 @@ public class UploadImageAction extends ActionSupport implements ServletRequestAw
         this.content = content;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getArticleID() {
+        return articleID;
+    }
+
+    public void setArticleID(String articleID) {
+        this.articleID = articleID;
+    }
+    
     public String getFileUploadContentType() {
         return fileUploadContentType;
     }
