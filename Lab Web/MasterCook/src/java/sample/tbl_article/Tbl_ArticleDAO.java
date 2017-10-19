@@ -481,6 +481,7 @@ public class Tbl_ArticleDAO implements Serializable{
             rs = stm.executeQuery();            
             //Get present for article            
             while (rs.next()) {
+                count++;
                 String id = rs.getString("ArticleID");
                 String title = rs.getString("Title");
                 String imgLink = rs.getString("ContentURL");
