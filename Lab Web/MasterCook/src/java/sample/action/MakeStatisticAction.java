@@ -19,52 +19,53 @@ import sample.tbl_article.Tbl_ArticleDetailsDTO;
  * @author Turtle
  */
 public class MakeStatisticAction {
-    private final String SUCCESS = "success";
+    private final String SUCCESS = "success";   
     private Date beginDate;
     private Date endDate;
-    private String type;
-    private String message;
+    private String type;    
     Map<String, Integer> totalPost;
     List<Tbl_ArticleDetailsDTO> mostViewList;
     public MakeStatisticAction() {
     }
     
-    public String makeTotalPostStatistic() throws Exception {
+    public String makeTotalPostStatistic() throws Exception {        
+        if(beginDate == null) {
+            throw new Exception("Begin Date is required");            
+        }        
+        if(endDate == null) {
+            throw new Exception("End Date is required");                        
+        }
         if(beginDate.after(endDate)) {
-            message = "Begin Date must be before End Date";
+            throw new Exception("Begin Date must be before End Date");
         }
-        else {                    
-            type = "TotalPost";
-            if(totalPost == null) {
-                totalPost = new HashMap<String, Integer>();
-                Tbl_ArticleDetailsDAO dao = new Tbl_ArticleDetailsDAO();            
-                dao.getTotalPost(totalPost, beginDate, endDate);            
-            }
+                         
+        type = "TotalPost";
+        if (totalPost == null) {
+            totalPost = new HashMap<String, Integer>();
+            Tbl_ArticleDetailsDAO dao = new Tbl_ArticleDetailsDAO();
+            dao.getTotalPost(totalPost, beginDate, endDate);
         }
+        
         return SUCCESS;
     }
     
     public String makeMostViewStatistic() throws Exception {
+        if(beginDate == null) {
+            throw new Exception("Begin Date is required");            
+        }        
+        if(endDate == null) {
+            throw new Exception("End Date is required");                        
+        }
         if(beginDate.after(endDate)) {
-            message = "Begin Date must be before End Date";
-        }
-        else {
-            type = "MostView";        
-            mostViewList = new ArrayList<>();     
-            Tbl_ArticleDetailsDAO dao = new Tbl_ArticleDetailsDAO();            
-            dao.getMostViewArticle(mostViewList, beginDate, endDate);
-        }
+            throw new Exception("Begin Date must be before End Date");
+        }       
+        type = "MostView";
+        mostViewList = new ArrayList<>();
+        Tbl_ArticleDetailsDAO dao = new Tbl_ArticleDetailsDAO();
+        dao.getMostViewArticle(mostViewList, beginDate, endDate);
         return SUCCESS;
     }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-    
+       
     public String getType() {
         return type;
     }
