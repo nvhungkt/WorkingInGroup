@@ -173,10 +173,14 @@
         </action>
                  
         <action name="makeTotalPostStatistic" class="sample.action.MakeStatisticAction" method="makeTotalPostStatistic">
+            <exception-mapping exception="java.lang.Exception" result="input"/>
+            <result name="input">makeStatistic.jsp</result>
             <result name="success">makeStatistic.jsp</result>
         </action>
         
         <action name="makeMostViewStatistic" class="sample.action.MakeStatisticAction" method="makeMostViewStatistic">
+            <exception-mapping exception="java.lang.Exception" result="input"/>            
+            <result name="input">makeStatistic.jsp</result>
             <result name="success">makeStatistic.jsp</result>
         </action>
     </package>
