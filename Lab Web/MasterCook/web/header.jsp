@@ -143,10 +143,20 @@
         <img src="Pictures/banner.PNG"; width="80%" height="50%"/><br/>
         
         <!-- search text box and button -->
-        <form action="guestSearch">
-            <input type="text" name="txtSearch" value="" />
+        <form action="guestSearch" onsubmit="return submitdata();">
+            <input type="text" name="txtSearch" value="" id="Search"/>
             <input type="hidden" name="pageNumber" value="1" />
             <input type="image" name="btnSearch" src="Pictures/searchIcon.png" width="25" height="25"/>
         </form>
+        
+        <script type="text/javascript">
+        function submitdata() {
+            var searchValue = document.getElementById("Search").value;
+            if(searchValue == "") {
+                return false;
+            }
+            else return true;
+        }
+        </script>
     </body>
 </html>
