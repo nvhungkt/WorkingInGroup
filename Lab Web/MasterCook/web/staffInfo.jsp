@@ -38,7 +38,7 @@
                 </tr>
                 <tr>
                     <td>Birthday:</td>
-                    <td><s:property value="staff.birthday"/></td>
+                    <td><s:property value="staff.birthdayStr"/></td>
                 </tr>
                 <tr>
                     <td>Address:</td>
