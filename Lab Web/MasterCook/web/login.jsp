@@ -11,22 +11,27 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/OurCss.css"/>
     </head>
-    <body>
-        <h1>Login Page</h1>
-        <%--<s:if test="%{username != null}">
-           Invalid username or password"<br/>
-        </s:if>--%>
-        <form action="login" method="POST">
-            <font color="red">
-                <s:property value="%{message}"/><br/>
-            </font>
-            Username<br/>
-            <s:textfield name="txtUsername" value="%{txtUsername}"/><br/>
-            Password<br/>
-            <s:password name="txtPassword" value=""/><br/>
-            <input type="submit" value="Sign in" />
-        </form>
-        
+    <body class="bodyLogin">
+        <div class="col-md-4 col-md-offset-4" id="loginFormContainer">
+            <h1 class="labelLogin">ACCOUNT LOGIN</h1>
+            <hr>
+            <form action="login" method="POST" class="loginForm">
+                <div class="form-group">
+                    <font color="red">
+                        <s:property value="%{message}"/><br/>
+                    </font>
+                    <label for="inputUsername">Username</label><br/>
+                    <input type="text" class="form-control" class="rounded" name="txtUsername" value="<s:property value="%{txtUsername}"/>" placeholder="Username"/>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label><br/>
+                    <input type="text" class="form-control" class="rounded" name="txtPassword" value="" placeholder="Password"/>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Login" id="loginButton" />
+            </form>
+        </div>
     </body>
 </html>

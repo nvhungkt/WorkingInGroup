@@ -74,7 +74,7 @@
                 </c:if>
                 
                 <li><a href="aboutUs.jsp">About Us</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a href="contact.jsp">Contact</a></li>
                 <s:if test="%{#staff != null}">
                     <li>
                         Welcome, <s:property value="%{#staff.name}"/>
