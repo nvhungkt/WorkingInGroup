@@ -13,8 +13,10 @@
         <title>Login</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/OurCss.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </head>
-    <body class="bodyLogin">
+    <body>
         <div class="col-md-4 col-md-offset-4" id="loginFormContainer">
             <h1 class="labelLogin">ACCOUNT LOGIN</h1>
             <hr>

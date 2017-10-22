@@ -26,43 +26,57 @@
         }
     </script>
     <body>
-        <form id="uploadArticle" action="finishUploadArticle" method="POST">
-            <div style="width: 70%; float: left">
-                <div id="editarea" contentEditable="true" style="border: 1px solid black; min-height: 500px">
+        <s:include value="header.jsp"/>
+        <div class="container">
+            <form id="uploadArticle" action="finishUploadArticle" method="POST">
+                <div class="col-lg-8">
+                    <div id="editarea" contentEditable="true">
+                    </div>
+                    <script type="text/javascript">
+                        //When upload image, take content value from param and new image new from param
+                        var editarea = document.getElementById('editarea');
+                        var str = '${param.content}';
+                        editarea.innerHTML = str;
+                        if ('${param.fileUploadFileName}' !== '')
+                        editarea.innerHTML += '<img src="Pictures/' + '${param.fileUploadFileName}' + '">';
+                    </script>
+                    <textarea name="content" id="content" style="display: none"></textarea>
                 </div>
-                <script type="text/javascript">
-                    //When upload image, take content value from param and new image new from param
-                    var editarea = document.getElementById('editarea');
-                    var str = '${param.content}';
-                    editarea.innerHTML = str;
-                    if ('${param.fileUploadFileName}' !== '')
-                    editarea.innerHTML += '<img src="Pictures/' + '${param.fileUploadFileName}' + '">';
-                </script>
-                <textarea name="content" id="content" style="display: none"></textarea>
-            </div>
-                
-            <div style="width: 30%; float: left">
+
+                <div class="col-lg-4 editTool">
+                    <input type="hidden" name="articleID" value="${param.articleID}"/>
+                    <input type="button" class="btn btn-success btn-block" value="Upload article"
+                           onclick="Upload('content', 'uploadArticle')"/><br/>
+                    
+                    <div class="form-group">
+                        <label for="articleTitle">Title:</label>
+                        <input id="articleTitle" class="form-control" type="text" name="title" value="${param.title}"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Subcategory:</label>
+                        <select name="subcategory" class="form-control">
+                            <s:iterator var="subcate" value="%{workingCategories}">
+                                <option value="<s:property value="%{#subcate.key}"/>"><s:property value="%{#subcate.value}"/></option>
+                            </s:iterator>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+            <form id="uploadimg" action="uploadimg" method="POST" enctype = "multipart/form-data"
+                  class="col-lg-4 editTool form-inline">
+                <label class="btn btn-default btn-block">
+                    Choose image
+                    <input type="file" name="fileUpload" class="btn btn-default btn-block"
+                           style="display: none" accept="image/*"/>
+                </label><br/>
+                <textarea name="title" id="lastArticleTitle" style="display: none"></textarea>
                 <input type="hidden" name="articleID" value="${param.articleID}"/>
-                <input type="button" value="Submit" onclick="Upload('content', 'uploadArticle')"/><br/>
-                Title:<br/>
-                <input id="articleTitle" type="text" name="title" value="${param.title}"/><br/>
-
-                Subcategory:<br/>
-                <select name="subcategory">
-                    <s:iterator var="subcate" value="%{workingCategories}">
-                        <option value="<s:property value="%{#subcate.key}"/>"><s:property value="%{#subcate.value}"/></option>
-                    </s:iterator>
-                </select>
-            </div>
-        </form>
-
-        <form id="uploadimg" action="uploadimg" method="POST" enctype = "multipart/form-data"
-              style="width: 30%; float: left">            
-            <input type="file" name="fileUpload"/><br/>
-            <textarea name="title" id="lastArticleTitle" style="display: none"></textarea>
-            <input type="hidden" name="articleID" value="${param.articleID}"/>
-            <textarea name="content" id="lastContent" style="display: none"></textarea>
-            <input type="button" value="Upload" onclick="Upload('lastContent', 'uploadimg')"/>
-        </form>
+                <textarea name="content" id="lastContent" style="display: none"></textarea>
+                <input type="button" class="btn btn-info btn-block" value="Upload image"
+                       onclick="Upload('lastContent', 'uploadimg')"/>
+            </form>
+        </div>
     </body>
 </html>

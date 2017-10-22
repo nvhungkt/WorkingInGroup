@@ -1,24 +1,47 @@
 /* css for login form */
-.bodyLogin {
-    background-color: #eeeeee;
+body {
+    background-color: #eeeeee !important;
 }
+
+.navbar {
+    background-color: #fff !important;
+}
+
 #loginFormContainer {
     background-color: white;
     margin-top: 23vh;
     height: 54vh;
     overflow: auto;
 }
+
 .labelLogin {
     text-align: center;
 }
+
 .loginForm {
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 20px;
 }
+
 #loginButton {
     width: 100%;
     margin-top: 10px;
 }
 
+/*Upload article page*/
 
+#editarea {
+    background-color: #fff;
+    padding: 5%;
+    min-height: 100vh;
+}
+
+#editarea img{
+    width: 100%
+}
+
+.editTool {
+    background-color: #fff;
+    padding: 1% 2%;
+}
