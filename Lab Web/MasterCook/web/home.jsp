@@ -15,8 +15,6 @@
     </head>
     <body>
         <s:set var="staff" value="%{#session.STAFF}"/>
-        <h1>Home Page</h1>
-        Welcome, <s:property value="%{#staff.name}"/><br/>
         <s:include value="header.jsp"/>
         
         <!--------------------------------------------------------------------->
