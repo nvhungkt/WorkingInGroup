@@ -21,7 +21,7 @@
     <body>
         <s:set var="staff" value="%{#session.STAFF}"/>
         <!-- menu bar-->
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
