@@ -23,7 +23,7 @@
         <h1><s:property value="%{catName}"/></h1>
         <s:if test="%{listArticle == null}">
             <div>
-                <font color="red"><h3>No Result Found</h3></font>
+                <font><h3>No Articles</h3></font>
             </div>
         </s:if>
         <s:if test="%{listArticle != null}">

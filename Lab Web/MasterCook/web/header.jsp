@@ -160,10 +160,13 @@
         <img src="Pictures/CookingIsForEveryOne.PNG" width="100%"/>
         
         <!-- search text box and button -->
-        <form action="guestSearch" onsubmit="return submitdata();">
-            <input type="text" name="txtSearch" value="" id="Search"/>
+        <div class="col-md-10"></div>
+        <form action="guestSearch" class="form-inline col-md-2" onsubmit="return submitdata();">
+            <input type="text" class="searchBar" name="txtSearch" placeholder="Search" id="Search"/>
             <input type="hidden" name="pageNumber" value="1" />
-            <input type="image" name="btnSearch" src="Pictures/searchIcon.png" width="25" height="25"/>
+            <button class="btn btn-link searchBar">
+                <span class="glyphicon glyphicon-search" type="submit"></span>
+            </button>
         </form>
         
         <script type="text/javascript">

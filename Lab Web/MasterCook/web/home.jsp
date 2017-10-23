@@ -16,48 +16,52 @@
     <body>
         <s:set var="staff" value="%{#session.STAFF}"/>
         <s:include value="header.jsp"/>
-        
+        <div class="container">
         <!--------------------------------------------------------------------->
         <!-- display content of home page -->
         <s:iterator var="cat" value="%{mapCat}">
-            <div style="border: crimson; border-style: solid; overflow: auto">
-                <font color="blue" style="font-family: serif; font-style: italic; font-size: 30px">
+            <div>
+                <font class="col-md-12 categoryTitle">
                     <s:property value="%{#cat.key.name}"/>
-                </font><br/>
-                <div style="border-color: greenyellow; border-style: solid; width: 60%; float: left">
+                </font>
+                <div class="col-md-6">
                     <s:iterator var="art" value="%{#cat.value}" begin="0" end="0">
-                            <s:a value="viewDetails">
-                                <s:param name="articleID" value="%{#art.id}"/>
-                                <img src="<s:property value="%{#art.imgLink}"/>" width="500" height="417"/><br/>
+                        <s:a value="viewDetails">
+                            <s:param name="articleID" value="%{#art.id}"/>
+                            <div class="homeMainArticleImg" style="background-image:
+                                 url('<s:property value="%{#art.imgLink}"/>')"></div>
+                            <div class="homeMainArticle">
                                 <font><s:property value="%{#art.title}"/></font>
-                            </s:a><br/>
-                            <i style="float: right"><s:property value="%{#art.createdDate}"/></i>
+                                <i><s:property value="%{#art.createdDate}"/></i>
+                            </div>
+                        </s:a>
                     </s:iterator>
                 </div> 
-                <div style="border-color: cornflowerblue; border-style: solid; width: 39%; float: left; overflow: auto">
-                    <s:iterator var="art" value="%{#cat.value}" status="counter" begin="1">
-                        <div style="border-color: burlywood; border-style: dotted; width: 99%; float: top">
+                <div class="col-md-6">
+                        <s:iterator var="art" value="%{#cat.value}" status="counter" begin="1">
                             <s:a value="viewDetails">
-                                <s:param name="articleID" value="%{#art.id}"/>
-                                <img src="<s:property value="%{#art.imgLink}"/>" width="100" height="100"/>
-                                <font><s:property value="%{#art.title}"/></font>
+                                <div class="homeArticleImg" style="background-image:
+                                     url('<s:property value="%{#art.imgLink}"/>')"></div>
+                                <div class="homeArticle">
+                                    <s:param name="articleID" value="%{#art.id}"/>
+                                    <font><s:property value="%{#art.title}"/></font>
+                                    <i><s:property value="%{#art.createdDate}"/></i>
+                                </div>
                             </s:a>
-                            <i style="float: right"><s:property value="%{#art.createdDate}"/></i>
-                        </div>
-                        <s:if test="%{#counter.count == 4}">
-                            <s:a value="viewMoreAtHome">
-                                <i style="float: right">View more...</i>
-                                <s:param name="catID" value="%{#cat.key.categoryID}"/>
-                                <s:param name="pageNumber" value="1"/>
-                            </s:a>
-                        </s:if>
-                    </s:iterator>
-                </div> 
+                            <s:if test="%{#counter.count == 4}">
+                                <s:a value="viewMoreAtHome">
+                                    <i style="float: right">View more...</i>
+                                    <s:param name="catID" value="%{#cat.key.categoryID}"/>
+                                    <s:param name="pageNumber" value="1"/>
+                                </s:a>
+                            </s:if>
+                        </s:iterator>
+                </div>
             </div><hr/>
         </s:iterator>
         
         <!--------------------------------------------------------------------->
-        
+        </div>
         <s:include value="footer.html"/>
     </body>
 </html>

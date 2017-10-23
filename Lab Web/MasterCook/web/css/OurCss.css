@@ -7,6 +7,14 @@ body {
     background-color: #fff !important;
 }
 
+.searchBar {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0px;
+    padding: 5px;
+    padding-bottom: 0px;
+}
+
 #loginFormContainer {
     background-color: white;
     margin-top: 23vh;
@@ -35,6 +43,65 @@ body {
     text-align: center; 
     text-decoration: underline; 
     font-style: italic
+}
+
+/*Home page*/
+
+.categoryTitle {
+    font-style: italic;
+    font-size: 36px;
+    text-align: center;
+    margin: 50px 0px 20px 0px;
+}
+
+.homeMainArticle {
+    background-color: #fff;
+    padding: 5%;
+}
+
+.homeMainArticle font{
+    font-size: 22px;
+}
+
+.homeMainArticle i{
+    position: absolute;
+    bottom: 0.5%;
+    right: 7%;
+    font-size: 12px;
+    color: #bbb;
+}
+
+.homeMainArticleImg {
+    padding-top: 75%;
+    background-size: cover;
+    background-position: center;
+}
+
+.homeArticle {
+    float: left;
+    width: 67%;
+    background-color: #fff;
+    padding: 5%;
+}
+
+.homeArticle font{
+    font-size: 18px;
+}
+
+.homeArticle i{
+    position: absolute;
+    bottom: 1%;
+    right: 5%;
+    font-size: 12px;
+    color: #bbb;
+}
+
+.homeArticleImg {
+    float: left;
+    width: 33%;
+    padding-top: 25%;
+    background-size: cover;
+    background-position: center;
 }
 
 /*Upload article page*/

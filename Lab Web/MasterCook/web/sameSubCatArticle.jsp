@@ -20,34 +20,40 @@
         <s:set var="value" value="%{subcatID}"/> <!-- value of the component-->
         
         <s:include value="header.jsp"/>
-        <h1><s:property value="%{subcatName}"/></h1>
-        <s:if test="%{results == null}">
-            <div>
-                <font color="red"><h3>No Result Found</h3></font>
-            </div>
-        </s:if>
-        <s:if test="%{results != null}">
-            <div>
-                <s:iterator var="art" value="%{results}" status="counter">
-                    <div style="float: left; width: 24.5%; height:  200px">
-                        <s:a value="viewDetails">
-                            <s:param name="articleID" value="%{#art.id}"/>
-                            <img src="<s:property value="%{#art.imgLink}"/>" width="100" height="100"/><br/>
-                            <font><s:property value="%{#art.title}"/></font><br/>
-                        </s:a>
-                        <i><s:property value="%{#art.createdDate}"/></i>
-                    </div>
-                    <s:if test="%{#counter.count == 4}">
-                        <br/>
-                    </s:if>
-                </s:iterator>
-            </div>
-            <s:if test="%{pageChooser != null}"> 
-                <div style="border-style: double; border-color: red; float: right; width: 100%">
-                    <s:include value="pageChooser.jsp"/>
+        
+        <div class="container">
+            <font class="col-md-12 categoryTitle">
+                <s:property value="%{subcatName}"/>
+            </font>
+            <s:if test="%{results == null}">
+                <div>
+                    <font><h3>No Articles</h3></font>
                 </div>
             </s:if>
-        </s:if>
+            <s:if test="%{results != null}">
+                    <s:iterator var="art" value="%{results}" status="counter">
+                        <div class="col-md-3">
+                            <s:a value="viewDetails">
+                                <s:param name="articleID" value="%{#art.id}"/>
+                                <div class="homeMainArticleImg" style="background-image: 
+                                     url('<s:property value="%{#art.imgLink}"/>')"></div>
+                                <div class="homeMainArticle">
+                                    <font><s:property value="%{#art.title}"/></font>
+                                    <i><s:property value="%{#art.createdDate}"/></i>
+                                </div>
+                            </s:a>
+                        </div>
+                        <s:if test="%{#counter.count == 4}">
+                            <br/>
+                        </s:if>
+                    </s:iterator>
+                <s:if test="%{pageChooser != null}"> 
+                    <div style="border-style: double; border-color: red; float: right; width: 100%">
+                        <s:include value="pageChooser.jsp"/>
+                    </div>
+                </s:if>
+            </s:if>
+        </div>
         <div>
             <s:include value="footer.html"/>
         </div>
