@@ -20,7 +20,7 @@
     </head>
     <body>
         <s:include value="header.jsp"/>
-        <div class="col-md-4 col-md-offset-4" style="border: 1px solid red">
+        <div class="col-md-4 col-md-offset-4" style="background-color: white">
             <h1>Add new subcategory</h1>
             
             <s:if test="%{error == 'Add successfull!!!'}">
@@ -34,7 +34,7 @@
             <form action="addSubcat" onsubmit="return submitdata();">
                 <div class="form-group">
                     <label for="selectParentCategory">Parent-category</label><br/>
-                    <select name="catID">
+                    <select name="catID" class="form-control">
                         <s:iterator var="cat" value="%{listCat}">
                             <option id="catName" value="<s:property value="%{#cat.categoryID}"/>">
                                 <s:property value="%{#cat.name}"/>
@@ -44,11 +44,11 @@
                 </div><br/>
                 <div class="form-group">
                     <label for="inputName">Name*</label><br/>
-                    <input type="text" name="subcatName" value="" id="subcatName" placeholder="Name"/>
+                    <input type="text" class="form-control" name="subcatName" value="" id="subcatName" placeholder="Name"/>
                 </div><br/>
                 <div class="form-group">
                     <label for="inputDescription">Description</label><br/>
-                    <input type="text" name="description" value="<s:property value="%{description}"/>" placeholder="Description"/><br/>
+                    <input type="text" class="form-control" name="description" value="<s:property value="%{description}"/>" placeholder="Description"/><br/>
                 </div>
                 <input type="submit" value="Confirm" class="btn btn-primary btnAddSubcat"/>
             </form>
