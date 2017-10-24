@@ -5,7 +5,6 @@
  */
 package sample.action;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -44,8 +43,11 @@ public class MakeStatisticAction {
             totalPost = new HashMap<String, Integer>();
             Tbl_ArticleDetailsDAO dao = new Tbl_ArticleDetailsDAO();
             dao.getTotalPost(totalPost, beginDate, endDate);
-        }
-        
+            if(totalPost.isEmpty()) {
+                type = "";
+                throw new Exception("No Result Was Found");
+            }
+        }        
         return SUCCESS;
     }
     
@@ -63,6 +65,11 @@ public class MakeStatisticAction {
         mostViewList = new ArrayList<>();
         Tbl_ArticleDetailsDAO dao = new Tbl_ArticleDetailsDAO();
         dao.getMostViewArticle(mostViewList, beginDate, endDate);
+        if(mostViewList.isEmpty()) {
+            System.out.println("1234");
+            type = "";
+            throw new Exception("No Result Was Found");                        
+        }
         return SUCCESS;
     }
        
