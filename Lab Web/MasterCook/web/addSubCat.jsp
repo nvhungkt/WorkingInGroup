@@ -13,15 +13,11 @@
         <title>MasterCook</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/OurCss.css"/>
-        <style>
-            
-            
-        </style>
     </head>
     <body>
         <s:include value="header.jsp"/>
-        <div class="col-md-4 col-md-offset-4" style="background-color: white">
-            <h1>Add new subcategory</h1>
+        <div class="col-md-4 col-md-offset-4" style="background-color: white;">
+            <h1 style="width: 100%; text-align: center">Add new subcategory</h1>
             
             <s:if test="%{error == 'Add successfull!!!'}">
                 <label for="alertSuccess" class="label label-success addSubcatAlert"><s:property value="%{error}"/></label>
