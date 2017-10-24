@@ -16,7 +16,7 @@
     </head>
     <body>
         <s:include value="header.jsp"/>
-        <div class="col-md-4 col-md-offset-4" style="background-color: white;">
+        <div class="col-md-4 col-md-offset-4" style="background-color: white; margin-top: 10vh">
             <h1 style="width: 100%; text-align: center">Add new subcategory</h1>
             
             <s:if test="%{error == 'Add successfull!!!'}">
