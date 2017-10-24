@@ -28,8 +28,11 @@
     <body>
         <s:include value="header.jsp"/>
         <div class="container">
+            <font class="col-md-12 title">
+                Upload new article
+            </font>
             <form id="uploadArticle" action="finishUploadArticle" method="POST">
-                <div class="col-lg-8">
+                <div class="col-md-8">
                     <div id="editarea" contentEditable="true">
                     </div>
                     <script type="text/javascript">
@@ -43,39 +46,43 @@
                     <textarea name="content" id="content" style="display: none"></textarea>
                 </div>
 
-                <div class="col-lg-4 editTool">
-                    <input type="hidden" name="articleID" value="${param.articleID}"/>
-                    <input type="button" class="btn btn-success btn-block" value="Upload article"
-                           onclick="Upload('content', 'uploadArticle')"/><br/>
-                    
-                    <div class="form-group">
-                        <label for="articleTitle">Title:</label>
-                        <input id="articleTitle" class="form-control" type="text" name="title" value="${param.title}"/>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Subcategory:</label>
-                        <select name="subcategory" class="form-control">
-                            <s:iterator var="subcate" value="%{workingCategories}">
-                                <option value="<s:property value="%{#subcate.key}"/>"><s:property value="%{#subcate.value}"/></option>
-                            </s:iterator>
-                        </select>
+                <div class="col-md-4">
+                    <div class="editTool">
+                        <input type="hidden" name="articleID" value="${param.articleID}"/>
+                        <input type="button" class="btn btn-success btn-block" value="Upload article"
+                               onclick="Upload('content', 'uploadArticle')"/><br/>
+
+                        <div class="form-group">
+                            <label for="articleTitle">Title:</label>
+                            <input id="articleTitle" class="form-control" type="text" name="title" value="${param.title}"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Subcategory:</label>
+                            <select name="subcategory" class="form-control">
+                                <s:iterator var="subcate" value="%{workingCategories}">
+                                    <option value="<s:property value="%{#subcate.key}"/>"><s:property value="%{#subcate.value}"/></option>
+                                </s:iterator>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </form>
 
             <form id="uploadimg" action="uploadimg" method="POST" enctype = "multipart/form-data"
-                  class="col-lg-4 editTool form-inline">
-                <label class="btn btn-default btn-block">
-                    Choose image
-                    <input type="file" name="fileUpload" class="btn btn-default btn-block"
-                           style="display: none" accept="image/*"/>
-                </label><br/>
-                <textarea name="title" id="lastArticleTitle" style="display: none"></textarea>
-                <input type="hidden" name="articleID" value="${param.articleID}"/>
-                <textarea name="content" id="lastContent" style="display: none"></textarea>
-                <input type="button" class="btn btn-info btn-block" value="Upload image"
-                       onclick="Upload('lastContent', 'uploadimg')"/>
+                  class="col-md-4 form-inline">
+                <div class="editTool">
+                    <label class="btn btn-default btn-block">
+                        Choose image
+                        <input type="file" name="fileUpload" class="btn btn-default btn-block"
+                               style="display: none" accept="image/*"/>
+                    </label><br/>
+                    <textarea name="title" id="lastArticleTitle" style="display: none"></textarea>
+                    <input type="hidden" name="articleID" value="${param.articleID}"/>
+                    <textarea name="content" id="lastContent" style="display: none"></textarea>
+                    <input type="button" class="btn btn-info btn-block" value="Upload image"
+                           onclick="Upload('lastContent', 'uploadimg')"/>
+                </div>
             </form>
         </div>
     </body>

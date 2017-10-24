@@ -1,6 +1,6 @@
 /* css for login form */
 body {
-    background-image: url('../Pictures/background.jpg');
+    background-image: url('../Pictures/background-heart.jpg');
     background-size: contain;
 }
 
@@ -42,6 +42,11 @@ body {
     background-color: white;      
 }
 /*Home page*/
+
+.title {
+    font-size: 30px;
+    margin: 50px 0px 20px 0px;
+}
 
 .categoryTitle {
     font-style: italic;
@@ -114,7 +119,16 @@ body {
 
 .editTool {
     background-color: #fff;
-    padding: 1% 2%;
+    padding: 8%;
+    overflow: auto;
+}
+
+#uploadArticle .editTool {
+    padding-bottom: 0%;
+}
+
+#uploadimg .editTool {
+    padding-top: 15px;
 }
 
 /*Statistic Page*/
