@@ -89,7 +89,9 @@ public class Tbl_ArticleDetailsDAO {
                     totalPost.put(status, number);
                 }
             }            
-            totalPost.put("Pending", numberOfPendingArticle);
+            if(numberOfPendingArticle!=0) {
+                totalPost.put("Pending", numberOfPendingArticle);
+            }
         }
         finally {
             if(rs!=null) {
@@ -125,8 +127,7 @@ public class Tbl_ArticleDetailsDAO {
                 int view = rs.getInt("Views");
                 String subcategoryName = rs.getString("Name");
                 mostViewList.add(new Tbl_ArticleDetailsDTO(articleID, title, subcategoryName, view));
-            }            
-            
+            }                                    
         }
         finally {
             if(rs!=null) {
