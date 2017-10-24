@@ -179,7 +179,7 @@ hr {
 }
 
 /* add subcat page*/
-.form-group *{
+#addSubcatForm > .form-group *{
     width: 80%;
     margin-left: 10%;
 }

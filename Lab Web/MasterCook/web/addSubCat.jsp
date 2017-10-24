@@ -27,7 +27,7 @@
             </s:if>
             <br/>
             
-            <form action="addSubcat" onsubmit="return submitdata();">
+            <form action="addSubcat" onsubmit="return submitdata();" id="addSubcatForm">
                 <div class="form-group">
                     <label for="selectParentCategory">Parent-category</label><br/>
                     <select name="catID" class="form-control">
