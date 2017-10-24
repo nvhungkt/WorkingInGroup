@@ -11,32 +11,48 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>MasterCook</title>
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/OurCss.css"/>
+        <style>
+            
+            
+        </style>
     </head>
     <body>
         <s:include value="header.jsp"/>
-        <h1>Add new subcategory</h1>
-        <s:if test="%{error == 'Add successfull!!!'}">
-            <font color="green"><s:property value="%{error}"/></font>
-        </s:if><br/>
-        <form action="addSubcat" onsubmit="return submitdata();" style="width: 25%">
-            Parent-category<br/>
-            <select name="catID">
-                <s:iterator var="cat" value="%{listCat}">
-                    <option id="catName" value="<s:property value="%{#cat.categoryID}"/>">
-                        <s:property value="%{#cat.name}"/>
-                    </option>
-                </s:iterator>
-            </select><br/>
+        <div class="col-md-4 col-md-offset-4" style="border: 1px solid red">
+            <h1>Add new subcategory</h1>
             
-            Name<br/>
-            <input type="text" name="subcatName" value="" id="subcatName"/>
+            <s:if test="%{error == 'Add successfull!!!'}">
+                <label for="alertSuccess" class="label label-success addSubcatAlert"><s:property value="%{error}"/></label>
+            </s:if>
             <s:if test="%{error != 'Add successfull!!!'}">
-                <font color="red"><s:property value="%{error}"/></font>
-            </s:if><br/>
-            Description<br/>
-            <input type="text" name="description" value="<s:property value="%{description}"/>" id="subcatName"/><br/>
-            <input type="submit" value="Confirm"/>
-        </form>
+                <label for="alertEmptyName" class="label label-danger addSubcatAlert"><s:property value="%{error}"/></label>
+            </s:if>
+            <br/>
+            
+            <form action="addSubcat" onsubmit="return submitdata();">
+                <div class="form-group">
+                    <label for="selectParentCategory">Parent-category</label><br/>
+                    <select name="catID">
+                        <s:iterator var="cat" value="%{listCat}">
+                            <option id="catName" value="<s:property value="%{#cat.categoryID}"/>">
+                                <s:property value="%{#cat.name}"/>
+                            </option>
+                        </s:iterator>
+                    </select>
+                </div><br/>
+                <div class="form-group">
+                    <label for="inputName">Name*</label><br/>
+                    <input type="text" name="subcatName" value="" id="subcatName" placeholder="Name"/>
+                </div><br/>
+                <div class="form-group">
+                    <label for="inputDescription">Description</label><br/>
+                    <input type="text" name="description" value="<s:property value="%{description}"/>" placeholder="Description"/><br/>
+                </div>
+                <input type="submit" value="Confirm" class="btn btn-primary btnAddSubcat"/>
+            </form>
+        </div>
         <s:include value="footer.html"/>
         <script>
         function submitdata() {
