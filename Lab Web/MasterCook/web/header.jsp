@@ -153,30 +153,28 @@
                             </li>
                         </s:if>
                     </ul>
+                    <form action="guestSearch" class="form-inline nav navbar-nav navbar-right">
+                        <input type="text" class="searchBar" name="txtSearch" placeholder="Search" id="Search"/>
+                        <input type="hidden" name="pageNumber" value="1" />
+                        <!--<button class="btn btn-link searchBar">-->
+                            <span class="glyphicon glyphicon-search" id="search-submit"></span>
+                        <!--</button>-->
+                    </form>
                 </div>
             </div>
         </nav>
-        <!-- banner -->
-        <img src="Pictures/CookingIsForEveryOne.PNG" width="100%"/>
-        
-        <!-- search text box and button -->
-        <div class="col-md-10"></div>
-        <form action="guestSearch" class="form-inline col-md-2" onsubmit="return submitdata();">
-            <input type="text" class="searchBar" name="txtSearch" placeholder="Search" id="Search"/>
-            <input type="hidden" name="pageNumber" value="1" />
-            <button class="btn btn-link searchBar">
-                <span class="glyphicon glyphicon-search" type="submit"></span>
-            </button>
-        </form>
-        
+        <br/><br/>
         <script type="text/javascript">
-        function submitdata() {
-            var searchValue = document.getElementById("Search").value;
-            if(searchValue == "") {
-                return false;
-            }
-            else return true;
-        }
+            $(document).ready(function(){
+                var spanSubmit = $('#search-submit');
+                spanSubmit.on('click', function() {
+                    $(this).closest('form').submit();
+                });
+                spanSubmit.closest('form').submit(function( event ) {
+                    if($("#Search").val() === '')
+                        event.preventDefault();
+                });
+            });
         </script>
     </body>
 </html>

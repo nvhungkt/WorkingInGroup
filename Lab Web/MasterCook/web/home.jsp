@@ -16,39 +16,45 @@
     <body>
         <s:set var="staff" value="%{#session.STAFF}"/>
         <s:include value="header.jsp"/>
+        <img src="Pictures/CookingIsForEveryOne.PNG" width="100%"/>
         <div class="container">
         <!--------------------------------------------------------------------->
         <!-- display content of home page -->
-        <s:iterator var="cat" value="%{mapCat}">
-            <div>
-                <font class="col-md-12 categoryTitle">
-                    <s:property value="%{#cat.key.name}"/>
-                </font>
-                <div class="col-md-6">
-                    <s:iterator var="art" value="%{#cat.value}" begin="0" end="0">
-                        <s:a value="viewDetails">
-                            <s:param name="articleID" value="%{#art.id}"/>
-                            <div class="homeMainArticleImg" style="background-image:
-                                 url('<s:property value="%{#art.imgLink}"/>')"></div>
-                            <div class="homeMainArticle">
-                                <font><s:property value="%{#art.title}"/></font>
-                                <i><s:property value="%{#art.createdDate}"/></i>
-                            </div>
-                        </s:a>
-                    </s:iterator>
-                </div> 
-                <div class="col-md-6">
-                        <s:iterator var="art" value="%{#cat.value}" status="counter" begin="1">
+            <s:iterator var="cat" value="%{mapCat}">
+                <div>
+                    <font class="col-md-12 categoryTitle">
+                        <s:property value="%{#cat.key.name}"/>
+                    </font>
+                    <div class="col-md-6">
+                        <s:iterator var="art" value="%{#cat.value}" begin="0" end="0">
                             <s:a value="viewDetails">
-                                <div class="homeArticleImg" style="background-image:
+                                <s:param name="articleID" value="%{#art.id}"/>
+                                <div class="homeMainArticleImg" style="background-image:
                                      url('<s:property value="%{#art.imgLink}"/>')"></div>
-                                <div class="homeArticle">
-                                    <s:param name="articleID" value="%{#art.id}"/>
+                                <div class="homeMainArticle">
                                     <font><s:property value="%{#art.title}"/></font>
                                     <i><s:property value="%{#art.createdDate}"/></i>
                                 </div>
                             </s:a>
-                            <s:if test="%{#counter.count == 4}">
+                        </s:iterator>
+                    </div>
+                    <div class="col-md-6">
+                        <s:iterator var="art" value="%{#cat.value}" status="counter" begin="1">
+                            <s:if test="%{#counter.count < 4}">
+                                <div>
+                                    <s:a value="viewDetails">
+                                        <div class="homeArticleImg" style="background-image:
+                                             url('<s:property value="%{#art.imgLink}"/>')"></div>
+                                        <div class="homeArticle">
+                                            <s:param name="articleID" value="%{#art.id}"/>
+                                            <font><s:property value="%{#art.title}"/></font>
+                                            <i><s:property value="%{#art.createdDate}"/></i>
+                                        </div>
+                                    </s:a>
+                                </div>
+                                <div class="col-md-12"><br/></div>
+                            </s:if>
+                            <s:if test="%{#counter.count == 3}">
                                 <s:a value="viewMoreAtHome">
                                     <i style="float: right">View more...</i>
                                     <s:param name="catID" value="%{#cat.key.categoryID}"/>
@@ -56,10 +62,16 @@
                                 </s:a>
                             </s:if>
                         </s:iterator>
-                </div>
-            </div><hr/>
-        </s:iterator>
+                    </div>
+                </div><hr/>
+            </s:iterator>
         
+            <script>
+                //var $window =
+                $(window).on('resize', function(){
+                    $('.homeArticle').outerHeight($('.homeArticleImg').height());
+                }).trigger('resize');
+            </script>
         <!--------------------------------------------------------------------->
         </div>
         <s:include value="footer.html"/>

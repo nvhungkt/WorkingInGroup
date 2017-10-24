@@ -13,34 +13,43 @@
         <title>View More Article By Status</title>
     </head>
     <body>
-        <h1><s:property value="%{status}"/></h1>
-        <%--Set action và tham số cho page button--%>
-        <s:set var="action" value="viewMoreByState"/>                
-        <% pageContext.setAttribute("name", "status"); %>        
-        <s:set var="nameComponent" value="%{#attr.name}"/>
-        <s:set var="value" value="%{status}"/>
-        <%--List of article present--%>
-        <s:if test="%{listArticle != null}">
-            <s:iterator var="art" value="%{listArticle}" status="counter">
-                <div style="float: left; width: 24.5%; height:  200px">
-                    <s:a value="viewDetails">
-                        <s:param name="articleID" value="%{#art.id}"/>
-                        <img src="<s:property value="%{#art.imgLink}"/>" width="100" height="100"/><br/>
-                        <font><s:property value="%{#art.title}"/></font><br/>
-                    </s:a>
-                    <i><s:property value="%{#art.createdDate}"/></i>
-                </div>
-                <s:if test="%{#counter.count == 4}">
-                    <br/>
-                </s:if>
-            </s:iterator>
-        </s:if>
-                <s:else>
-                    <h2>There are no Pending Article in your Subcategory now</h2>
-                </s:else>            
-                <%--List of page button--%>
-        <div style="border-style: double; border-color: red; float: right">
-                <s:include value="pageChooser.jsp"/>                                    
+        <s:include value="header.jsp"/>
+        <div class="container">
+            <font class="col-md-12 categoryTitle">
+                <s:property value="%{status}"/>
+            </font>
+            <%--Set action và tham số cho page button--%>
+            <s:set var="action" value="viewMoreByState"/>                
+            <% pageContext.setAttribute("name", "status"); %>        
+            <s:set var="nameComponent" value="%{#attr.name}"/>
+            <s:set var="value" value="%{status}"/>
+            <%--List of article present--%>
+            <s:if test="%{listArticle != null}">
+                <s:iterator var="art" value="%{listArticle}" status="counter">
+                    <div class="col-md-3">
+                        <s:a value="viewDetails">
+                            <s:param name="articleID" value="%{#art.id}"/>
+                            <div class="homeMainArticleImg" style="background-image: 
+                                 url('<s:property value="%{#art.imgLink}"/>')"></div>
+                            <div class="homeMainArticle">
+                                <font><s:property value="%{#art.title}"/></font>
+                                <i><s:property value="%{#art.createdDate}"/></i>
+                            </div>
+                        </s:a>
+                    </div>
+                    <s:if test="%{#counter.count % 4 == 0}">
+                        <div class="col-md-12"><br/></div>
+                    </s:if>
+                </s:iterator>
+            </s:if>
+            <s:else>
+                <h2>There are no Pending Article in your Subcategory now</h2>
+            </s:else>            
+            <%--List of page button--%>
+            <s:if test="%{pageChooser != null}"> 
+                <div class="col-md-12"><br/></div>
+                <s:include value="pageChooser.jsp"/>
+            </s:if>                                 
         </div>
     </body>
 </html>

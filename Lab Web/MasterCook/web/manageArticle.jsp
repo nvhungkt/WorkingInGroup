@@ -20,38 +20,37 @@
         <div class="container">
             <s:iterator var="entity" value="%{stateMap}">            
                 <%-- --%>
-                <div class="container">
-                    <h2 id="articleStatus"><s:property value="%{#entity.key}"/> Articles</h2>
-                    <%--Display article present--%>
-                    <s:if test="%{#entity.value != null}">
-                        <s:iterator var="art" value="%{#entity.value}" status="counter">
-                            <div class="articlePresent col-md-3">
-                                <s:a value="viewDetails">
-                                    <s:param name="articleID" value="%{#art.id}"/>
-                                    <img src="<s:property value="%{#art.imgLink}"/>" width="100%"/>
-                                    </br>
-                                    <div class="articleInfo">
-                                        <font><s:property value="%{#art.title}"/></font>
-                                    </div>                                                               
-                                </s:a>   
-                                    <div class="articleInfo" style="width: 100%; text-align: right">
-                                        <i><s:property value="%{#art.createdDate}"/></i>
-                                    </div>
-                            </div>            
-                                <s:if test="%{#counter.count == 4}">
-                                    <s:a value="viewMoreByState">
-                                        <s:param name="status" value="%{#entity.key}"/>
-                                        <i style="text-decoration: underline; float: right">View more...</i>
-                                    </s:a>
-                                </s:if>             
-                        </s:iterator>
-                    </s:if>
-                    <s:else>
-                        <h3>There are no <s:property value="%{#entity.key}"/> Articles now</h3>
-                    </s:else>
-                    <%-- --%>
-                    <%-- --%>
-                </div>
+                <font class="col-md-12 categoryTitle">
+                    <s:property value="%{#entity.key}"/> Articles
+                </font>
+                <%--Display article present--%>
+                <s:if test="%{#entity.value != null}">
+                    <s:iterator var="art" value="%{#entity.value}" status="counter">
+                        <div class="col-md-3">
+                            <s:a value="viewDetails">
+                                <s:param name="articleID" value="%{#art.id}"/>
+                                <div class="homeMainArticleImg" style="background-image: 
+                                     url('<s:property value="%{#art.imgLink}"/>')"></div>
+                                <div class="homeMainArticle">
+                                    <font><s:property value="%{#art.title}"/></font>
+                                    <i><s:property value="%{#art.createdDate}"/></i>
+                                </div>
+                            </s:a>
+                        </div>
+                        <s:if test="%{#counter.count == 4}">
+                            <div class="col-md-12"><br/></div>
+                            <s:a value="viewMoreByState">
+                                <s:param name="status" value="%{#entity.key}"/>
+                                <i style="text-decoration: underline; float: right">View more...</i>
+                            </s:a>
+                        </s:if>             
+                    </s:iterator>
+                </s:if>
+                <s:else>
+                    <h3 class="col-md-12">There are no <s:property value="%{#entity.key}"/> Articles now</h3>
+                </s:else>
+                <%-- --%>
+                <%-- --%>
             </s:iterator>
         </div>
     </body>
