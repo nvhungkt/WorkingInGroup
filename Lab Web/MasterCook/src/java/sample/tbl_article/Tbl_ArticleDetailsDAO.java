@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Duration;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,10 @@ public class Tbl_ArticleDetailsDAO {
                 String title = rs.getString("Title");
                 String contentURL = rs.getString("ContentURL");
                 Timestamp dateTime = rs.getTimestamp("DateTime");
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(dateTime.getTime());
+                String createdDate = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ", "
+                        + cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.YEAR);                                
                 int views = rs.getInt("Views");
                 String authorName = rs.getString("AuthorName");
                 String subcategoryName = rs.getString("SubcategoryName");
@@ -46,7 +51,7 @@ public class Tbl_ArticleDetailsDAO {
                 String categoryName = rs.getString("CategoryName");  
                 String status = rs.getString("Status");
                 String reason = rs.getString("Reason");
-                articleDetails = new Tbl_ArticleDetailsDTO(articleID, title, contentURL, authorName, dateTime, subcategoryName, categoryName, views, status, reason, subcategoryID);
+                articleDetails = new Tbl_ArticleDetailsDTO(articleID, title, contentURL, authorName, createdDate, subcategoryName, categoryName, views, status, reason, subcategoryID);
             }
             return articleDetails;
         }

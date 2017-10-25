@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.naming.NamingException;
 import sample.dbaccess.DBAccess;
@@ -198,8 +199,10 @@ public class Tbl_ArticleDAO implements Serializable{
                     String title = rs.getString("Title");
                     String imgLink = rs.getString("ContentURL");
                     Timestamp date = rs.getTimestamp("DateTime");
-                    String createdDate = date.getHours() + ":" + date.getMinutes() + ", " 
-                            + date.getDay() +"/"+ date.getMonth()+"/"+ (date.getYear() + 1900);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTimeInMillis(date.getTime());
+                    String createdDate = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ", "
+                        + cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.YEAR);                                
                     if (listArticlePresent == null) {
                         listArticlePresent = new ArrayList<>();
                     }
@@ -238,8 +241,10 @@ public class Tbl_ArticleDAO implements Serializable{
                 String title = rs.getString("Title");
                 String imgLink = rs.getString("ContentURL");
                 Timestamp date = rs.getTimestamp("DateTime");
-                String createdDate = date.getHours() + ":" + date.getMinutes() + ", "
-                        + date.getDay() + "/" + date.getMonth() + "/" + (date.getYear() + 1900);
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(date.getTime());
+                String createdDate = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ", "
+                        + cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.YEAR);                                
                 if (listArticlePresent == null) {
                     listArticlePresent = new ArrayList<>();
                 }
@@ -381,8 +386,10 @@ public class Tbl_ArticleDAO implements Serializable{
                     String title = rs.getString("Title");
                     String imgLink = rs.getString("ContentURL");
                     Timestamp date = rs.getTimestamp("DateTime");
-                    String createdDate = date.getHours() + ":" + date.getMinutes() + ", " 
-                            + date.getDay() +"/"+ date.getMonth()+"/"+ (date.getYear() + 1900);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTimeInMillis(date.getTime());
+                    String createdDate = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ", "
+                        + cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.YEAR);                                
                     if (listArticlePresent == null) {
                         listArticlePresent = new ArrayList<>();
                     }
@@ -429,8 +436,10 @@ public class Tbl_ArticleDAO implements Serializable{
                     String title = rs.getString("Title");
                     String imgLink = rs.getString("ContentURL");
                     Timestamp date = rs.getTimestamp("DateTime");
-                    String createdDate = date.getHours() + ":" + date.getMinutes() + ", " 
-                            + date.getDay() +"/"+ date.getMonth()+"/"+ (date.getYear() + 1900);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTimeInMillis(date.getTime());
+                    String createdDate = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ", "
+                        + cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.YEAR);                                
                     if (listArticlePresent == null) {
                         listArticlePresent = new ArrayList<>();
                     }
@@ -486,8 +495,10 @@ public class Tbl_ArticleDAO implements Serializable{
                 String title = rs.getString("Title");
                 String imgLink = rs.getString("ContentURL");
                 Timestamp date = rs.getTimestamp("DateTime");
-                String createdDate = date.getHours() + ":" + date.getMinutes() + ", "
-                        + date.getDay() + "/" + date.getMonth() + "/" + (date.getYear() + 1900);
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(date.getTime());
+                String createdDate = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ", "
+                        + cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.YEAR);                                
                 if (listArticlePresent == null) {
                     listArticlePresent = new ArrayList<>();
                 }
@@ -534,9 +545,11 @@ public class Tbl_ArticleDAO implements Serializable{
                     String id = rs.getString("ArticleID");
                     String title = rs.getString("Title");
                     String imgLink = rs.getString("ContentURL");
-                    Timestamp date = rs.getTimestamp("DateTime");
-                    String createdDate = date.getHours() + ":" + date.getMinutes() + ", " 
-                            + date.getDay() +"/"+ date.getMonth()+"/"+ (date.getYear() + 1900);
+                    Timestamp date = rs.getTimestamp("DateTime");                    
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTimeInMillis(date.getTime());
+                    String createdDate = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ", "
+                        + cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.YEAR);                                
                     if (listArticlePresent == null) {
                         listArticlePresent = new ArrayList<>();
                     }
@@ -562,41 +575,67 @@ public class Tbl_ArticleDAO implements Serializable{
         ResultSet rs = null;        
         int count = 0;
         try {
-            con = DBAccess.makeConnection();            String countString = "SELECT COUNT(a.ArticleID) AS RESULT\n" +
+            con = DBAccess.makeConnection();            
+            stm = con.prepareStatement("SELECT Role FROM tbl_Staff WHERE StaffID = ?");
+            stm.setString(1, staffID);
+            rs = stm.executeQuery();
+            rs.next();
+            String role = rs.getString("Role");
+            
+            String countString = "SELECT COUNT(a.ArticleID) AS RESULT\n" +
                         "FROM tbl_Article a\n" +
-                        "WHERE a.Status LIKE ? AND a.SubcategoryID IN \n" +
+                        "WHERE a.Status LIKE ?";
+            if(role.equals("Employee")) {
+                countString += " AND a.SubcategoryID IN \n" +
                         "(SELECT w.SubcategoryID \n" +
                         "FROM tbl_WorkingSubcategory w\n" +
                         "WHERE w.StaffID = ?)";
+            }
+                
             stm = con.prepareStatement(countString);            
             stm.setString(1, status + "%");
-            stm.setString(2, staffID);
+            if(role.equals("Employee")) {
+                stm.setString(2, staffID);
+            }            
             rs = stm.executeQuery();
             if (rs.next()) {
                 count = rs.getInt("Result");
-            }                        String sql = "SELECT *\n" +
+            }
+            String sql = "SELECT *\n" +
                         "FROM tbl_Article a\n" +
-                        "WHERE a.Status LIKE ? AND a.SubcategoryID IN \n" +
-                        "(SELECT w.SubcategoryID \n" +
-                        "FROM tbl_WorkingSubcategory w\n" +
-                        "WHERE w.StaffID = ?)" +
-                        "ORDER BY [DateTime] DESC" +
-                        "\nOFFSET ? ROWS FETCH NEXT ? ROWS ONLY";            
+                        "WHERE a.Status LIKE ?";
+            if(role.equals("Employee")) {
+                    sql += " AND a.SubcategoryID IN \n"
+                        + "(SELECT w.SubcategoryID \n"
+                        + "FROM tbl_WorkingSubcategory w\n"
+                        + "WHERE w.StaffID = ?)";
+            }
+            sql += "\nORDER BY [DateTime] DESC"
+                    + "\nOFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+                          
             stm = con.prepareStatement(sql);                
             stm.setString(1, status + "%");            
-            stm.setString(2, staffID);
-            stm.setInt(3, maxQuantity * (pageNumber - 1));
-            stm.setInt(4, maxQuantity);            
+            if(role.equals("Employee")) {
+                stm.setString(2, staffID);
+                stm.setInt(3, maxQuantity * (pageNumber - 1));
+                stm.setInt(4, maxQuantity);            
+            }   
+            else {
+                stm.setInt(2, maxQuantity * (pageNumber - 1));
+                stm.setInt(3, maxQuantity);            
+            }
+            
             rs = stm.executeQuery();            
             //Get present for article            
-            while (rs.next()) {
-                
+            while (rs.next()) {                
                 String id = rs.getString("ArticleID");
                 String title = rs.getString("Title");
                 String imgLink = rs.getString("ContentURL");
                 Timestamp date = rs.getTimestamp("DateTime");
-                String createdDate = date.getHours() + ":" + date.getMinutes() + ", "
-                        + date.getDay() + "/" + date.getMonth() + "/" + (date.getYear() + 1900);
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(date.getTime());
+                String createdDate = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ", "
+                        + cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.YEAR);                                
                 if (listArticlePresent == null) {
                     listArticlePresent = new ArrayList<>();
                 }
