@@ -1,11 +1,12 @@
 /* css for login form */
 body {
     background-image: url('../Pictures/background-heart.jpg');
-    background-size: contain;
+    background-size: 100%;
 }
 
 .navbar {
     background-color: #fff !important;
+    font-size: 16px;
 }
 
 .searchBar {
@@ -16,32 +17,37 @@ body {
     padding-bottom: 0px;
 }
 
-#loginFormContainer {
+.center-form {
     background-color: white;
-    margin-top: 23vh;
-    height: 54vh;
+    padding: 40px;
+    margin-top: 15vh;
     overflow: auto;
 }
 
-.labelLogin {
+.center-form h1{
     text-align: center;
 }
 
-.loginForm {
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 20px;
+.center-form tr > td:first-child {
+    width: 35%;
 }
 
-#loginButton {
-    width: 100%;
-    margin-top: 10px;
+.center-form td > font {
+    width: 40%;
+    float: left;
 }
+
+.center-form td > input[type="text"] {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
 /*Manage Article Page*/
 .articleInfo {
     background-color: white;      
 }
-/*Home page*/
+
+/*View Articles*/
 
 .title {
     font-size: 30px;
@@ -201,7 +207,7 @@ hr {
 .modifySubcatContainter {
     background-color: white;
 }
-.modifySubcatTable th, td{
+.modifySubcatTable th, .modifySubcatTable td{
     text-align: center;
 }
 .modifySubcatTable .TR td {

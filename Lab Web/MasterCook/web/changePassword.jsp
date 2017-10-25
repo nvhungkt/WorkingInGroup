@@ -9,29 +9,29 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Change Password</title>     
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="css/OurCss.css">       
+        <title>Change Password</title>
     </head>
     <body>      
         <s:include value="header.jsp"/>
-        <div class="container col-md-4" style="background-color: white; margin-left: 33vw; margin-bottom: 5vw; margin-top: 5vw">  
-            <div class="col-md-12">
-                <h1 style="margin-bottom: 3vw" class="col-md-12">Change Password</h1>
-                <form action="changePass" method="POST">                
-                    <div class="form-group">                
-                        Old Password </br>
-                        <input type="password" name="oldPassword" value="" class="form-control"/></br>
-                        New Password </br>
-                        <input type="password" name="newPassword" value="" class="form-control"/></br>
-                        Confirm Password </br>
-                        <input type="password" name="confirmPassword" value="" class="form-control"/>          
-                        </br>
-                        <button class="btn" type="submit" style="float: right">Confirm</button>                
-                    </div>                                        
-                </form>
-            </div>
+        <div class="container col-md-4 col-md-offset-4 center-form">  
+            <h1>Change Password</h1>
+            <hr/><br/>
+            <form action="changePass" method="POST">                
+                <div class="form-group">
+                    <label>Old Password</label>
+                    <input type="password" name="oldPassword" placeholder="Old Password" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" name="newPassword" placeholder="New Password" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirmPassword" placeholder="Confirm Password" class="form-control"/>
+                </div>
+                <br/>
+                <button class="btn" type="submit" style="float: right">Confirm</button>
+            </form>
             <s:if test="%{message != null}">
                 <font color="red">
                 <s:property value="%{message}"/>

@@ -11,28 +11,26 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/OurCss.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="col-md-4 col-md-offset-4" id="loginFormContainer">
-            <h1 class="labelLogin">ACCOUNT LOGIN</h1>
+        <s:include value="header.jsp"/>
+        <div class="col-md-4 col-md-offset-4 center-form">
+            <h1>ACCOUNT LOGIN</h1>
             <hr>
-            <form action="login" method="POST" class="loginForm">
+            <form action="login" method="POST">
                 <div class="form-group">
                     <font color="red">
                         <s:property value="%{message}"/><br/>
                     </font>
-                    <label for="inputUsername">Username</label><br/>
-                    <input type="text" class="form-control" class="rounded" name="txtUsername" value="<s:property value="%{txtUsername}"/>" placeholder="Username"/>
+                    <label>Username</label>
+                    <input type="text" class="form-control rounded" name="txtUsername" value="<s:property value="%{txtUsername}"/>" placeholder="Username"/>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword">Password</label><br/>
-                    <input type="password" class="form-control" class="rounded" name="txtPassword" value="" placeholder="Password"/>
+                    <label>Password</label>
+                    <input type="password" class="form-control rounded" name="txtPassword" value="" placeholder="Password"/>
                 </div>
-                <input type="submit" class="btn btn-primary" value="Login" id="loginButton" />
+                <br/>
+                <input type="submit" class="btn btn-info btn-block" value="Login"/>
             </form>
         </div>
     </body>
