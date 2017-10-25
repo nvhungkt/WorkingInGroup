@@ -41,6 +41,16 @@
                     <font class="article-author">
                         <i>Follow </i><s:property value="%{article.authorName}"/>            
                     </font>
+                    <s:if test="%{#session.STAFF != null}">
+                        <button class="more-control" data-toggle="collapse" data-target="#control-buttons">
+                            <span class="glyphicon glyphicon-chevron-down" id="more-button"></span>
+                        </button>
+                        <script>
+                            $('.more-control').on('click', function(){
+                                $('#more-button').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+                            });
+                        </script>
+                    </s:if>
                 </div>
             </div>
                 <%--Related Articles--%>
@@ -75,7 +85,7 @@
 
                 <%--Controll of Staff role--%>
             <s:if test="%{#session.STAFF != null}">
-                <div class="col-md-8">
+                <div class="col-md-8 collapse" id="control-buttons">
                     <div class="article-detail">
                         <%--With Rejected Article--%>
                         <s:if test="%{article.status == 'Rejected'}">

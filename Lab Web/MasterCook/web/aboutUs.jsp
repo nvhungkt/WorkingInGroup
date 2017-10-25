@@ -25,6 +25,7 @@
                             They always think of how to serve best meals for customers, as a result, they are
                             insearch of new favorite recipes.
                         </p>
+                        <img src="Pictures/logo.png" width="100%"/>
                         <p>
                             In early days, they started to found a club of cooking lover.<br/>
                             As it turns out, cooks had a huge appetite for sharing recipes; the club was an 

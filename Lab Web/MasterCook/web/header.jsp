@@ -29,7 +29,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                     </button>
-                    <a class="navbar-brand" href="/MasterCook/">MasterCook</a>
+                    <a class="navbar-brand" href="/MasterCook/" style="padding: 0px;">
+                        <img src="Pictures/logo.png" style="height: 200%"/>
+                    </a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">

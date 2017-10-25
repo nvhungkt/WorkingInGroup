@@ -30,9 +30,12 @@ public class Tbl_EmployeeDTO implements Serializable{
         this.userName = userName;
         this.numberOfAcceptedPosts = numberOfAcceptedPosts;
         this.numberOfRejectedPosts = numberOfRejectedPosts;
-        this.averageTimeForNewPost = averageTimeForNewPost;
-        this.averageViews = averageViews;
-        this.averageComments = averageComments;
+        int tmp = (int) (averageTimeForNewPost * 100.0);
+        this.averageTimeForNewPost = tmp / 100.0;
+        tmp = (int) (averageViews * 100.0);
+        this.averageViews = tmp / 100.0;
+        tmp = (int) (averageComments * 100.0);
+        this.averageComments = tmp / 100.0;
     }
 
     public String getEmployeeID() {
