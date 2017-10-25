@@ -17,7 +17,7 @@ public class Tbl_CommentDTO implements Serializable{
     public Tbl_CommentDTO() {
     }
 
-    public Tbl_CommentDTO(String commentID, String guestName, String guestEmail, String guestPhone, String commentContent, Timestamp dateTime, String articleID) {
+    public Tbl_CommentDTO(String commentID, String guestName, String guestEmail, String guestPhone, String commentContent, String dateTime, String articleID) {
         this.commentID = commentID;
         this.guestName = guestName;
         this.guestEmail = guestEmail;
@@ -99,23 +99,19 @@ public class Tbl_CommentDTO implements Serializable{
 
     /**
      * @return the dateTime
-     */
-    public Timestamp getDateTime() {
+     */   
+    public String getArticleID() {
+        return articleID;
+    }
+
+    public String getDateTime() {
         return dateTime;
     }
-
-    /**
-     * @param dateTime the dateTime to set
-     */
-    public void setDateTime(Timestamp dateTime) {
-        this.dateTime = dateTime;
-    }
-
     /**
      * @return the articleID
      */
-    public String getArticleID() {
-        return articleID;
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     /**
@@ -129,6 +125,6 @@ public class Tbl_CommentDTO implements Serializable{
     private String guestEmail;
     private String guestPhone;
     private String commentContent;
-    private Timestamp dateTime;
+    private String dateTime;
     private String articleID;
 }

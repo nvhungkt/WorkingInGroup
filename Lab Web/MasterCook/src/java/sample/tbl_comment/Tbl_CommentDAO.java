@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.naming.NamingException;
 import sample.dbaccess.DBAccess;
@@ -87,11 +88,15 @@ public class Tbl_CommentDAO implements Serializable{
                 String guestEmail = rs.getString("GuestEmail");
                 String guestPhone = rs.getString("GuestPhone");
                 String commentContent = rs.getString("CommentContent");
-                Timestamp dateTime = rs.getTimestamp("Datetime");                
+                Timestamp dateTime = rs.getTimestamp("Datetime");
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(dateTime.getTime());
+                String createdDate = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ", "
+                    + cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.YEAR);                                                
                 if(comments==null) {
                     comments = new ArrayList<>();
                 }
-                Tbl_CommentDTO comment = new Tbl_CommentDTO(commentID, guestName, guestEmail, guestPhone, commentContent, dateTime, articleID);
+                Tbl_CommentDTO comment = new Tbl_CommentDTO(commentID, guestName, guestEmail, guestPhone, commentContent, createdDate, articleID);
                 comments.add(comment);
             }
         }
