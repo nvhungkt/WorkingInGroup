@@ -67,7 +67,6 @@
             </s:iterator>
         
             <script>
-                //var $window =
                 $(window).on('resize', function(){
                     $('.homeArticle').outerHeight($('.homeArticleImg').height());
                 }).trigger('resize');

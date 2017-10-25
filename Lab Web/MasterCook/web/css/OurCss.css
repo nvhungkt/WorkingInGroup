@@ -56,6 +56,7 @@ body {
 
 .categoryTitle {
     font-style: italic;
+    /*text-decoration: underline;*/
     font-size: 36px;
     text-align: center;
     margin: 50px 0px 20px 0px;
@@ -109,6 +110,33 @@ body {
     padding-top: 25%;
     background-size: cover;
     background-position: center;
+}
+
+/*View staff page*/
+
+.grid-staff {
+    background-color: white;
+    color: #666;
+    padding: 10px 20px;
+    margin: 15px 0px;
+    overflow: auto;
+}
+
+.grid-staff h3 {
+    text-align: center;
+}
+
+.grid-staff-create {
+    margin: 10px 0px;
+    border: 2px #666 dashed;
+}
+
+.grid-staff-create font {
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /*Upload article page*/

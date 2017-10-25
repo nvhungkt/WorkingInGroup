@@ -43,7 +43,7 @@
                 </s:iterator>
             </s:if>
             <s:else>
-                <h2>There are no Pending Article in your Subcategory now</h2>
+                <h3>There are no Pending Article in your Subcategory now</h3>
             </s:else>            
             <%--List of page button--%>
             <s:if test="%{pageChooser != null}"> 

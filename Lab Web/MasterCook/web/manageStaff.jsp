@@ -14,48 +14,61 @@
         <title>Manage Staff</title>
     </head>
     <body>
-        <h1>Manage ${requestScope.type}</h1>
-        <s:iterator var="staff" value="%{listStaff}">
-            <s:if test="%{type == 'Collaborators'}">
-                <s:url var="staffUrl" value="viewStaffInfo">
-                    <s:param name="staffID" value="%{#staff.collaboratorID}"/>
-                </s:url>
-                <s:a href="%{#staffUrl}">
-                    <div>
-                        <h3><s:property value="%{#staff.fullName}"/></h3>
-                        <i>ID will be hidden: <s:property value="%{#staff.collaboratorID}"/></i>
-                        <p>Username: <s:property value="%{#staff.userName}"/></p>
-                        <p>Has new post every <s:property value="%{#staff.averageTimeForNewPost}"/> hours</p>
-                        <p>Each post has <s:property value="%{#staff.averageViews}"/> views and <s:property value="%{#staff.averageComments}"/> comments</p>
-                        <p>Total accepted posts: <s:property value="%{#staff.numberOfAcceptedPosts}"/></p>
-                        <p>Total pending posts: <s:property value="%{#staff.numberOfPendingPosts}"/></p>
-                        <p>Total rejected posts: <s:property value="%{#staff.numberOfRejectedPosts}"/></p>
+        <s:include value="header.jsp"/>
+        <div class="container">
+            <h1 class="categoryTitle">Manage ${requestScope.type}</h1>
+            <s:iterator var="staff" value="%{listStaff}">
+                <s:if test="%{type == 'Collaborators'}">
+                    <s:url var="staffUrl" value="viewStaffInfo">
+                        <s:param name="staffID" value="%{#staff.collaboratorID}"/>
+                    </s:url>
+                    <s:a href="%{#staffUrl}">
+                        <div class="col-md-6">
+                            <div class="grid-staff">
+                                <h3><s:property value="%{#staff.fullName}"/></h3>
+                                <p class="col-md-6">Username: <s:property value="%{#staff.userName}"/></p>
+                                <p class="col-md-6">Total accepted posts: <s:property value="%{#staff.numberOfAcceptedPosts}"/></p>
+                                <p class="col-md-6">Has new post every <s:property value="%{#staff.averageTimeForNewPost}"/> hours</p>
+                                <p class="col-md-6">Total pending posts: <s:property value="%{#staff.numberOfPendingPosts}"/></p>
+                                <p class="col-md-6">Each post has <s:property value="%{#staff.averageViews}"/> views and <s:property value="%{#staff.averageComments}"/> comments</p>
+                                <p class="col-md-6">Total rejected posts: <s:property value="%{#staff.numberOfRejectedPosts}"/></p>
+                            </div>
+                        </div>
+                    </s:a>
+                </s:if>
+
+                <s:if test="%{type == 'Employees'}">
+                    <s:url var="staffUrl" value="viewStaffInfo">
+                        <s:param name="staffID" value="%{#staff.employeeID}"/>
+                    </s:url>
+                    <s:a href="%{#staffUrl}">
+                        <div class="col-md-6">
+                            <div class="grid-staff">
+                                <h3><s:property value="%{#staff.fullName}"/></h3>
+                                <p class="col-md-6">Username: <s:property value="%{#staff.userName}"/></p>
+                                <p class="col-md-6">Has accepted <s:property value="%{#staff.numberOfAcceptedPosts}"/> posts</p>
+                                <p class="col-md-6">Reviews posts every <s:property value="%{#staff.averageTimeForNewPost}"/> hours</p>
+                                <p class="col-md-6">Has rejected <s:property value="%{#staff.numberOfRejectedPosts}"/> posts</p>
+                                <p class="col-md-12">Each post has <s:property value="%{#staff.averageViews}"/> views and <s:property value="%{#staff.averageComments}"/> comments</p>
+                            </div>
+                        </div>
+                    </s:a>
+                </s:if>
+            </s:iterator>
+            <a href="createStaff">
+                <div class="col-md-6">
+                    <div class="grid-staff">
+                        <div class="grid-staff-create">
+                            <font>Create new staff</font>
+                        </div>
                     </div>
-                </s:a>
-            </s:if>
-            
-            <s:if test="%{type == 'Employees'}">
-                <s:url var="staffUrl" value="viewStaffInfo">
-                    <s:param name="staffID" value="%{#staff.employeeID}"/>
-                </s:url>
-                <s:a href="%{#staffUrl}">
-                    <div href="staffUrl">
-                        <h3><s:property value="%{#staff.fullName}"/></h3>
-                        <i>ID will be hidden: <s:property value="%{#staff.employeeID}"/></i>
-                        <p>Username: <s:property value="%{#staff.userName}"/></p>
-                        <p>Reviews posts every <s:property value="%{#staff.averageTimeForNewPost}"/> hours</p>
-                        <p>Each post has <s:property value="%{#staff.averageViews}"/> views and <s:property value="%{#staff.averageComments}"/> comments</p>
-                        <p>Has accepted <s:property value="%{#staff.numberOfAcceptedPosts}"/> posts</p>
-                        <p>Has rejected <s:property value="%{#staff.numberOfRejectedPosts}"/> posts</p>
-                    </div>
-                </s:a>
-            </s:if>
-        </s:iterator>
-        <div>
-            <hr/>
-            <h2>Create new staff</h2>
-            <a href="createStaff">Create New Staffs</a>
-            <hr/>
+                </div>
+            </a>
+            <script>
+                $(window).on('resize', function(){
+                    $('.grid-staff-create').outerHeight($('.grid-staff').height() - 40);
+                }).trigger('resize');
+            </script>
         </div>
     </body>
 </html>
