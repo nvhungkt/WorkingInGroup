@@ -85,7 +85,7 @@
                             </c:if>
                         </c:if>
                         <li><a href="aboutUs.jsp">About Us</a></li>
-                        <li><a href="">Contact</a></li>
+                        <li><a href="contact.jsp">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <s:if test="%{#staff != null}">

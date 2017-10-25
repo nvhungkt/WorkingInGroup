@@ -99,7 +99,7 @@ body {
 .homeArticle > i{
     position: absolute;
     padding-top: 12%;
-    right: 7%;
+    right: 25px;
     font-size: 12px;
     color: #bbb;
 }
@@ -145,8 +145,19 @@ body {
 
 .article-detail hr {
     border: 0.5px solid #bbb;
-    margin: 20px 0px;
     transform: scaleX(1.111);
+}
+
+.comment {
+    padding: 2%;
+}
+
+.comment h4{
+    padding-left: 30px;
+}
+
+.comment hr{
+    transform: scaleX(1.0416);
 }
 
 .comment-form {
@@ -154,6 +165,35 @@ body {
     border: 0px;
     border-bottom: 1px solid #bbb;
     margin-bottom: 10px;
+}
+
+.comment-detail {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-bottom: 15px;
+}
+
+.comment-detail .character {
+    background-color: #666;
+    color: white;
+    font-weight: bold;
+    padding: 6px;
+    margin-right: 6px;
+}
+
+.comment-detail .delete {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    color: black;
+}
+
+.comment-detail i {
+    position: absolute;
+    bottom: -15px;
+    right: 0px;
+    font-size: 12px;
+    color: #bbb;
 }
 
 /*View staff page*/
@@ -211,9 +251,11 @@ body {
 
 /*Statistic Page*/
 .statisticContainer{
+    padding-top: 40px;
     height: 50vw;
 }
 .statisticContainer h1{
+    margin-top: 0px;
     margin-bottom: 5vh;
     margin-left: 10%;
 }

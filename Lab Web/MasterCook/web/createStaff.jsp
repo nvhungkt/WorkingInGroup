@@ -13,68 +13,82 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Create New Staff</h1>
-        <label class="label label-danger"><s:property value="%{error}"/></label><br/><br/>
-        <form action="createStaffConfirm" method="POST">
-            <table border="0">
-            <tbody>
-                <tr>
-                    <td>Username:</td>
-                    <td><input type="text" name="username"/></td>
-                </tr>
-                <tr>
-                    <td>Full name:</td>
-                    <td><input type="text" name="name"/></td>
-                </tr>
-                <tr>
-                    <td>Phone:</td>
-                    <td><input type="text" name="phone"/></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="text" name="email"/></td>
-                </tr>
-                <tr>
-                    <td>Birthday:</td>
-                    <td><input type="date" name="birthday"/></td>
-                </tr>
-                <tr>
-                    <td>Address:</td>
-                    <td><input type="text" name="address"/></td>
-                </tr>
-                <tr>
-                    <td>Gender:</td>
-                    <td>
-                        <input type="radio" name="gender" value="male"/>Male
-                        <input type="radio" name="gender" value="female"/>Female
-                    </td>
-                </tr>
-                <tr>
-                    <td>Working categories:</td>
-                    <td>
-                        <s:iterator var="subcate" value="%{allSubcategories}" status="counter">
-                            <input type="checkbox" name="workingSubcategories"
-                                   value="<s:property value="%{#subcate.subcategoryID}"/>"/>
-                            <s:property value="%{#subcate.name}"/>
-                            <s:if test="%{#counter.count % 2 == 0}">
-                                <br/>
-                            </s:if>
-                        </s:iterator>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Role:</td>
-                    <td>
-                        <select name="role">
-                            <option value="Collaborator">Collaborator</option>
-                            <option value="Employee">Employee</option>
-                            <option value="Manager">Manager</option>
-                        </select>
-                    </td>
-                </tr>
-            </tbody>
-            </table><br/>
-            <input type="submit" value="Create"/>
-        </form>
+        <s:include value="header.jsp"/>
+        <div class="col-md-6 col-md-offset-3 center-form">
+            <h2>Create New Staff</h2>
+            <label class="label label-danger"><s:property value="%{error}"/></label><br/><br/>
+            <form action="createStaffConfirm" method="POST">
+                <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Username:</td>
+                        <td><input type="text" name="username"/></td>
+                    </tr>
+                    <tr>
+                        <td>Full name:</td>
+                        <td><input type="text" name="name"/></td>
+                    </tr>
+                    <tr>
+                        <td>Phone:</td>
+                        <td><input type="text" name="phone"/></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="text" name="email"/></td>
+                    </tr>
+                    <tr>
+                        <td>Birthday:</td>
+                        <td><input type="date" name="birthday"/></td>
+                    </tr>
+                    <tr>
+                        <td>Address:</td>
+                        <td><input type="text" name="address"/></td>
+                    </tr>
+                    <tr>
+                        <td>Gender:</td>
+                        <td>
+                            <font><input type="radio" name="gender" value="male"/>Male</font>
+                            <font><input type="radio" name="gender" value="female"/>Female</font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Working categories:</td>
+                        <td>
+                            <s:iterator var="subcate" value="%{allSubcategories}" status="counter">
+                                <font><input type="checkbox" name="workingSubcategories"
+                                       value="<s:property value="%{#subcate.subcategoryID}"/>"/>
+                                    <s:property value="%{#subcate.name}"/>
+                                </font>
+                                <s:if test="%{#counter.count % 2 == 0}">
+                                    <br/>
+                                </s:if>
+                            </s:iterator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Role:</td>
+                        <td>
+                            <select name="role" class="form-control">
+                                <option value="Collaborator">Collaborator</option>
+                                <option value="Employee">Employee</option>
+                                <option value="Manager">Manager</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+                </table><br/>
+                <div class="col-md-8 col-md-offset-4">
+                    <button type="button" class="btn" onclick="goBack()">
+                        Cancel
+                    </button>
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
+                    <input type="submit" class="btn btn-success" value="Create"/>
+                </div>
+            </form>
+        </div>
     </body>
 </html>

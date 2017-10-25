@@ -25,10 +25,10 @@
             <div class="col-md-4 statisticContainer" style="border-right-style: solid ">         
                 <s:form action="makeTotalPostStatistic" method="POST">           
                     <div class="col-md-12" statisticDateContainer>
-                    Begin Time <sx:datetimepicker name="beginDate" displayFormat="dd/MM/yyyy" cssClass="statisticDate"/> </br>
+                        Begin Time <sx:datetimepicker name="beginDate" displayFormat="dd/MM/yyyy" cssClass="statisticDate"/> </br>
                     </div>
                     <div class="col-md-12 statisticDateContainer">
-                    End Time <sx:datetimepicker name="endDate" displayFormat="dd/MM/yyyy" cssClass="statisticDate"/></br>                                                                                   
+                        End Time &nbsp;&nbsp;&nbsp;<sx:datetimepicker name="endDate" displayFormat="dd/MM/yyyy" cssClass="statisticDate"/></br>                                                                                   
                     </div>                    
                     <s:submit value="Total posts" action="makeTotalPostStatistic" cssClass="btn btn-default" />                    
                     <s:submit value="Posts with most views" action="makeMostViewStatistic" cssClass="btn btn-default"/>                                                        

@@ -15,14 +15,11 @@
     <body>
         <s:include value="header.jsp"/>
         <div class="col-md-6 col-md-offset-3 center-form">
-            <h2>Edit Staff Information</h2><br/>
+            <h2>Edit Staff Information</h2>
             <label class="label label-danger"><s:property value="%{error}"/></label><br/><br/>
             <form action="editStaffConfirm" method="POST">
                 <input type="hidden" name="staffID" value="<s:property value="staffID"/>"/>
                 <table class="table">
-                <thead>
-
-                </thead>
                 <tbody>
                     <tr>
                         <td>Full name:</td>
@@ -86,7 +83,7 @@
                     <button type="button" class="btn">
                         <a href="viewStaffInfo?staffID=<s:property value="staffID"/>">
                             Cancel
-                        <a/>
+                        </a>
                     </button>
                     <input type="submit" class="btn btn-success" value="Confirm"/>
                 </div>

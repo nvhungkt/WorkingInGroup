@@ -30,7 +30,7 @@
                 <div class="article-detail">
                     <i class="article-datetime"><s:property value="%{article.dateTime}"/></i>
                     <h1><s:property value="%{article.title}"/></h1>            
-                    <hr>
+                    <hr/><br/>
                     ${requestScope.content}
                     <%--Article Content--%>                                  
                     <%--Views and Author--%>
@@ -153,9 +153,9 @@
             <div class="col-md-12"><br/></div>
             
             <div class="col-md-8">
-                <div class="article-detail">
+                <div class="article-detail comment">
                     <h4><b>Comments</b></h4>
-                    <form action="sendComment">
+                    <form action="sendComment" class="col-md-12">
                         <%--Send comment action --%>
                         <div class="col-md-8">
                             <textarea name="commentContent" class="form-control" rows="4" placeholder="Your comment"></textarea>
@@ -177,37 +177,54 @@
                     <div>
                         <%--Show comments--%>
                         <s:if test="%{comments != null}">
-                            <table border="1"> 
-                                <tbody>
-                                    <s:iterator var="comment" value="%{comments}">
-                                        <%--Delete comment form--%>
-                                        <s:form action="deleteComment" theme="simple">
-                                            <tr>       
-                                                <td>
-                                                    <s:property value="%{#comment.guestName.charAt(0)}"/> 
-                                                </td>
-                                                <td>
-                                                    <s:property value="%{#comment.guestName}"/> 
-                                                </td>
-                                                <td>
-                                                    <s:property value="%{#comment.commentContent}"/> 
-                                                </td>
-                                                <td>
-                                                    <s:property value="%{#comment.dateTime}"/>                                     
-                                                </td>   
-                                                <s:if test="%{#session.STAFF != null}">  
-                                                    <td>
-                                                    <%--Delete comment button--%>                                            
-                                                        <s:submit value="x"/>
-                                                        <s:hidden name="commentID" value="%{#comment.commentID}"/>
-                                                        <s:hidden name="articleID" value="%{article.articleID}"/>                                            
-                                                    </td>
-                                                </s:if>
-                                            </tr>                                
-                                        </s:form>
-                                    </s:iterator>
-                                </tbody>
-                            </table>
+                            <s:iterator var="comment" value="%{comments}">
+                                <%--Delete comment form--%>
+                                <div class="col-md-12 comment-detail">
+                                    <div class="col-md-3">
+                                        <span class="character">
+                                            <s:property value="%{#comment.guestName.charAt(0)}"/> 
+                                        </span>
+                                        <b>
+                                            <s:property value="%{#comment.guestName}"/> 
+                                        </b>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <font>
+                                        <s:property value="%{#comment.commentContent}"/> 
+                                        </font>
+                                        <i>
+                                            <s:property value="%{#comment.dateTime}"/>                                     
+                                        </i>   
+                                        <s:if test="%{#session.STAFF != null}">
+                                            <button type="button" class="btn btn-link delete"
+                                                    data-toggle="modal" data-target="#deleteComment">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                            <div id="deleteComment" class="modal fade" role="dialog">
+                                                <div class="modal-dialog modal-sm">
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <form action="deleteComment">
+                                                            <%--Delete comment button--%>
+                                                            <s:hidden name="commentID" value="%{#comment.commentID}"/>
+                                                            <s:hidden name="articleID" value="%{article.articleID}"/>
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Are you sure?</h4>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary">Delete</button>
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </s:if>
+                                    </div>
+                                </div>
+                                <hr/>
+                            </s:iterator>
                         </s:if>
                     </div>
                 </div>

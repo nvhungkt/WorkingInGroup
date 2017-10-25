@@ -108,7 +108,8 @@ public class Tbl_ArticleDAO implements Serializable{
             stm.setString(2, subcategory);
             stm.setString(3, articleID);
             
-            approveArticle(articleID, staffID, status);
+            if (!"Accepted".equals(status))
+                approveArticle(articleID, staffID, status);
             
             if (stm.executeUpdate() > 0) return true;
         }
