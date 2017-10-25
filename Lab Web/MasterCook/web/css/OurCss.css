@@ -196,3 +196,29 @@ hr {
     margin-bottom: 10%;
     margin-top: 3%;
 }
+
+/* modify subcat page*/
+.modifySubcatContainter {
+    background-color: white;
+}
+.modifySubcatTable th, td{
+    text-align: center;
+}
+.modifySubcatTable .TR td {
+    vertical-align: middle;
+}
+.modifySubcatTable tr th:first-child {
+    width: 5%;
+}
+.modifySubcatTable tr th:nth-child(2) {
+    width: 17%;
+}
+.modifySubcatTable tr th:nth-child(3) {
+    width: 17%;
+}
+.modifySubcatTable tr th:nth-child(5) {
+    width: 5%;
+}
+.modifySubcatTable tr th:nth-child(6) {
+    width: 8%;
+}
