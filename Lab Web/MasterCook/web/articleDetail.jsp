@@ -44,7 +44,7 @@
                 </div>
             </div>
                 <%--Related Articles--%>
-            <div class="col-md-4">
+            <div class="col-md-4 related-article">
                 <h3><b>You may also like</b></h3>
                 <s:iterator var="art" value="%{listArticles}" status="counter">
                     <s:a value="viewDetails">
