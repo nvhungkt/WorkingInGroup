@@ -15,187 +15,203 @@
     <body>
         <s:include value="header.jsp"/>
             <%--Category - Subcategory --%>
-        <font color="blue">
-            <s:label value="%{article.categoryName}"/>>
-            <s:a value="viewArticleBySubCat">
-                                <s:param name="subcatID" value="%{article.subcategoryId}"/>
-                                <s:label value="%{article.subcategoryName}"/>
-            </s:a>
-            
-            </br>
-        </font>
-            <%--Article Title and Datetime--%>
-        <div>
-            <s:label value="%{article.dateTime}"/></br>
-            <h1><s:label value="%{article.title}"/></h1>            
-        </div>
-        <hr>
-            <%--Article Content--%>
-        <div>            
-            <div id="articleContent" >                
-            </div>                                                  
-                <%--Add content of txt file into hidden field--%>            
-            <s:hidden id="hiddenContent" value="%{content}"/>            
-                <%--Display content in hidden field in articleContent div--%>            
-            <script>
-                document.getElementById("articleContent").innerHTML = document.getElementById("hiddenContent").value;
-            </script>
-            </br></br>
-                <%--Views and Author--%>
-            <font style="font-weight: bold">
-            <s:label value="%{article.views} Views"/>
-            <s:label value="Author: %{article.authorName}"/>            
+        <br/><br/><br/>
+        <div class="container">
+            <font color="blue">
+                <s:label value="%{article.categoryName}"/>>
+                <s:a value="viewArticleBySubCat">
+                                    <s:param name="subcatID" value="%{article.subcategoryId}"/>
+                                    <s:label value="%{article.subcategoryName}"/>
+                </s:a>
+                <br/>
             </font>
-        </div>
-            
-            <%--Related Articles--%>
-            <s:iterator var="art" value="%{listArticles}" status="counter">
-                        <div style="border-color: burlywood; border-style: dotted; width: 99%; float: top">
-                            <s:a value="viewDetails">
-                                <s:param name="articleID" value="%{#art.id}"/>
-                                <img src="<s:property value="%{#art.imgLink}"/>" width="100" height="100"/>
-                                <font><s:property value="%{#art.title}"/></font>
-                            </s:a>
-                            <i style="float: right"><s:property value="%{#art.createdDate}"/></i>
+                <%--Article Title and Datetime--%>
+            <div class="col-md-8">
+                <div class="article-detail">
+                    <i class="article-datetime"><s:property value="%{article.dateTime}"/></i>
+                    <h1><s:property value="%{article.title}"/></h1>            
+                    <hr>
+                    ${requestScope.content}
+                    <%--Article Content--%>                                  
+                    <%--Views and Author--%>
+                    <br/><br/><br/>
+                    <font class="article-views">
+                        <s:property value="%{article.views}"/> views
+                    </font>
+                    <font class="article-author">
+                        <i>Follow </i><s:property value="%{article.authorName}"/>            
+                    </font>
+                </div>
+            </div>
+                <%--Related Articles--%>
+            <div class="col-md-4">
+                <h3><b>You may also like</b></h3>
+                <s:iterator var="art" value="%{listArticles}" status="counter">
+                    <s:a value="viewDetails">
+                        <div class="homeArticleImg" style="background-image:
+                                         url('<s:property value="%{#art.imgLink}"/>')"></div>
+                        <div class="homeArticle">
+                            <s:param name="articleID" value="%{#art.id}"/>
+                            <font><s:property value="%{#art.title}"/></font>
+                            <i><s:property value="%{#art.createdDate}"/></i>
                         </div>
-                        <s:if test="%{#counter.count == 3}">                            
-                            <s:a value="viewArticleBySubCat">
-                                <s:param name="subcatID" value="%{article.subcategoryId}"/>
-                                <i style="float: right">View more...</i>
-                            </s:a>
+                    </s:a>
+                    <div class="col-md-12"><br/></div>
+                    <s:if test="%{#counter.count == 3}">                            
+                        <s:a value="viewArticleBySubCat">
+                            <s:param name="subcatID" value="%{article.subcategoryId}"/>
+                            <i style="float: right">View more...</i>
+                        </s:a>
+                    </s:if>
+                </s:iterator>
+                <script>
+                    $(window).on('resize', function(){
+                        $('.homeArticle').outerHeight($('.homeArticleImg').height());
+                    }).trigger('resize');
+                </script>
+            </div>
+                <%-- --%>
+
+
+                <%--Controll of Staff role--%>
+            <s:if test="%{#session.STAFF != null}">
+                <div class="col-md-8">
+                    <div class="article-detail">
+                        <%--With Rejected Article--%>
+                        <s:if test="%{article.status == 'Rejected'}">
+                            <%--Show reason of Rejected--%>
+                            <div>
+                                <font color="red">
+                                    <i><s:property value="%{article.reason}"/></i>
+                                </font>
+                            </div>                    
                         </s:if>
-                    </s:iterator>                        
-            <%-- --%>
-            
-            
-            <%--Controll of Staff role--%>
-        <s:if test="%{#session.STAFF != null}">
-            <div>
-                    <%--With Rejected Article--%>
-                <s:if test="%{article.status == 'Rejected'}">
-                    <%--Show reason of Rejected--%>
-                    <div>
-                        <font color="red">
-                        <s:property value="%{article.reason}"/>
-                        </font>
-                    </div>                    
-                </s:if>
-                    <%--Other Status--%>
-                <s:else>
-                    <%--Not collaborator Role--%>
-                    <s:if test="%{#session.STAFF.role != 'Collaborator'}"> 
-                        <%--Employee role and Status is pending for Employee--%>
-                        <s:if test="%{#session.STAFF.role == 'Employee' and article.status == 'Pending for Employee'}">
-                            <%--Approve by Employee--%>                                                          
-                            <s:form action="approveArticle">                                
-                                <s:hidden name="articleID" value="%{article.articleID}"/>
-                                <s:hidden name="status" value="%{article.status}"/>
-                                <s:hidden name="staffID" value="%{#session.STAFF.staffID}"/>
-                                <s:submit value="Approve"/>                                   
-                            </s:form>                            
-                            <%--Reject by Employee--%>
-                            <s:submit type="button" onclick="document.getElementById('reason').style.visibility = 'visible'" value="Reject"/> 
-                            <div id="reason" style="visibility: hidden">  
-                                <%--Input reason form--%>
-                                <form action="rejectArticle">
-                                    <s:hidden name="staffID" value="%{#session.STAFF.staffID}"/>
+                        <%--Other Status--%>
+                        <s:else>
+                            <%--Not collaborator Role--%>
+                            <s:if test="%{#session.STAFF.role != 'Collaborator'}"> 
+                                <%--Pending article--%>
+                                <s:if test="%{(#session.STAFF.role == 'Employee' and
+                                                    article.status == 'Pending for Employee')
+                                                or
+                                                (#session.STAFF.role == 'Manager' and
+                                                article.status == 'Pending for Manager')}">
+                                    <%--Approve--%>                                                          
+                                    <form action="approveArticle" class="col-md-4" align="left">                                
+                                        <s:hidden name="articleID" value="%{article.articleID}"/>
+                                        <s:hidden name="status" value="%{article.status}"/>
+                                        <s:hidden name="staffID" value="%{#session.STAFF.staffID}"/>
+                                        <input type="submit" class="btn btn-success" value="Approve"/>
+                                        <!--Reject button to show reject modal-->
+                                    </form>
+                                </s:if>
+                                <%--Edit--%>
+                                <form action="editArticle" class="col-md-4" align="center">
                                     <s:hidden name="articleID" value="%{article.articleID}"/>
-                                    <textarea name="txtReason" required="required">Input Reason</textarea> 
-                                    <input type="submit" value="Submit" />
+                                    <input type="submit" class="btn btn-info" value="Edit"/>     
                                 </form>
-                            </div>                            
-                        </s:if>
-                        <%--Not Employee Role--%>
-                        <s:if test="%{#session.STAFF.role != 'Employee'}">                                                    
-                            <%--Not Accepted Article--%>
-                            <s:if test="%{article.status != 'Accepted'}">
-                                <%--Approve--%>    
-                                <s:form action="approveArticle">
-                                    <s:hidden name="articleID" value="%{article.articleID}"/>
-                                    <s:hidden name="status" value="%{article.status}"/>
-                                    <s:hidden name="staffID" value="%{#session.STAFF.staffID}"/>
-                                    <s:submit value="Approve"/>                                   
-                                </s:form>
                                 <%----%>
+                                <s:if test="%{article.status != 'Rejected'}">
+                                    <%--Reject--%>
+                                    <div class="col-md-4" align="right">
+                                        <button type="button" class="btn btn-danger"
+                                                data-toggle="modal" data-target="#reason">
+                                            Reject
+                                        </button>
+                                    </div>
+                                    <div id="reason" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <%--Input reason form--%>
+                                            <form action="rejectArticle">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h3 class="modal-title">Reason for Rejecting</h3>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <s:hidden name="staffID" value="%{#session.STAFF.staffID}"/>
+                                                        <s:hidden name="articleID" value="%{article.articleID}"/>
+                                                        <textarea name="txtReason" required="required" rows="5"
+                                                                  class="form-control" placeholder="Input Reason"></textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-danger"/>Reject</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </s:if>
+                            </s:if>                  
+                        </s:else>
+                    </div>
+                </div>
+            </s:if>
+            
+            <div class="col-md-12"><br/></div>
+            
+            <div class="col-md-8">
+                <div class="article-detail">
+                    <h4><b>Comments</b></h4>
+                    <form action="sendComment">
+                        <%--Send comment action --%>
+                        <div class="col-md-8">
+                            <textarea name="commentContent" class="form-control" rows="4" placeholder="Your comment"></textarea>
+                            <s:if test="%{#parameters.message != null and #parameters.message != ''}">
+                                <font color="red">               
+                                <s:property value="%{#parameters.message}"/>
+                                </font>
                             </s:if>
-                            <%--Reject--%>                                  
-                            <s:submit type="button" onclick="document.getElementById('reason').style.visibility = 'visible'" value="Reject"/>   
-                            <s:form action="rejectArticle">
-                            <div id="reason" style="visibility: hidden">                                                    
-                                <%--Input reason form--%>
-                                <form action="rejectArticle">
-                                    <s:hidden name="staffID" value="%{#session.STAFF.staffID}"/>
-                                    <s:hidden name="articleID" value="%{article.articleID}"/>
-                                    <textarea name="txtReason" required="required">Input Reason</textarea>                                    
-                                    <input type="submit" value="Submit" />
-                                </form>
-                            </div>                            
-                            </s:form>
-                            <%----%>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="comment-form" name="guestName" placeholder="Your name"/>
+                            <input class="comment-form" name="guestPhone" placeholder="Phone number"/>
+                            <input class="comment-form" name="guestEmail" placeholder="Email"/>
+                            <s:hidden name="articleID" value="%{article.articleID}"/>
+                            <input type="submit" class="btn btn-primary" value="Send"/>
+                        </div>
+                    </form>
+                    <%--Show error comment message--%>
+                    <div>
+                        <%--Show comments--%>
+                        <s:if test="%{comments != null}">
+                            <table border="1"> 
+                                <tbody>
+                                    <s:iterator var="comment" value="%{comments}">
+                                        <%--Delete comment form--%>
+                                        <s:form action="deleteComment" theme="simple">
+                                            <tr>       
+                                                <td>
+                                                    <s:property value="%{#comment.guestName.charAt(0)}"/> 
+                                                </td>
+                                                <td>
+                                                    <s:property value="%{#comment.guestName}"/> 
+                                                </td>
+                                                <td>
+                                                    <s:property value="%{#comment.commentContent}"/> 
+                                                </td>
+                                                <td>
+                                                    <s:property value="%{#comment.dateTime}"/>                                     
+                                                </td>   
+                                                <s:if test="%{#session.STAFF != null}">  
+                                                    <td>
+                                                    <%--Delete comment button--%>                                            
+                                                        <s:submit value="x"/>
+                                                        <s:hidden name="commentID" value="%{#comment.commentID}"/>
+                                                        <s:hidden name="articleID" value="%{article.articleID}"/>                                            
+                                                    </td>
+                                                </s:if>
+                                            </tr>                                
+                                        </s:form>
+                                    </s:iterator>
+                                </tbody>
+                            </table>
                         </s:if>
-                    </s:if>                  
-                    <%--Edit--%>
-                    <s:form action="editArticle">
-                        <s:hidden name="articleID" value="%{article.articleID}"/>
-                        <s:submit value="Edit"/>     
-                    </s:form>   
-                    <%----%>
-                </s:else>
+                    </div>
+                </div>
             </div>
-        </s:if>            
-        <div>
-            Comments
-            <s:form action="sendComment">
-                <%--Send comment action --%>                
-                <s:textarea name="commentContent"/>                
-                <s:textfield name="guestName" placeholder="Your name"/>                
-                <s:textfield name="guestPhone" placeholder="Phone number"/>
-                <s:textfield name="guestEmail" placeholder="Email"/>
-                <s:hidden name="articleID" value="%{article.articleID}"/>
-                <s:submit value="Send"/>
-            </s:form>        
-            <%--Show error comment message--%>
-            <s:if test="%{#parameters.message != null and #parameters.message != ''}">
-                <font color="red">               
-                <s:property value="%{#parameters.message}"/>
-                </font>
-            </s:if>                        
-            <div>
-                <%--Show comments--%>
-                <s:if test="%{comments != null}">
-                    <table border="1"> 
-                        <tbody>
-                            <s:iterator var="comment" value="%{comments}">
-                                <%--Delete comment form--%>
-                                <s:form action="deleteComment" theme="simple">
-                                    <tr>       
-                                        <td>
-                                            <s:property value="%{#comment.guestName.charAt(0)}"/> 
-                                        </td>
-                                        <td>
-                                            <s:property value="%{#comment.guestName}"/> 
-                                        </td>
-                                        <td>
-                                            <s:property value="%{#comment.commentContent}"/> 
-                                        </td>
-                                        <td>
-                                            <s:property value="%{#comment.dateTime}"/>                                     
-                                        </td>   
-                                        <s:if test="%{#session.STAFF != null}">  
-                                            <td>
-                                            <%--Delete comment button--%>                                            
-                                                <s:submit value="x"/>
-                                                <s:hidden name="commentID" value="%{#comment.commentID}"/>
-                                                <s:hidden name="articleID" value="%{article.articleID}"/>                                            
-                                            </td>
-                                        </s:if>
-                                    </tr>                                
-                                </s:form>
-                            </s:iterator>
-                        </tbody>
-                    </table>
-                </s:if>
-            </div>
-        </div>                
+        </div>
     </body>
 </html>

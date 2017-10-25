@@ -96,10 +96,10 @@ body {
     font-size: 18px;
 }
 
-.homeArticle i{
-    position: relative;
-    bottom: -95%;
-    right: -55%;
+.homeArticle > i{
+    position: absolute;
+    padding-top: 12%;
+    right: 7%;
     font-size: 12px;
     color: #bbb;
 }
@@ -110,6 +110,50 @@ body {
     padding-top: 25%;
     background-size: cover;
     background-position: center;
+}
+
+/*article details*/
+
+.article-detail {
+    background-color: #fff;
+    padding: 2% 5%;
+    overflow: auto;
+}
+
+.article-detail img {
+    width: 100%;
+}
+
+.article-detail .article-datetime {
+    font-size: 13px;
+    color: #bbb;
+}
+
+.article-detail .article-views {
+    font-weight: bold;
+}
+
+.article-detail .article-author {
+    font-weight: bold;
+    float: right;
+}
+
+.article-detail h1 {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.article-detail hr {
+    border: 0.5px solid #bbb;
+    margin: 20px 0px;
+    transform: scaleX(1.111);
+}
+
+.comment-form {
+    width: 100%;
+    border: 0px;
+    border-bottom: 1px solid #bbb;
+    margin-bottom: 10px;
 }
 
 /*View staff page*/
