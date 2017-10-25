@@ -16,6 +16,7 @@
         <s:include value="header.jsp"/>
         <div class="col-md-6 col-md-offset-3 center-form">
             <h2>Edit Staff Information</h2><br/>
+            <label class="label label-danger"><s:property value="%{error}"/></label><br/><br/>
             <form action="editStaffConfirm" method="POST">
                 <input type="hidden" name="staffID" value="<s:property value="staffID"/>"/>
                 <table class="table">

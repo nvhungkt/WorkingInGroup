@@ -19,6 +19,7 @@ import sample.tbl_subcategory.Tbl_SubcategoryDTO;
 public class ViewStaffInfoAction {
     private String staffID;
     private Tbl_StaffDTO staff;
+    private String error;
     private Map<String, String> workingSubcategories; //list all NAME of working subcategory
     private List<Tbl_SubcategoryDTO> allSubcategories;
     private final String SUCCESS = "success";
@@ -55,6 +56,20 @@ public class ViewStaffInfoAction {
 
     public void setStaffID(String staffID) {
         this.staffID = staffID;
+    }
+
+    /**
+     * @return the error
+     */
+    public String getError() {
+        return error;
+    }
+
+    /**
+     * @param error the error to set
+     */
+    public void setError(String error) {
+        this.error = error;
     }
     
 }

@@ -15,6 +15,7 @@ import sample.tbl_subcategory.Tbl_SubcategoryDTO;
  */
 public class GetAllSubcategoriesAction {
     private List<Tbl_SubcategoryDTO> allSubcategories;
+    private String error;
     private final String SUCCESS = "success";
     
     public GetAllSubcategoriesAction() {
@@ -29,5 +30,19 @@ public class GetAllSubcategoriesAction {
     
     public List<Tbl_SubcategoryDTO> getAllSubcategories() {
         return allSubcategories;
+    }
+
+    /**
+     * @return the error
+     */
+    public String getError() {
+        return error;
+    }
+
+    /**
+     * @param error the error to set
+     */
+    public void setError(String error) {
+        this.error = error;
     }
 }

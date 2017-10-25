@@ -14,6 +14,7 @@
     </head>
     <body>
         <h1>Create New Staff</h1>
+        <label class="label label-danger"><s:property value="%{error}"/></label><br/><br/>
         <form action="createStaffConfirm" method="POST">
             <table border="0">
             <tbody>
