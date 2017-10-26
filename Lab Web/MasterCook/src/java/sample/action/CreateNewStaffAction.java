@@ -33,6 +33,12 @@ public class CreateNewStaffAction {
     
     public String execute() throws Exception {
         boolean haveError = false;
+        Tbl_StaffDAO dao1 = new Tbl_StaffDAO();
+        boolean existedUsername = dao1.usernameExisted(username);
+        if (existedUsername) {
+            error = "Username existed!!!";
+            haveError = true;
+        }
         if (workingSubcategories == null || workingSubcategories.length == 0) {
             error = "At least check 1 working category!!!";
             haveError = true;

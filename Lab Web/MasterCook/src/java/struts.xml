@@ -170,6 +170,13 @@
             </result>
             <result name="fail" type="redirectAction">
                 <param name="actionName">createStaff</param>
+                <param name="username">${username}</param>
+                <param name="name">${name}</param>
+                <param name="phone">${phone}</param>
+                <param name="email">${email}</param>
+                <param name="birthday">${birthday}</param>
+                <param name="address">${address}</param>
+                <param name="gender">${gender}</param>
                 <param name="error">${error}</param>
             </result>
         </action>

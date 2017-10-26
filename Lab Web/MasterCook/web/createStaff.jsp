@@ -22,33 +22,37 @@
                 <tbody>
                     <tr>
                         <td>Username:</td>
-                        <td><input type="text" name="username"/></td>
+                        <td><input type="text" name="username" value="<s:property value="%{username}"/>"/></td>
                     </tr>
                     <tr>
                         <td>Full name:</td>
-                        <td><input type="text" name="name"/></td>
+                        <td><input type="text" name="name" value="<s:property value="%{name}"/>"/></td>
                     </tr>
                     <tr>
                         <td>Phone:</td>
-                        <td><input type="text" name="phone"/></td>
+                        <td><input type="text" name="phone" value="<s:property value="%{phone}"/>"/></td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td><input type="text" name="email"/></td>
+                        <td><input type="text" name="email" value="<s:property value="%{email}"/>"/></td>
                     </tr>
                     <tr>
                         <td>Birthday:</td>
-                        <td><input type="date" name="birthday"/></td>
+                        <td><input type="date" name="birthday" value="<s:property value="%{birthday}"/>"/></td>
                     </tr>
                     <tr>
                         <td>Address:</td>
-                        <td><input type="text" name="address"/></td>
+                        <td><input type="text" name="address" value="<s:property value="%{address}"/>"/></td>
                     </tr>
                     <tr>
                         <td>Gender:</td>
                         <td>
-                            <font><input type="radio" name="gender" value="male"/>Male</font>
-                            <font><input type="radio" name="gender" value="female"/>Female</font>
+                            <font><input type="radio" name="gender" value="male"
+                                         <s:if test="%{gender == 'male'}">checked="checked"</s:if>
+                                         />Male</font>
+                            <font><input type="radio" name="gender" value="female"
+                                         <s:if test="%{gender == 'female'}"> checked="checked"</s:if>
+                                         />Female</font>
                         </td>
                     </tr>
                     <tr>

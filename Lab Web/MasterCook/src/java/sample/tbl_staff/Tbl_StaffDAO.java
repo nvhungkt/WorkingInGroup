@@ -262,4 +262,33 @@ public class Tbl_StaffDAO implements Serializable{
             }
         }        
     }
+    
+    public boolean usernameExisted(String username) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBAccess.makeConnection();            
+            String sql = "SELECT * FROM tbl_Staff WHERE Username = ?";
+            stm = con.prepareStatement(sql);
+            stm.setString(1, username);
+            rs = stm.executeQuery();
+            
+            if (rs.next()) {
+                return true;
+            }
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if(stm!=null) {
+                stm.close();
+            }
+            if(con!=null) {
+                con.close();
+            }
+        }
+        return false;
+    }
 }
