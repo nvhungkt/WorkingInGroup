@@ -41,7 +41,7 @@
                     <div class="col-md-6">
                         <s:iterator var="art" value="%{#cat.value}" status="counter" begin="1">
                             <s:if test="%{#counter.count < 4}">
-                                <div>
+                                <div class="col-md-12" style="overflow: auto; background-color: white; padding-left: 0px">
                                     <s:a value="viewDetails">
                                         <div class="homeArticleImg" style="background-image:
                                              url('<s:property value="%{#art.imgLink}"/>')"></div>
@@ -60,10 +60,11 @@
                                     <s:param name="catID" value="%{#cat.key.categoryID}"/>
                                     <s:param name="pageNumber" value="1"/>
                                 </s:a>
+                                    <hr/>
                             </s:if>
                         </s:iterator>
                     </div>
-                </div><hr/>
+                </div>
             </s:iterator>
         
             <script>
