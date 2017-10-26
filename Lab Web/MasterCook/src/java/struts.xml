@@ -133,6 +133,7 @@
             </result>
             <result name="fail" type="redirectAction">
                 <param name="actionName">loadAddSubcatPage</param>
+                <param name="subcatName">${subcatName}</param>
                 <param name="description">${description}</param>
                 <param name="error">${error}</param>
             </result>

@@ -20,21 +20,21 @@
                     <section>
                         <div>
                             <div>
-                                <h1>Contact us: Send TODAY your questions and comments</h1>
+                                <h1>Contact us: Send MasterCook your questions and comments</h1>
                             </div>
                             <div>
-                                <p>Do you have a question or comment for TODAY? We’d love to hear it!</p>
+                                <p>Do you have a question or comment for MasterCook? We’d love to hear it!</p>
                                 <p>Send an email with your question or comment, and include your name, a short message and the best way for us to get in touch.</p>
 
-                                <p>For press inquiries please e-mail NBCNewsMediaRelations@nbcuni.com or call 212-413-6142.</p>
+                                <p>For press inquiries please e-mail MasterCook@gmail.com or call 212-413-6142.</p>
 
                                 <p>And since we have you, let’s go over a few fun points – just in case we can help you out right here and now.<br></p>
                                 <ul>
-                                    <li>TODAY broadcasts daily at Rockefeller Plaza in midtown Manhattan – specifically between 48th and 49th streets and 5th Ave. and the Avenue of the Americas (6th Ave.).<br></li>
+                                    <li>MasterCook broadcasts daily at Rockefeller Plaza in midtown Manhattan – specifically between 48th and 49th streets and 5th Ave. and the Avenue of the Americas (6th Ave.).<br></li>
                                     <li>Planning to visit the plaza to see the show?  Take a look at what you should know before planning your trip.</li>
                                     <li>Organizing a trip to see a Citi Concert Series performance? We have&nbsp; what you need to know before you get started.</li>
-                                    <li>Looking for something you saw on today’s show? Visit our homepage, TODAY.com, for the highlights, or check out the latest videos page for segments and past broadcasts. Also follow our Facebook and Twitter accounts, and connect with everyone in the TODAY family.</li>
-                                    <li>Download the TODAY app to get the latest news on the go.</li>
+                                    <li>Looking for something you saw on today’s show? Visit our homepage, MasterCook.com, for the highlights, or check out the latest videos page for segments and past broadcasts. Also follow our Facebook and Twitter accounts, and connect with everyone in the MasterCook family.</li>
+                                    <li>Download the MasterCook app to get the latest news on the go.</li>
                                     <li>Want to learn more about our anchors? We have bios for Matt, Savannah, Al, Natalie and the rest of the team for your viewing pleasure.</li>
                                     <li>Not a fan of email? Write us at 30 Rockefeller Plaza New York, NY 10112 or call us at (212) 664-4602.</li>
                                 </ul>

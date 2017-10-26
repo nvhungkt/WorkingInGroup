@@ -274,7 +274,7 @@ public class Tbl_ArticleDAO implements Serializable{
             if (con != null) {
                 String sql = "select count(a.ArticleID) as numberResult "
                         + "from tbl_Article a, tbl_Subcategory s "
-                        + "where s.CategoryID = ? and a.SubcategoryID = s.SubcategoryID and s.IsActive = 'True'";
+                        + "where s.CategoryID = ? and a.Status = 'Accepted' and a.SubcategoryID = s.SubcategoryID and s.IsActive = 'True'";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, catID);
                 rs = stm.executeQuery();

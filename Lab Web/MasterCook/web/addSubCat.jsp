@@ -38,7 +38,7 @@
                 </div><br/>
                 <div class="form-group">
                     <label for="inputName">Name*</label><br/>
-                    <input type="text" class="form-control" name="subcatName" value="" id="subcatName" placeholder="Name"/>
+                    <input type="text" class="form-control" name="subcatName" value="<s:property value="%{subcatName}"/>" id="subcatName" placeholder="Name"/>
                 </div><br/>
                 <div class="form-group">
                     <label for="inputDescription">Description</label><br/>

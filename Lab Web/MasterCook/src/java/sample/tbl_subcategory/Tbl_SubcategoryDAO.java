@@ -167,4 +167,33 @@ public class Tbl_SubcategoryDAO implements Serializable{
         }
         return false;
     }
+    
+    public boolean subcatExisted(String subcatName) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBAccess.makeConnection();            
+            String sql = "SELECT * FROM tbl_Subcategory WHERE Name = ?";
+            stm = con.prepareStatement(sql);
+            stm.setString(1, subcatName);
+            rs = stm.executeQuery();
+            
+            if (rs.next()) {
+                return true;
+            }
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if(stm!=null) {
+                stm.close();
+            }
+            if(con!=null) {
+                con.close();
+            }
+        }
+        return false;
+    }
 }

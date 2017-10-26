@@ -22,8 +22,13 @@ public class AddSubcatAction {
     }
     
     public String execute() throws Exception {
+        Tbl_SubcategoryDAO dao = new Tbl_SubcategoryDAO();
+        boolean nameExisted = dao.subcatExisted(subcatName);
+        if (nameExisted) {
+            setError("Name existed!!!");
+            return FAIL;
+        }
         if(catID != null && subcatName != null && !catID.equals("") && !subcatName.trim().equals("") ) {
-            Tbl_SubcategoryDAO dao = new Tbl_SubcategoryDAO();
             boolean result = dao.addNewSubcat(catID, subcatName.trim(), description.trim());
             if (result) {
                 setError("Add successfull!!!");

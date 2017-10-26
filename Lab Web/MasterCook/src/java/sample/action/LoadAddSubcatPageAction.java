@@ -17,6 +17,7 @@ import sample.tool.OurTool;
 public class LoadAddSubcatPageAction {
     private List<Tbl_CategoryDTO> listCat;
     private String error;
+    private String subcatName;
     private String description;
     private final String SUCCESS = "success";
     public LoadAddSubcatPageAction() {
@@ -67,6 +68,20 @@ public class LoadAddSubcatPageAction {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the subcatName
+     */
+    public String getSubcatName() {
+        return subcatName;
+    }
+
+    /**
+     * @param subcatName the subcatName to set
+     */
+    public void setSubcatName(String subcatName) {
+        this.subcatName = subcatName;
     }
     
 }
