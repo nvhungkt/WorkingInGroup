@@ -138,7 +138,13 @@ body {
     font-weight: bold;
     float: right;
 }
-
+.article-detail .article-approver {
+    font-weight: bold;    
+}
+.article-detail .article-lastModified {
+    font-weight: bold;   
+    float: right;
+}
 .article-detail h1 {
     margin-top: 5px;
     font-weight: bold;
