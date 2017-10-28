@@ -29,7 +29,30 @@ public class Tbl_ArticleDetailsDAO {
         ResultSet rs = null;
         try {
             con = DBAccess.makeConnection();
-            String sql = "SELECT m.SubcategoryID, a.Reason, a.Status, a.Title, a.ContentURL, a.[DateTime], a.[Views], s.Name AS AuthorName, m.Name AS SubcategoryName, n.Name AS CategoryName\n" +
+            String checker = "";
+            String modifiedDate = "";
+            /* Query the approver of article*/
+            String queryChecker = "SELECT s.Name\n" +
+                                    "FROM tbl_Staff s, tbl_Article a\n" +
+                                    "WHERE s.StaffID = a.ApproverID AND a.ArticleID = ?";
+            stm = con.prepareStatement(queryChecker);
+            stm.setString(1, articleID);
+            rs = stm.executeQuery();
+            if(rs.next()) {
+                checker = rs.getString("Name");
+            }
+            /* Query the reviewer of article if there is no approver*/
+            queryChecker = "SELECT s.Name\n" +
+                            "FROM tbl_Staff s, tbl_Article a\n" +
+                            "WHERE s.StaffID = a.ReviewerID AND a.ArticleID = ?";
+            stm = con.prepareStatement(queryChecker);
+            stm.setString(1, articleID);
+            rs = stm.executeQuery();
+            if(rs.next()) {
+                checker = rs.getString("Name");
+            }
+            /* Query article in detail*/
+            String sql = "SELECT a.LastModifiedDateTime, m.SubcategoryID, a.Reason, a.Status, a.Title, a.ContentURL, a.[DateTime], a.[Views], s.Name AS AuthorName, m.Name AS SubcategoryName, n.Name AS CategoryName\n" +
 "FROM tbl_Article a, tbl_Staff s, tbl_Subcategory m, tbl_Category n\n" +
 "WHERE s.StaffID = a.AuthorID AND m.SubcategoryID = a.SubcategoryID AND m.CategoryID = n.CategoryID AND a.ArticleID = ?";
             stm = con.prepareStatement(sql);
@@ -39,19 +62,27 @@ public class Tbl_ArticleDetailsDAO {
             if(rs.next()) {
                 String title = rs.getString("Title");
                 String contentURL = rs.getString("ContentURL");
-                Timestamp dateTime = rs.getTimestamp("DateTime");
+                Timestamp dateTime = rs.getTimestamp("DateTime");                
                 Calendar cal = Calendar.getInstance();
                 cal.setTimeInMillis(dateTime.getTime());
                 String createdDate = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ", "
                         + cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.YEAR);                                
+                Timestamp modifiedDateTime = rs.getTimestamp("LastModifiedDateTime");
+                
+                if(modifiedDateTime!=null) {
+                    cal.setTimeInMillis(modifiedDateTime.getTime());
+                    modifiedDate = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ", "
+                            + cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.YEAR);                                
+                }
                 int views = rs.getInt("Views");
+//                String reviewerName 
                 String authorName = rs.getString("AuthorName");
                 String subcategoryName = rs.getString("SubcategoryName");
                 String subcategoryID = rs.getString("SubcategoryID");
                 String categoryName = rs.getString("CategoryName");  
                 String status = rs.getString("Status");
                 String reason = rs.getString("Reason");
-                articleDetails = new Tbl_ArticleDetailsDTO(articleID, title, contentURL, authorName, createdDate, subcategoryName, categoryName, views, status, reason, subcategoryID);
+                articleDetails = new Tbl_ArticleDetailsDTO(checker, modifiedDate, articleID, title, contentURL, authorName, createdDate, subcategoryName, categoryName, views, status, reason, subcategoryID);
             }
             return articleDetails;
         }
@@ -117,9 +148,9 @@ public class Tbl_ArticleDetailsDAO {
         ResultSet rs = null;
         try {
             con = DBAccess.makeConnection();
-            String sql = "SELECT TOP 5 a.ArticleID, a.Title, a.[Views], s.Name\n" +
-                        "FROM tbl_Article a, tbl_Subcategory s\n" +
-                        "WHERE a.DateTime >= ? AND a.DateTime < ? AND a.SubcategoryID = s.SubcategoryID\n" +
+            String sql = "SELECT TOP 5 a.ArticleID, a.Title, a.[Views], s.Name, t.Name AS [Author]\n" +
+                        "FROM tbl_Article a, tbl_Subcategory s, tbl_Staff t\n" +
+                        "WHERE a.DateTime >= ? AND a.DateTime < ? AND a.SubcategoryID = s.SubcategoryID AND a.AuthorID = t.StaffID\n" +
                         "ORDER BY a.[Views] DESC";
             stm = con.prepareStatement(sql);                        
             stm.setTimestamp(1, Timestamp.from(beginDate.toInstant()));         
@@ -131,7 +162,8 @@ public class Tbl_ArticleDetailsDAO {
                 String title = rs.getString("Title");
                 int view = rs.getInt("Views");
                 String subcategoryName = rs.getString("Name");
-                mostViewList.add(new Tbl_ArticleDetailsDTO(articleID, title, subcategoryName, view));
+                String authorName = rs.getString("Author");
+                mostViewList.add(new Tbl_ArticleDetailsDTO(articleID, title, subcategoryName, view, authorName));
             }                                    
         }
         finally {
