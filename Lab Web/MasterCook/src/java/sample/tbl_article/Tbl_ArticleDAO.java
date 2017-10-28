@@ -39,11 +39,12 @@ public class Tbl_ArticleDAO implements Serializable{
                 field = "ApproverID";
                 newStatus = "Accepted";
             }
-            String sql = "UPDATE tbl_Article SET " + field + " = ?, Status = ? WHERE ArticleID = ?";            
+            String sql = "UPDATE tbl_Article SET " + field + " = ?, Status = ?, LastModifiedDateTime = ? WHERE ArticleID = ?";            
             stm = con.prepareStatement(sql);
             stm.setString(1, staffID);            
             stm.setString(2, newStatus);            
-            stm.setString(3, articleID);                        
+            stm.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+            stm.setString(4, articleID);                        
             return stm.executeUpdate();
         }
         finally {            
@@ -148,10 +149,11 @@ public class Tbl_ArticleDAO implements Serializable{
         }
     }
     
-    public int increaseView(String articleID) throws NamingException, SQLException {
+    public int increaseView(String articleID, String staffID) throws NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;        
         try {
+            if(staffID != null) return 0;
             con = DBAccess.makeConnection();
             String sql = "UPDATE tbl_Article SET Views = Views+1 WHERE ArticleID = ?";
             stm = con.prepareStatement(sql);           
