@@ -64,7 +64,8 @@
                             </s:if>
                             - <s:property value="%{#article.views}"/> views
                             </br>Subcategory: <s:property value="%{#article.subcategoryName}"/>
-                            </br><s:property value="%{#article.title}"/>                           
+                            </br>Title: <s:property value="%{#article.title}"/>                           
+                            </br>Author: <s:property value="%{#article.authorName}"/>                           
                         </div>                    
                         <hr>
                     </s:iterator>
