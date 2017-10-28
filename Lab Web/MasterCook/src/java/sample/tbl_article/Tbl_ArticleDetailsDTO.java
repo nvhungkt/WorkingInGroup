@@ -12,6 +12,7 @@ import java.sql.Timestamp;
  * @author Turtle
  */
 public class Tbl_ArticleDetailsDTO {   
+    private String modifiedDate;
     private String articleID;
     private String title;
     private String contentURL;
@@ -23,8 +24,10 @@ public class Tbl_ArticleDetailsDTO {
     private int views;
     private String status;
     private String reason;
-
-    public Tbl_ArticleDetailsDTO(String articleID, String title, String contentURL, String authorName, String dateTime, String subcategoryName, String categoryName, int views, String status, String reason, String subcategoryId) {        
+    private String checker;
+    public Tbl_ArticleDetailsDTO(String checker, String modifiedDate, String articleID, String title, String contentURL, String authorName, String dateTime, String subcategoryName, String categoryName, int views, String status, String reason, String subcategoryId) {        
+        this.checker = checker;
+        this.modifiedDate = modifiedDate;
         this.subcategoryId = subcategoryId;
         this.status = status;
         this.reason = reason;
@@ -38,11 +41,28 @@ public class Tbl_ArticleDetailsDTO {
         this.views = views;
     }
 
-    public Tbl_ArticleDetailsDTO(String articleID, String title, String subcategoryName, int views) {
+    public Tbl_ArticleDetailsDTO(String articleID, String title, String subcategoryName, int views, String authorName) {
+        this.authorName = authorName;
         this.articleID = articleID;
         this.title = title;
         this.subcategoryName = subcategoryName;
         this.views = views;
+    }
+
+    public String getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(String modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public String getChecker() {
+        return checker;
+    }
+
+    public void setChecker(String checker) {
+        this.checker = checker;
     }
     
     public String getSubcategoryId() {
