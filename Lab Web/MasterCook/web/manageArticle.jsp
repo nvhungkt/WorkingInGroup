@@ -32,7 +32,7 @@
                                 <div class="homeMainArticleImg" style="background-image: 
                                      url('<s:property value="%{#art.imgLink}"/>')"></div>
                                 <div class="homeMainArticle">
-                                    <font><s:property value="%{#art.title}"/></font>
+                                    <div class="small-grid"><s:property value="%{#art.title}"/></div>
                                     <i><s:property value="%{#art.createdDate}"/></i>
                                 </div>
                             </s:a>

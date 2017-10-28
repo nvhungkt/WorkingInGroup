@@ -177,6 +177,11 @@
                         event.preventDefault();
                 });
             });
+            
+            $(document).on('scroll', function() {
+                var height = $(document).scrollTop() * 0.4;
+                $('body').css('background-position', 'center -' + height + 'px');
+            });
         </script>
     </body>
 </html>

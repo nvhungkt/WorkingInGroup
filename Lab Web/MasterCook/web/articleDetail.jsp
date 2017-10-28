@@ -45,11 +45,11 @@
                         <%--Name of approver or reviewr and Date--%>
                         </br>
                         <font class="article-approver">
-                            <i>Last Approver: </i><s:property value="%{article.checker}"/>            
+                            <i>Approve by </i><s:property value="%{article.checker}"/>            
                         </font>
                         <s:if test="%{article.modifiedDate != ''}">
                             <font class="article-lastModified">
-                                <i>Last Modified Date: </i><s:property value="%{article.modifiedDate}"/>            
+                                <i>Last Modified </i><s:property value="%{article.modifiedDate}"/>            
                             </font>
                         </s:if>
                         <button class="more-control" data-toggle="collapse" data-target="#control-buttons">
@@ -67,16 +67,16 @@
             <div class="col-md-4 related-article">
                 <h3><b>You may also like</b></h3>
                 <s:iterator var="art" value="%{listArticles}" status="counter">
-                    <div class="col-md-12" style="overflow: hidden; background-color: white; padding-left: 0px">
-                    <s:a value="viewDetails">
-                        <div class="homeArticleImg" style="background-image:
-                                         url('<s:property value="%{#art.imgLink}"/>')"></div>
-                        <div class="homeArticle">
-                            <s:param name="articleID" value="%{#art.id}"/>
-                            <font><s:property value="%{#art.title}"/></font>
-                            <i><s:property value="%{#art.createdDate}"/></i>
-                        </div>
-                    </s:a>
+                    <div class="col-md-12" style="background-color: white; padding-left: 0px">
+                        <s:a value="viewDetails">
+                            <div class="homeArticleImg" style="background-image:
+                                 url('<s:property value="%{#art.imgLink}"/>')"></div>
+                            <div class="homeArticle">
+                                <s:param name="articleID" value="%{#art.id}"/>
+                                <font><s:property value="%{#art.title}"/></font>
+                                <i><s:property value="%{#art.createdDate}"/></i>
+                            </div>
+                        </s:a>
                     </div>
                     <div class="col-md-12"><br/></div>
                     <s:if test="%{#counter.count == 3}">                            

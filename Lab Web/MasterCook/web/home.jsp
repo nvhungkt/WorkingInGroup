@@ -32,7 +32,7 @@
                                 <div class="homeMainArticleImg" style="background-image:
                                      url('<s:property value="%{#art.imgLink}"/>')"></div>
                                 <div class="homeMainArticle">
-                                    <font><s:property value="%{#art.title}"/></font>
+                                    <div class="big-grid"><s:property value="%{#art.title}"/></div>
                                     <i><s:property value="%{#art.createdDate}"/></i>
                                 </div>
                             </s:a>
@@ -41,7 +41,7 @@
                     <div class="col-md-6">
                         <s:iterator var="art" value="%{#cat.value}" status="counter" begin="1">
                             <s:if test="%{#counter.count < 4}">
-                                <div class="col-md-12" style="overflow: hidden; background-color: white; padding-left: 0px">
+                                <div class="col-md-12" style="background-color: white; padding-left: 0px">
                                     <s:a value="viewDetails">
                                         <div class="homeArticleImg" style="background-image:
                                              url('<s:property value="%{#art.imgLink}"/>')"></div>
@@ -67,11 +67,11 @@
                 </div>
             </s:iterator>
         
-            <script>
+<!--            <script>
                 $(window).on('resize', function(){
                     $('.homeArticle').outerHeight($('.homeArticleImg').height());
                 }).trigger('resize');
-            </script>
+            </script>-->
         <!--------------------------------------------------------------------->
         </div>
         <s:include value="footer.html"/>
