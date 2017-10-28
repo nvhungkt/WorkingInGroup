@@ -100,7 +100,7 @@ public class UploadArticleAction extends ActionSupport implements ServletRequest
                         return "success";
                 } else {
                     //Edit article
-                    if (dao.editArticle(articleID, title, subcategory, staff.getStaffID(), status))
+                    if (dao.editArticle(articleID, title, staff.getStaffID()))
                         return "success";
                 }
             }

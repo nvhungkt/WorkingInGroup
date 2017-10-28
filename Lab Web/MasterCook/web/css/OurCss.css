@@ -224,8 +224,12 @@ body {
     background-color: #666;
     color: white;
     font-weight: bold;
-    padding: 6px;
-    margin-right: 6px;
+    padding: 6px 8px;
+}
+
+.comment-detail .comment-owner {
+    padding: 0px;
+    word-break: break-word;
 }
 
 .comment-detail .delete {

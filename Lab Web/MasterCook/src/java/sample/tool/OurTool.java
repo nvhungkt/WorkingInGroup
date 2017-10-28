@@ -58,6 +58,7 @@ public class OurTool{
     public static String getFirstImgLink(String content) {
         String src;
         int begin = content.indexOf("<img src=");        
+        if (begin == -1) return "";
         String a = content.substring(begin);        
         StringTokenizer stk = new StringTokenizer(a, '"' + "");
         

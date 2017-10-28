@@ -110,63 +110,70 @@
                         </s:if>
                         <%--Other Status--%>
                         <s:else>
-                            <%--Not collaborator Role--%>
-                            <s:if test="%{#session.STAFF.role != 'Collaborator'}"> 
-                                <%--Pending article--%>
-                                <s:if test="%{(#session.STAFF.role == 'Employee' and
+                            <%--Approve--%>
+                            <div class="col-md-4">
+                                <s:if test="%{  (#session.STAFF.role == 'Employee' and
                                                     article.status == 'Pending for Employee')
                                                 or
                                                 (#session.STAFF.role == 'Manager' and
-                                                article.status == 'Pending for Manager')}">
-                                    <%--Approve--%>                                                          
-                                    <form action="approveArticle" class="col-md-4" align="left">                                
+                                                article.status == 'Pending for Manager')}">                                                       
+                                    <form action="approveArticle" align="center">                                
                                         <s:hidden name="articleID" value="%{article.articleID}"/>
                                         <s:hidden name="status" value="%{article.status}"/>
                                         <s:hidden name="staffID" value="%{#session.STAFF.staffID}"/>
                                         <input type="submit" class="btn btn-success" value="Approve"/>
-                                        <!--Reject button to show reject modal-->
                                     </form>
                                 </s:if>
+                            </div>
+                            
+                            <s:if test="%{  (#session.STAFF.role == 'Collaborator' and
+                                                article.status == 'Pending for Employee')
+                                            or
+                                            (#session.STAFF.role == 'Employee' and
+                                                article.status != 'Accepted')
+                                            or
+                                            #session.STAFF.role == 'Manager'
+                                            or
+                                            #session.STAFF.role == 'Administrator'}">
                                 <%--Edit--%>
                                 <form action="editArticle" class="col-md-4" align="center">
                                     <s:hidden name="articleID" value="%{article.articleID}"/>
                                     <input type="submit" class="btn btn-info" value="Edit"/>     
                                 </form>
-                                <%----%>
-                                <s:if test="%{article.status != 'Rejected'}">
-                                    <%--Reject--%>
-                                    <div class="col-md-4" align="right">
-                                        <button type="button" class="btn btn-danger"
-                                                data-toggle="modal" data-target="#reason">
-                                            Reject
-                                        </button>
-                                    </div>
-                                    <div id="reason" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-                                            <!-- Modal content-->
-                                            <%--Input reason form--%>
-                                            <form action="rejectArticle">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h3 class="modal-title">Reason for Rejecting</h3>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <s:hidden name="staffID" value="%{#session.STAFF.staffID}"/>
-                                                        <s:hidden name="articleID" value="%{article.articleID}"/>
-                                                        <textarea name="txtReason" required="required" rows="5"
-                                                                  class="form-control" placeholder="Input Reason"></textarea>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                        <button type="submit" class="btn btn-danger"/>Reject</button>
-                                                    </div>
+
+                                <%--Reject--%>
+                                <div class="col-md-4" align="center">
+                                    <button type="button" class="btn btn-danger"
+                                            data-toggle="modal" data-target="#reason">
+                                        Reject
+                                    </button>
+                                </div>
+                                <div id="reason" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <%--Input reason form--%>
+                                        <form action="rejectArticle">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h3 class="modal-title">Reason for Rejecting</h3>
                                                 </div>
-                                            </form>
-                                        </div>
+                                                <div class="modal-body">
+                                                    <s:hidden name="staffID" value="%{#session.STAFF.staffID}"/>
+                                                    <s:hidden name="articleID" value="%{article.articleID}"/>
+                                                    <textarea name="txtReason" required="required" rows="5"
+                                                              class="form-control" placeholder="Input Reason"></textarea>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-danger"/>Reject</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                </s:if>
-                            </s:if>                  
+                                </div>
+                            </s:if>
+                            
                         </s:else>
                     </div>
                 </div>
@@ -202,15 +209,17 @@
                             <s:iterator var="comment" value="%{comments}">
                                 <%--Delete comment form--%>
                                 <div class="col-md-12 comment-detail">
-                                    <div class="col-md-3">
+                                    <div class="col-md-1">
                                         <span class="character">
                                             <s:property value="%{#comment.guestName.charAt(0)}"/> 
                                         </span>
+                                    </div>
+                                    <div class="col-md-3 comment-owner">
                                         <b>
                                             <s:property value="%{#comment.guestName}"/> 
                                         </b>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-8">
                                         <font>
                                         <s:property value="%{#comment.commentContent}"/> 
                                         </font>

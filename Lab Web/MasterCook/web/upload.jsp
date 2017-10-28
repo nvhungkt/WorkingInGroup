@@ -7,6 +7,7 @@
 <%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,6 +23,15 @@
             
             var lastTitle = document.getElementById('lastArticleTitle');
             lastTitle.innerHTML = document.getElementById('articleTitle').value;
+            
+            if (formID === 'uploadArticle') {
+                var length = document.getElementById('articleTitle').value.length;
+                if (length < 4 || length > 100) {
+                    alert("Title must have 4 - 100 characters");
+                    return;
+                }
+            }
+            
             document.getElementById(formID).submit();
         }
     </script>
@@ -31,6 +41,7 @@
             <font class="col-md-12 title">
                 Upload new article
             </font>
+            <i style="padding-left: 15px"><b>Write the article content here:</b></i>
             <form id="uploadArticle" action="finishUploadArticle" method="POST">
                 <div class="col-md-8">
                     <div id="editarea" contentEditable="true">
@@ -57,18 +68,20 @@
                             <input id="articleTitle" class="form-control" type="text" name="title" value="${param.title}"/>
                         </div>
 
-                        <div class="form-group">
-                            <label>Subcategory:</label>
-                            <select name="subcategory" class="form-control">
-                                <s:iterator var="subcate" value="%{workingCategories}">
-                                    <option value="<s:property value="%{#subcate.key}"/>"><s:property value="%{#subcate.value}"/></option>
-                                </s:iterator>
-                            </select>
-                        </div>
+                        <c:if test="${empty param.articleID}">
+                            <div class="form-group">
+                                <label>Subcategory:</label>
+                                <select name="subcategory" class="form-control">
+                                    <s:iterator var="subcate" value="%{workingCategories}">
+                                        <option value="<s:property value="%{#subcate.key}"/>"><s:property value="%{#subcate.value}"/></option>
+                                    </s:iterator>
+                                </select>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </form>
-
+                        
             <form id="uploadimg" action="uploadimg" method="POST" enctype = "multipart/form-data"
                   class="col-md-4 form-inline">
                 <div class="editTool">

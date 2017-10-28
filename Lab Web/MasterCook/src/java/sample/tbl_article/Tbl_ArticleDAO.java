@@ -96,21 +96,19 @@ public class Tbl_ArticleDAO implements Serializable{
         return null;
     }
     
-    public boolean editArticle(String articleID, String title, String subcategory, String staffID, String status)
+    public boolean editArticle(String articleID, String title, String staffID)
             throws NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;        
         try {
             con = DBAccess.makeConnection();
-            String sql = "UPDATE tbl_Article SET Title = ?, SubcategoryID = ? "
+            String sql = "UPDATE tbl_Article SET Title = ?, LastEditorID = ?, LastModifiedDateTime = ? "
                     + "WHERE ArticleID = ?";
             stm = con.prepareStatement(sql);
             stm.setString(1, title);
-            stm.setString(2, subcategory);
-            stm.setString(3, articleID);
-            
-            if (!"Accepted".equals(status))
-                approveArticle(articleID, staffID, status);
+            stm.setString(2, staffID);
+            stm.setTimestamp(3,  new Timestamp(System.currentTimeMillis()));
+            stm.setString(4, articleID);
             
             if (stm.executeUpdate() > 0) return true;
         }
