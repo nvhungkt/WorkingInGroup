@@ -5,9 +5,11 @@
  */
 package sample.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import sample.tbl_article.ArticlePresent;
@@ -16,6 +18,7 @@ import sample.tbl_article.Tbl_ArticleDetailsDAO;
 import sample.tbl_article.Tbl_ArticleDetailsDTO;
 import sample.tbl_comment.Tbl_CommentDAO;
 import sample.tbl_comment.Tbl_CommentDTO;
+import sample.tbl_staff.Tbl_StaffDTO;
 import sample.tool.OurTool;
 
 /**
@@ -35,8 +38,15 @@ public class ViewArticleDetailsAction implements ServletRequestAware{
     
     public String execute() throws Exception {     
         Tbl_ArticleDAO dao = new Tbl_ArticleDAO();
+        Map session = ActionContext.getContext().getSession();
+        Tbl_StaffDTO staff = (Tbl_StaffDTO) session.get("STAFF");
         //increase views
-        dao.increaseView(articleID);
+        if(staff!=null) {
+            dao.increaseView(articleID, staff.getStaffID());    
+        }
+        else {
+            dao.increaseView(articleID, null);
+        }        
         String url = SUCCESS;        
         //Load comments
         Tbl_CommentDAO commentDAO = new Tbl_CommentDAO();
