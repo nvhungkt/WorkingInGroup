@@ -23,12 +23,11 @@ public class ModifySubcatAction {
     
     public String execute() throws Exception {
         Tbl_SubcategoryDAO dao = new Tbl_SubcategoryDAO();
-        if(subcatName != null && !subcatName.trim().equals("")) {
-            System.out.println(subcatID);
-            System.out.println(subcatName);
-            System.out.println(catID);
-            System.out.println(description);
-            dao.updateSubcat(subcatID, subcatName.trim(), catID, description.trim(), active);
+        boolean nameExisted = dao.subcatExisted(subcatName);
+        if (!nameExisted) {
+            if(subcatName != null && !subcatName.trim().equals("")) {
+                dao.updateSubcat(subcatID, subcatName.trim(), catID, description.trim(), active);
+            }
         }
         return SUCCESS;
     }
