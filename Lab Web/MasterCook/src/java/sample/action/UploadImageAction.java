@@ -72,9 +72,11 @@ public class UploadImageAction extends ActionSupport implements ServletRequestAw
         if (session != null) {
             Tbl_StaffDTO staff = (Tbl_StaffDTO) session.get("STAFF");
             if (staff != null) {
+                if (this.fileUploadFileName != null) return;
                 //Generate file name
                 String type = fileUploadFileName.substring(fileUploadFileName.lastIndexOf('.'));
                 this.fileUploadFileName = staff.getStaffID() + "_" + new Date().getTime() + type;
+                System.out.println(this.fileUploadFileName);
             }
             else this.fileUploadFileName = fileUploadFileName;
         }
@@ -101,6 +103,7 @@ public class UploadImageAction extends ActionSupport implements ServletRequestAw
             System.out.println("Server path:" + filePath + this.fileUploadFileName);
             File fileToCreate = new File(filePath, this.fileUploadFileName);
             FileUtils.copyFile(this.fileUpload, fileToCreate);
+            System.out.println("file: " + fileToCreate);
         } catch (Exception e) {
             e.printStackTrace();
             addActionError(e.getMessage());

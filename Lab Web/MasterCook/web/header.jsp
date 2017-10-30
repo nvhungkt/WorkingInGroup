@@ -165,7 +165,6 @@
                 </div>
             </div>
         </nav>
-        <br/><br/>
         <script>
             $(document).ready(function(){
                 var spanSubmit = $('#search-submit');

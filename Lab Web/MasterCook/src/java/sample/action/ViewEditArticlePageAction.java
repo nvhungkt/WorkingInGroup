@@ -65,7 +65,8 @@ public class ViewEditArticlePageAction implements ServletRequestAware{
         Tbl_ArticleDetailsDAO articleDAO = new Tbl_ArticleDetailsDAO();
         article = articleDAO.getArticleDetails(articleID);
         content = OurTool.readFile(article.getContentURL(), servletRequest);
-
+//        servletRequest.setAttribute("CONTENT", content);
+        
         String url = SUCCESS;
         return url;
     }
