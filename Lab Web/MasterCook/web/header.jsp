@@ -156,7 +156,7 @@
                         </s:if>
                     </ul>
                     <form action="guestSearch" class="form-inline nav navbar-nav navbar-right">
-                        <input type="text" class="searchBar" name="txtSearch" placeholder="Search" id="Search"/>
+                        <input type="text" class="searchBar" name="txtSearch" placeholder="Search Article" id="Search"/>
                         <input type="hidden" name="pageNumber" value="1" />
                         <!--<button class="btn btn-link searchBar">-->
                             <span class="glyphicon glyphicon-search" id="search-submit"></span>
